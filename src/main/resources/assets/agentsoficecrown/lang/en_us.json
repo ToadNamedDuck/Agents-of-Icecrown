@@ -1,5 +1,4 @@
 {
-  "itemGroup.agentsoficecrown": "Example Mod Tab",
-  "block.agentsoficecrown.example_block": "Example Block",
-  "item.agentsoficecrown.example_item": "Example Item"
+  "block.agentsoficecrown.test_stone": "Test Stone",
+  "creativetab.agentsoficecrown.test_tab": "Test Tab"
 }
