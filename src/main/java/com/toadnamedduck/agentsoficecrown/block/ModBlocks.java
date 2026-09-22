@@ -1,8 +1,11 @@
 package com.toadnamedduck.agentsoficecrown.block;
 import com.toadnamedduck.agentsoficecrown.Constants;
+import com.toadnamedduck.agentsoficecrown.fluid.ModFluids;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -17,7 +20,20 @@ public class ModBlocks {
                     .explosionResistance(6.0f)
                     .sound(SoundType.STONE)
                     .lightLevel(state -> 0)
+                    .requiresCorrectToolForDrops()
             ));
+
+    public static final DeferredBlock<LiquidBlock> LIQUID_SARONITE = BLOCKS.register("liquid_saronite", () ->
+            new LiquidBlock(ModFluids.LIQUID_SARONITE_SOURCE.get(), BlockBehaviour.Properties.of()
+                    .liquid()
+                    .noCollission()
+                    .strength(100.0f)
+                    .noLootTable()
+                    .pushReaction(PushReaction.DESTROY)
+                    .lightLevel(state -> 13)
+                    .replaceable()
+            )
+    );
 
     public static void register(IEventBus modEventBus){
         BLOCKS.register(modEventBus);

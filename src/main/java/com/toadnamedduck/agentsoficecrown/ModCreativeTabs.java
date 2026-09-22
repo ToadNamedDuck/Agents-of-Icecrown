@@ -1,6 +1,7 @@
 package com.toadnamedduck.agentsoficecrown;
 
 import com.toadnamedduck.agentsoficecrown.item.ModBlockItems;
+import com.toadnamedduck.agentsoficecrown.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -13,10 +14,12 @@ public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MODID);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TEST_TAB = CREATIVE_MODE_TABS.register("test_tab",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("creativetab.agentsoficecrown.items"))
+                    .title(Component.translatable("creativetab.agentsoficecrown.test_tab"))
                     .icon(() -> new ItemStack(ModBlockItems.TEST_STONE_ITEM.get()))
-                    .displayItems((params, output) ->
-                            output.accept(ModBlockItems.TEST_STONE_ITEM))
+                    .displayItems((params, output) -> {
+                        output.accept(ModBlockItems.TEST_STONE_ITEM);
+                        output.accept(ModItems.LIQUID_SARONITE_BUCKET);
+                    })
                     .build()
             );
 
