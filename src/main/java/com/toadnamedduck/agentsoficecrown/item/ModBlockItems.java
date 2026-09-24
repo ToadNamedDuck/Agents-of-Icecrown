@@ -2,6 +2,7 @@ package com.toadnamedduck.agentsoficecrown.item;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -17,6 +18,18 @@ public class ModBlockItems {
             TEST_STONE,
             new Item.Properties()
             );
+
+    public static DeferredItem<BlockItem> BLOCK_OF_SARONITE_ITEM = BLOCK_ITEMS.registerSimpleBlockItem(
+            "block_of_saronite",
+            BLOCK_OF_SARONITE,
+            new Item.Properties().fireResistant().rarity(Rarity.RARE)
+    );
+
+    public static DeferredItem<BlockItem> BLOCK_OF_REFINED_SARONITE_ITEM = BLOCK_ITEMS.registerSimpleBlockItem(
+            "block_of_refined_saronite",
+            BLOCK_OF_REFINED_SARONITE,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+    );
 
     public static void register(IEventBus modEventBus){
         BLOCK_ITEMS.register(modEventBus);

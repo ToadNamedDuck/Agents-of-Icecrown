@@ -16,10 +16,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> TEST_STONE = BLOCKS.register(
             "test_stone",
             () -> new Block(BlockBehaviour.Properties.of()
-                    .destroyTime(1.5f)
-                    .explosionResistance(6.0f)
+                    .strength(1.5f, 6.0f)
                     .sound(SoundType.STONE)
-                    .lightLevel(state -> 0)
                     .requiresCorrectToolForDrops()
             ));
 
@@ -34,6 +32,22 @@ public class ModBlocks {
                     .replaceable()
             )
     );
+
+    public static final DeferredBlock<Block> BLOCK_OF_SARONITE = BLOCKS.register(
+            "block_of_saronite",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(5.0f, 6.0f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)
+            ));
+
+    public static final DeferredBlock<Block> BLOCK_OF_REFINED_SARONITE = BLOCKS.register(
+            "block_of_refined_saronite",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(50.0f, 1200.0f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK)
+            ));
 
     public static void register(IEventBus modEventBus){
         BLOCKS.register(modEventBus);

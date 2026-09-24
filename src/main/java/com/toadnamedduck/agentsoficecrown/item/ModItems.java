@@ -20,6 +20,13 @@ public class ModItems {
     public static final DeferredItem<Item> RAW_SARONITE_ORE = MOD_ITEMS.register("raw_saronite_ore", () ->
             new Item(new Item.Properties()
                     .stacksTo(64)
+                    .rarity(Rarity.UNCOMMON)
+                    .fireResistant()
+            ));
+
+    public static final DeferredItem<Item> SARONITE_INGOT = MOD_ITEMS.register("saronite_ingot", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
                     .rarity(Rarity.RARE)
                     .fireResistant()
             ));
