@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "level=0": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=1": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=2": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=3": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=4": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=5": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=6": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=7": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=8": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=9": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=10": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=11": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=12": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=13": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=14": { "model": "agentsoficecrown:block/liquid_saronite" },
+    "level=15": { "model": "agentsoficecrown:block/liquid_saronite" }
+  }
+}
