@@ -1,5 +1,6 @@
 package com.toadnamedduck.agentsoficecrown.item;
 
+import com.toadnamedduck.agentsoficecrown.block.ModBlocks;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -13,9 +14,9 @@ import static com.toadnamedduck.agentsoficecrown.block.ModBlocks.*;
 public class ModBlockItems {
     public static DeferredRegister.Items BLOCK_ITEMS = DeferredRegister.createItems(Constants.MODID);
 
-    public static DeferredItem<BlockItem> TEST_STONE_ITEM = BLOCK_ITEMS.registerSimpleBlockItem(
+    public static DeferredItem<BlockItem> LICHSTONE = BLOCK_ITEMS.registerSimpleBlockItem(
             "lichstone",
-            LICHSTONE,
+            ModBlocks.LICHSTONE,
             new Item.Properties()
             );
 

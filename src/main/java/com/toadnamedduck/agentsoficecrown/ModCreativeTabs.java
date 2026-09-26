@@ -5,6 +5,7 @@ import com.toadnamedduck.agentsoficecrown.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -15,11 +16,14 @@ public class ModCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TEST_TAB = CREATIVE_MODE_TABS.register("test_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("creativetab.agentsoficecrown.test_tab"))
-                    .icon(() -> new ItemStack(ModBlockItems.TEST_STONE_ITEM.get()))
+                    .icon(() -> new ItemStack(ModBlockItems.LICHSTONE.get()))
                     .displayItems((params, output) -> {
-                        output.accept(ModBlockItems.TEST_STONE_ITEM);
-                        output.accept(ModItems.LIQUID_SARONITE_BUCKET);
-
+                        for(DeferredHolder<Item, ? extends Item> block: ModBlockItems.BLOCK_ITEMS.getEntries()){
+                            output.accept(block.get());
+                        }
+                        for(DeferredHolder<Item, ? extends Item> item: ModItems.MOD_ITEMS.getEntries()){
+                            output.accept(item.get());
+                        }
 
 
                     })
