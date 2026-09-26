@@ -18,11 +18,10 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
     @Override
     protected void generate(){
         dropSelf(ModBlocks.BLOCK_OF_SARONITE.get());
-        dropSelf(ModBlocks.BLOCK_OF_REFINED_SARONITE.get());
     }
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks(){
-        return List.of(ModBlocks.BLOCK_OF_SARONITE.get(), ModBlocks.BLOCK_OF_REFINED_SARONITE.get());
+        return List.of(ModBlocks.BLOCK_OF_SARONITE.get());
     }
 }

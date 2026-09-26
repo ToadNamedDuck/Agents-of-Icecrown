@@ -14,8 +14,8 @@ public class ModBlockItems {
     public static DeferredRegister.Items BLOCK_ITEMS = DeferredRegister.createItems(Constants.MODID);
 
     public static DeferredItem<BlockItem> TEST_STONE_ITEM = BLOCK_ITEMS.registerSimpleBlockItem(
-            "test_stone",
-            TEST_STONE,
+            "lichstone",
+            LICHSTONE,
             new Item.Properties()
             );
 
@@ -23,12 +23,6 @@ public class ModBlockItems {
             "block_of_saronite",
             BLOCK_OF_SARONITE,
             new Item.Properties().fireResistant().rarity(Rarity.RARE)
-    );
-
-    public static DeferredItem<BlockItem> BLOCK_OF_REFINED_SARONITE_ITEM = BLOCK_ITEMS.registerSimpleBlockItem(
-            "block_of_refined_saronite",
-            BLOCK_OF_REFINED_SARONITE,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
     );
 
     public static void register(IEventBus modEventBus){

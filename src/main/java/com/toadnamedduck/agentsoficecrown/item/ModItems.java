@@ -1,7 +1,6 @@
 package com.toadnamedduck.agentsoficecrown.item;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
-import com.toadnamedduck.agentsoficecrown.fluid.ModFluidTypes;
 import com.toadnamedduck.agentsoficecrown.fluid.ModFluids;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -31,10 +30,10 @@ public class ModItems {
                     .fireResistant()
             ));
 
-    public static final DeferredItem<Item> REFINED_SARONITE_INGOT = MOD_ITEMS.register("refined_saronite_ingot", () ->
+    public  static final DeferredItem<Item> SARONITE_NUGGET = MOD_ITEMS.register("saronite_nugget", () ->
             new Item(new Item.Properties()
                     .stacksTo(64)
-                    .rarity(Rarity.EPIC)
+                    .rarity(Rarity.RARE)
                     .fireResistant()
             ));
 

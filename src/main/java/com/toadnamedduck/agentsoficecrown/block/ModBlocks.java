@@ -13,8 +13,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Constants.MODID);
 
-    public static final DeferredBlock<Block> TEST_STONE = BLOCKS.register(
-            "test_stone",
+    public static final DeferredBlock<Block> LICHSTONE = BLOCKS.register(
+            "lichstone",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1.5f, 6.0f)
                     .sound(SoundType.STONE)
@@ -39,14 +39,6 @@ public class ModBlocks {
                     .strength(5.0f, 6.0f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.METAL)
-            ));
-
-    public static final DeferredBlock<Block> BLOCK_OF_REFINED_SARONITE = BLOCKS.register(
-            "block_of_refined_saronite",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(50.0f, 1200.0f)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.NETHERITE_BLOCK)
             ));
 
     public static void register(IEventBus modEventBus){

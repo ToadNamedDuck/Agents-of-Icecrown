@@ -20,7 +20,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(@NotNull RecipeOutput output){
-        //Ore smelting (furnace, blast furnace for now. Maybe additional machine for Refined Saronite later?)
+        //Ore smelting (furnace, blast furnace)
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.RAW_SARONITE_ORE.get()), RecipeCategory.MISC, ModItems.SARONITE_INGOT.get(), 1.0f, 200)
                 .group("saronite")
                 .unlockedBy("has_raw_saronite", has(ModItems.RAW_SARONITE_ORE.get()))
@@ -39,12 +39,13 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_ingot", has(ModItems.SARONITE_INGOT.get()))
                 .save(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.BLOCK_OF_REFINED_SARONITE.get())
-                .define('X', ModItems.REFINED_SARONITE_INGOT.get())
+        //Nugget -> Ingot
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SARONITE_INGOT.get())
+                .define('X', ModItems.SARONITE_NUGGET.get())
                 .pattern("XXX")
                 .pattern("XXX")
                 .pattern("XXX")
-                .unlockedBy("has_ingot", has(ModItems.REFINED_SARONITE_INGOT.get()))
+                .unlockedBy("has_ingot", has(ModItems.SARONITE_INGOT.get()))
                 .save(output);
 
         //Block -> Ingot
@@ -53,12 +54,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_block", has(ModBlocks.BLOCK_OF_SARONITE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_ingot_from_block"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.REFINED_SARONITE_INGOT.get(), 9)
-                .requires(ModBlocks.BLOCK_OF_REFINED_SARONITE.get())
-                .unlockedBy("has_block", has(ModBlocks.BLOCK_OF_REFINED_SARONITE.get()))
-                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "refined_saronite_ingot_from_block"));
-
-
+        //Ingot -> Nugget
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SARONITE_NUGGET.get(), 9)
+                .requires(ModItems.SARONITE_INGOT.get())
+                .unlockedBy("has_ingot", has(ModItems.SARONITE_INGOT.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_nugget_from_ingot"));
 
     }
 }
