@@ -41,6 +41,14 @@ public class ModBlocks {
                     .sound(SoundType.METAL)
             ));
 
+    public static final DeferredBlock<RuneforgeBlock> RUNEFORGE = BLOCKS.register(
+            "runeforge",
+            () -> new RuneforgeBlock(BlockBehaviour.Properties.of()
+                    .strength(5.0f, 6.0f)
+                    .noOcclusion()
+                    .pushReaction(PushReaction.BLOCK)
+            ));
+
     public static void register(IEventBus modEventBus){
         BLOCKS.register(modEventBus);
     }
