@@ -29,6 +29,7 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
                 .add(ModBlocks.LICHSTONE.get())
+                .add(ModBlocks.RUNEFORGE.get())
                 ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)

@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -66,6 +67,27 @@ public class RuneforgeBlock extends HorizontalDirectionalBlock {
         }
         //If the update came from the partner, but it's no longer our other half
         return Blocks.AIR.defaultBlockState();
+    }
+
+    @Override
+    public @NotNull BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        DoubleBlockHalf half = state.getValue(HALF);
+        BlockPos belowPos = pos.below();
+        BlockState belowState = level.getBlockState(belowPos);
+        int belowStateID = Block.getId(belowState);
+
+        if(!level.isClientSide
+                && player.isCreative()
+                && half == DoubleBlockHalf.UPPER
+                && belowState.is(this)
+                && belowState.getValue(HALF) != half
+
+        ){
+            level.setBlock(belowPos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL | Block.UPDATE_SUPPRESS_DROPS);
+            level.levelEvent(null, 2001, belowPos, belowStateID);
+        }
+
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
