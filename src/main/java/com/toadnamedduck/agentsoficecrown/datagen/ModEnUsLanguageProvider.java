@@ -16,7 +16,7 @@ public class ModEnUsLanguageProvider extends LanguageProvider {
     public ModEnUsLanguageProvider(PackOutput output){
         super(output, Constants.MODID, "en_us");
     }
-    private Set<String> coveredKeys = new HashSet<>();
+    private final Set<String> coveredKeys = new HashSet<>();
 
     @Override
     protected void addTranslations() {
@@ -43,7 +43,21 @@ public class ModEnUsLanguageProvider extends LanguageProvider {
         //Misc - Creative Mode Tab
         add("creativetab.agentsoficecrown.icecrown_tab", "Agents of Icecrown");
 
+        checkItems();
+    }
+    private void addItemToList(DeferredHolder<Item, ?> entryItem, String name){
+        var item = entryItem.get();
+        this.add(item, name);
+        coveredKeys.add(item.getDescriptionId());
+    }
 
+    private void addBlockToList(DeferredHolder<Block, ?> entryBlock, String name){
+        var block = entryBlock.get();
+        this.add(block, name);
+        coveredKeys.add(block.getDescriptionId());
+    }
+
+    protected void checkItems(){
         //Make sure everything is accounted for
         for(var block: ModBlocks.BLOCKS.getEntries()) {
             String key = block.get().getDescriptionId();
@@ -58,17 +72,5 @@ public class ModEnUsLanguageProvider extends LanguageProvider {
                 throw new IllegalStateException("Missing lang entry for: " + key);
             }
         }
-
-    }
-    private void addItemToList(DeferredHolder<Item, ?> entryItem, String name){
-        var item = entryItem.get();
-        this.add(item, name);
-        coveredKeys.add(item.getDescriptionId());
-    }
-
-    private void addBlockToList(DeferredHolder<Block, ?> entryBlock, String name){
-        var block = entryBlock.get();
-        this.add(block, name);
-        coveredKeys.add(block.getDescriptionId());
     }
 }
