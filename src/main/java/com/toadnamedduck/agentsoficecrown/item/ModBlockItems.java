@@ -26,9 +26,9 @@ public class ModBlockItems {
             new Item.Properties().fireResistant().rarity(Rarity.RARE)
     );
 
-    public static DeferredItem<BlockItem> RUNEFORGE_BOTTOM_ITEM = BLOCK_ITEMS.registerSimpleBlockItem(
-            "runeforge_bottom",
-            RUNEFORGE,
+    public static DeferredItem<BlockItem> RUNEFORGE = BLOCK_ITEMS.registerSimpleBlockItem(
+            "runeforge",
+            ModBlocks.RUNEFORGE,
             new Item.Properties().rarity(Rarity.EPIC)
     );
 

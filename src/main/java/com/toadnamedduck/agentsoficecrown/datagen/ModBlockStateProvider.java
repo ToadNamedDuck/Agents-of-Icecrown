@@ -31,7 +31,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 return runeforgeTopModel;
             }
         });
-        itemModels().withExistingParent("runeforge_bottom", modLoc("item/runeforge_combined_item"));
+        itemModels().withExistingParent("runeforge", modLoc("item/runeforge_combined_item"));
 
         //Simple Blocks
         simpleBlockWithItem(ModBlocks.LICHSTONE.get(), models().cubeAll("lichstone", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/lichstone")));
