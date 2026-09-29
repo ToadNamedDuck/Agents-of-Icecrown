@@ -13,10 +13,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MODID);
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TEST_TAB = CREATIVE_MODE_TABS.register("test_tab",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ICECROWN_TAB = CREATIVE_MODE_TABS.register("icecrown_tab",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("creativetab.agentsoficecrown.test_tab"))
-                    .icon(() -> new ItemStack(ModBlockItems.LICHSTONE.get()))
+                    .title(Component.translatable("creativetab.agentsoficecrown.icecrown_tab"))
+                    .icon(() -> new ItemStack(ModBlockItems.BLOCK_OF_SARONITE_ITEM.get()))
                     .displayItems((params, output) -> {
                         for(DeferredHolder<Item, ? extends Item> block: ModBlockItems.BLOCK_ITEMS.getEntries()){
                             output.accept(block.get());
