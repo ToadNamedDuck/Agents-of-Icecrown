@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModBlocks {
@@ -47,6 +48,23 @@ public class ModBlocks {
                     .strength(5.0f, 6.0f)
                     .noOcclusion()
                     .pushReaction(PushReaction.BLOCK)
+                    .requiresCorrectToolForDrops()
+            ));
+
+    public static final DeferredBlock<Block> BLOCK_OF_TITANIUM = BLOCKS.register(
+                "block_of_titanium",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(5.0f, 6.0f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)
+            ));
+
+    public static final DeferredBlock<Block> BLOCK_OF_TITANSTEEL = BLOCKS.register(
+            "block_of_titansteel",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(50.0F, 1200.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK)
             ));
 
     public static void register(IEventBus modEventBus){

@@ -16,7 +16,7 @@ public class ModCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ICECROWN_TAB = CREATIVE_MODE_TABS.register("icecrown_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("creativetab.agentsoficecrown.icecrown_tab"))
-                    .icon(() -> new ItemStack(ModBlockItems.BLOCK_OF_SARONITE_ITEM.get()))
+                    .icon(() -> new ItemStack(ModBlockItems.BLOCK_OF_SARONITE.get()))
                     .displayItems((params, output) -> {
                         for(DeferredHolder<Item, ? extends Item> block: ModBlockItems.BLOCK_ITEMS.getEntries()){
                             output.accept(block.get());

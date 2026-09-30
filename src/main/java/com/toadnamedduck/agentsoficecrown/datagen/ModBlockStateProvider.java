@@ -36,5 +36,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Simple Blocks
         simpleBlockWithItem(ModBlocks.LICHSTONE.get(), models().cubeAll("lichstone", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/lichstone")));
         simpleBlockWithItem(ModBlocks.BLOCK_OF_SARONITE.get(), models().cubeAll("block_of_saronite", ResourceLocation.fromNamespaceAndPath(Constants.MODID,"block/block_of_saronite")));
+        //register titanium and titansteel blocks pls
     }
 }

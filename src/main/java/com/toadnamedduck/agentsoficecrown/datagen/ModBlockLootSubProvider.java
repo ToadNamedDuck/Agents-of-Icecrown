@@ -19,11 +19,13 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
     protected void generate(){
         dropSelf(ModBlocks.BLOCK_OF_SARONITE.get());
         dropSelf(ModBlocks.LICHSTONE.get());
+        dropSelf(ModBlocks.BLOCK_OF_TITANIUM.get());
+        dropSelf(ModBlocks.BLOCK_OF_TITANSTEEL.get());
         add(ModBlocks.RUNEFORGE.get(), createDoorTable(ModBlocks.RUNEFORGE.get()));
     }
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks(){
-        return List.of(ModBlocks.BLOCK_OF_SARONITE.get(), ModBlocks.LICHSTONE.get(), ModBlocks.RUNEFORGE.get());
+        return List.of(ModBlocks.BLOCK_OF_SARONITE.get(), ModBlocks.LICHSTONE.get(), ModBlocks.RUNEFORGE.get(), ModBlocks.BLOCK_OF_TITANIUM.get(), ModBlocks.BLOCK_OF_TITANSTEEL.get());
     }
 }

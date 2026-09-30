@@ -28,6 +28,12 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
         TagKey<Item> saroniteBucket = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "buckets/liquid_saronite"));
         TagKey<Item> saroniteIngot = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/saronite"));
         TagKey<Item> saroniteNugget = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/saronite"));
+        TagKey<Item> titaniumRawMaterial = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials/titanium"));
+        TagKey<Item> titaniumIngot = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/titanium"));
+        TagKey<Item> titaniumNugget = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/titanium"));
+        TagKey<Item> titansteelIngot = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/titansteel"));
+        TagKey<Item> titansteelNugget = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets/titansteel"));
+
 
         //Broad tag keys here
         TagKey<Item> buckets = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "buckets"));
@@ -51,11 +57,16 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
         tag(buckets)
                 .addTag(saroniteBucket);
         tag(raw_materials)
-                .addTag(saroniteRawMaterial);
+                .addTag(saroniteRawMaterial)
+                .addTag(titaniumRawMaterial);
         tag(ingots)
-                .addTag(saroniteIngot);
+                .addTag(saroniteIngot)
+                .addTag(titaniumIngot)
+                .addTag(titansteelIngot);
         tag(nuggets)
-                .addTag(saroniteNugget);
+                .addTag(saroniteNugget)
+                .addTag(titaniumNugget)
+                .addTag(titansteelNugget);
 
         //Tag actual items lol
         tag(saroniteRawMaterial)
@@ -70,7 +81,23 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
         tag(saroniteNugget)
                 .add(ModItems.SARONITE_NUGGET.get());
 
+        tag(titaniumRawMaterial)
+                .add(ModItems.RAW_TITANIUM_ORE.get());
+
+        tag(titaniumIngot)
+                .add(ModItems.TITANIUM_INGOT.get());
+
+        tag(titaniumNugget)
+                .add(ModItems.TITANIUM_NUGGET.get());
+
+        tag(titansteelIngot)
+                .add(ModItems.TITANSTEEL_INGOT.get());
+
+        tag(titansteelNugget)
+                .add(ModItems.TITANSTEEL_NUGGET.get());
+
         tag(beacon_payable)
-                .addTag(saroniteIngot);
+                .addTag(saroniteIngot)
+                .addTag(titansteelIngot);
     }
 }

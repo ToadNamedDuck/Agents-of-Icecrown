@@ -20,9 +20,9 @@ public class ModBlockItems {
             new Item.Properties()
             );
 
-    public static DeferredItem<BlockItem> BLOCK_OF_SARONITE_ITEM = BLOCK_ITEMS.registerSimpleBlockItem(
+    public static DeferredItem<BlockItem> BLOCK_OF_SARONITE = BLOCK_ITEMS.registerSimpleBlockItem(
             "block_of_saronite",
-            BLOCK_OF_SARONITE,
+            ModBlocks.BLOCK_OF_SARONITE,
             new Item.Properties().fireResistant().rarity(Rarity.RARE)
     );
 
@@ -30,6 +30,18 @@ public class ModBlockItems {
             "runeforge",
             ModBlocks.RUNEFORGE,
             new Item.Properties().rarity(Rarity.EPIC)
+    );
+
+    public static DeferredItem<BlockItem> BLOCK_OF_TITANIUM = BLOCK_ITEMS.registerSimpleBlockItem(
+            "block_of_titanium",
+            ModBlocks.BLOCK_OF_TITANIUM,
+            new Item.Properties()
+    );
+
+    public static DeferredItem<BlockItem> BLOCK_OF_TITANSTEEL = BLOCK_ITEMS.registerSimpleBlockItem(
+            "block_of_titansteel",
+            ModBlocks.BLOCK_OF_TITANSTEEL,
+            new Item.Properties().fireResistant().rarity(Rarity.RARE)
     );
 
     public static void register(IEventBus modEventBus){

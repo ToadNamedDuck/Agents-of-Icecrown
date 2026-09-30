@@ -19,7 +19,7 @@ public class ModItems {
     public static final DeferredItem<Item> RAW_SARONITE_ORE = MOD_ITEMS.register("raw_saronite_ore", () ->
             new Item(new Item.Properties()
                     .stacksTo(64)
-                    .rarity(Rarity.UNCOMMON)
+                    .rarity(Rarity.RARE)
                     .fireResistant()
             ));
 
@@ -30,7 +30,36 @@ public class ModItems {
                     .fireResistant()
             ));
 
-    public  static final DeferredItem<Item> SARONITE_NUGGET = MOD_ITEMS.register("saronite_nugget", () ->
+    public static final DeferredItem<Item> SARONITE_NUGGET = MOD_ITEMS.register("saronite_nugget", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.RARE)
+                    .fireResistant()
+            ));
+
+    public static final DeferredItem<Item> RAW_TITANIUM_ORE = MOD_ITEMS.register("raw_titanium_ore", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+            ));
+
+    public static final DeferredItem<Item> TITANIUM_INGOT = MOD_ITEMS.register( "titanium_ingot", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+            ));
+
+    public static final DeferredItem<Item> TITANIUM_NUGGET = MOD_ITEMS.register("titanium_nugget", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+            ));
+
+    public static final DeferredItem<Item> TITANSTEEL_INGOT = MOD_ITEMS.register("titansteel_ingot", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.RARE)
+                    .fireResistant()
+            ));
+
+    public static final DeferredItem<Item> TITANSTEEL_NUGGET = MOD_ITEMS.register("titansteel_nugget", () ->
             new Item(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.RARE)

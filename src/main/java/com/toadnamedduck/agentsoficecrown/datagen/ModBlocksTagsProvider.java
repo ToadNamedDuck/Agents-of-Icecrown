@@ -30,14 +30,23 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
                 .add(ModBlocks.LICHSTONE.get())
                 .add(ModBlocks.RUNEFORGE.get())
+                .add(ModBlocks.BLOCK_OF_TITANIUM.get())
+                .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
+                ;
+
+        tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(ModBlocks.RUNEFORGE.get())
                 ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
+                .add(ModBlocks.BLOCK_OF_TITANIUM.get())
+                .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
                 ;
 
         tag(BlockTags.BEACON_BASE_BLOCKS)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
+                .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
                 ;
 
         tag(stones)
