@@ -24,7 +24,14 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider provider) {
 
         TagKey<Block> stones = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "stones"));
+        TagKey<Block> saronite_ores = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/saronite"));
+        TagKey<Block> titanium_ores = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/titanium"));
 
+        TagKey<Block> ores = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores"));
+
+        tag(ores)
+                .addTag(saronite_ores)
+                .addTag(titanium_ores);
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
@@ -32,6 +39,20 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.RUNEFORGE.get())
                 .add(ModBlocks.BLOCK_OF_TITANIUM.get())
                 .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
+                .add(ModBlocks.SARONITE_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SARONITE_ORE.get())
+                .add(ModBlocks.TITANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
+                ;
+
+        tag(saronite_ores)
+                .add(ModBlocks.SARONITE_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SARONITE_ORE.get())
+                ;
+
+        tag(titanium_ores)
+                .add(ModBlocks.TITANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
                 ;
 
         tag(BlockTags.NEEDS_STONE_TOOL)
@@ -42,6 +63,10 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
                 .add(ModBlocks.BLOCK_OF_TITANIUM.get())
                 .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
+                .add(ModBlocks.SARONITE_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SARONITE_ORE.get())
+                .add(ModBlocks.TITANIUM_ORE.get())
+                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
                 ;
 
         tag(BlockTags.BEACON_BASE_BLOCKS)

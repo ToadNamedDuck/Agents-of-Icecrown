@@ -44,6 +44,30 @@ public class ModBlockItems {
             new Item.Properties().fireResistant().rarity(Rarity.RARE)
     );
 
+    public static DeferredItem<BlockItem> SARONITE_ORE = BLOCK_ITEMS.registerSimpleBlockItem(
+            "saronite_ore",
+            ModBlocks.SARONITE_ORE,
+            new Item.Properties()
+    );
+
+    public static DeferredItem<BlockItem> DEEPSLATE_SARONITE_ORE = BLOCK_ITEMS.registerSimpleBlockItem(
+            "deepslate_saronite_ore",
+            ModBlocks.DEEPSLATE_SARONITE_ORE,
+            new Item.Properties()
+    );
+
+    public static DeferredItem<BlockItem> TITANIUM_ORE = BLOCK_ITEMS.registerSimpleBlockItem(
+            "titanium_ore",
+            ModBlocks.TITANIUM_ORE,
+            new Item.Properties()
+    );
+
+    public static DeferredItem<BlockItem> DEEPSLATE_TITANIUM_ORE = BLOCK_ITEMS.registerSimpleBlockItem(
+            "deepslate_titanium_ore",
+            ModBlocks.DEEPSLATE_TITANIUM_ORE,
+            new Item.Properties()
+    );
+
     public static void register(IEventBus modEventBus){
         BLOCK_ITEMS.register(modEventBus);
     }

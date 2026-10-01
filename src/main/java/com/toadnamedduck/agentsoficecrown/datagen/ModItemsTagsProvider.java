@@ -40,10 +40,17 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
         TagKey<Item> raw_materials = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "raw_materials"));
         TagKey<Item> ingots = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots"));
         TagKey<Item> nuggets = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "nuggets"));
+        TagKey<Item> ores = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores"));
 
         //Special registration for both c:stones as an item tag and a block tag, to make sure both block and item of stones are tagged correctly
         TagKey<Block> stonesBlockTag = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "stones"));
         TagKey<Item> stonesItemTag = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "stones"));
+
+        //ores and whatnot
+        TagKey<Block> saroniteOresBlock = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/saronite"));
+        TagKey<Item> saroniteOresItem = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/saronite"));
+        TagKey<Block> titaniumOresBlock = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/titanium"));
+        TagKey<Item> titaniumOresItem = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ores/titanium"));
 
         //Other
         TagKey<Item> beacon_payable = TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("beacon_payment_items"));
@@ -52,6 +59,8 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
         //Items is mirrored FROM blocks
         //I can probably do the same with ores :) and deepslate variants and all of that
         this.copy(stonesBlockTag, stonesItemTag);
+        this.copy(saroniteOresBlock, saroniteOresItem);
+        this.copy(titaniumOresBlock, titaniumOresItem);
 
         //Fold subtags into broader c category
         tag(buckets)
@@ -67,6 +76,9 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
                 .addTag(saroniteNugget)
                 .addTag(titaniumNugget)
                 .addTag(titansteelNugget);
+        tag(ores)
+                .addTag(saroniteOresItem)
+                .addTag(titaniumOresItem);
 
         //Tag actual items lol
         tag(saroniteRawMaterial)

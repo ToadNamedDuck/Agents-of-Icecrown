@@ -1,7 +1,9 @@
 package com.toadnamedduck.agentsoficecrown.block;
 import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.fluid.ModFluids;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.SoundType;
@@ -65,6 +67,38 @@ public class ModBlocks {
                     .strength(50.0F, 1200.0F)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.NETHERITE_BLOCK)
+            ));
+
+    public static final DeferredBlock<Block> SARONITE_ORE = BLOCKS.register(
+            "saronite_ore",
+            () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.of()
+                    .strength(3.0f,3.0f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)
+            ));
+
+    public static final DeferredBlock<Block> DEEPSLATE_SARONITE_ORE = BLOCKS.register(
+            "deepslate_saronite_ore",
+            () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.of()
+                    .strength(4.5f,3.0f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.DEEPSLATE)
+            ));
+
+    public static final DeferredBlock<Block> TITANIUM_ORE = BLOCKS.register(
+            "titanium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.of()
+                    .strength(3.0f,3.0f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)
+            ));
+
+    public static final DeferredBlock<Block> DEEPSLATE_TITANIUM_ORE = BLOCKS.register(
+            "deepslate_titanium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.of()
+                    .strength(4.5f,3.0f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.DEEPSLATE)
             ));
 
     public static void register(IEventBus modEventBus){

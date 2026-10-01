@@ -38,5 +38,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.BLOCK_OF_SARONITE.get(), models().cubeAll("block_of_saronite", ResourceLocation.fromNamespaceAndPath(Constants.MODID,"block/block_of_saronite")));
         simpleBlockWithItem(ModBlocks.BLOCK_OF_TITANSTEEL.get(), models().cubeAll("block_of_titansteel", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/block_of_titansteel")));
         simpleBlockWithItem(ModBlocks.BLOCK_OF_TITANIUM.get(), models().cubeAll("block_of_titanium", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/block_of_titanium")));
+        simpleBlockWithItem(ModBlocks.SARONITE_ORE.get(), models().cubeAll("saronite_ore", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/saronite_ore")));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_SARONITE_ORE.get(), models().cubeAll("deepslate_saronite_ore", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/deepslate_saronite_ore")));
+        simpleBlockWithItem(ModBlocks.TITANIUM_ORE.get(), models().cubeAll("titanium_ore", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/titanium_ore")));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), models().cubeAll("deepslate_titanium_ore", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/deepslate_titanium_ore")));
     }
 }

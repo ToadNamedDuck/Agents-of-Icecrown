@@ -3,6 +3,7 @@ package com.toadnamedduck.agentsoficecrown.datagen;
 import com.toadnamedduck.agentsoficecrown.block.ModBlocks;
 import com.toadnamedduck.agentsoficecrown.item.ModItems;
 import net.minecraft.data.PackOutput;
+import net.neoforged.fml.common.Mod;
 
 
 public class ModEnUsLanguageProvider extends ModLanguageProvider {
@@ -30,6 +31,10 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addBlockToList(ModBlocks.RUNEFORGE, "Runeforge");
         addBlockToList(ModBlocks.BLOCK_OF_TITANIUM, "Block of Titanium");
         addBlockToList(ModBlocks.BLOCK_OF_TITANSTEEL, "Block of Titansteel");
+        addBlockToList(ModBlocks.SARONITE_ORE, "Saronite Ore");
+        addBlockToList(ModBlocks.DEEPSLATE_SARONITE_ORE, "Deepslate Saronite Ore");
+        addBlockToList(ModBlocks.TITANIUM_ORE, "Titanium Ore");
+        addBlockToList(ModBlocks.DEEPSLATE_TITANIUM_ORE, "Deepslate Titanium Ore");
 
         //Entities
 
