@@ -2,12 +2,12 @@ package com.toadnamedduck.agentsoficecrown.item;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.fluid.ModFluids;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import static com.toadnamedduck.agentsoficecrown.item.ModSimpleTiers.titaniumTier;
 
 public class ModItems {
     public static final DeferredRegister.Items MOD_ITEMS = DeferredRegister.createItems(Constants.MODID);
@@ -65,6 +65,41 @@ public class ModItems {
                     .rarity(Rarity.RARE)
                     .fireResistant()
             ));
+
+    public static final DeferredItem<PickaxeItem> TITANIUM_PICKAXE = MOD_ITEMS.register("titanium_pickaxe", () ->
+            new PickaxeItem(titaniumTier,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .attributes(DiggerItem.createAttributes(titaniumTier, 1.0f, -2.8f))
+            ));
+
+    public static final DeferredItem<AxeItem> TITANIUM_AXE = MOD_ITEMS.register("titanium_axe", () ->
+            new AxeItem(titaniumTier,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .attributes(DiggerItem.createAttributes(titaniumTier, 6.0f, -3.1f))
+            ));
+
+    public static final DeferredItem<SwordItem> TITANIUM_SWORD = MOD_ITEMS.register("titanium_sword", () ->
+            new SwordItem(titaniumTier,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .attributes(SwordItem.createAttributes(titaniumTier, 3.0f, -2.4f))
+            ));
+
+    public static final DeferredItem<ShovelItem> TITANIUM_SHOVEL = MOD_ITEMS.register("titanium_shovel", () ->
+            new ShovelItem(titaniumTier,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .attributes(DiggerItem.createAttributes(titaniumTier, 1.5f, -3.0f))
+            ));
+
+    public static final DeferredItem<HoeItem> TITANIUM_HOE = MOD_ITEMS.register("titanium_hoe", () ->
+            new HoeItem(titaniumTier,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .attributes(DiggerItem.createAttributes(titaniumTier, -2.0f,-1.0f))
+                    ));
 
     public static void register(IEventBus modEventBus){
         MOD_ITEMS.register(modEventBus);

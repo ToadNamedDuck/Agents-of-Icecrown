@@ -23,6 +23,11 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addItemToList(ModItems.TITANIUM_NUGGET, "Titanium Nugget");
         addItemToList(ModItems.TITANSTEEL_INGOT, "Titansteel Ingot");
         addItemToList(ModItems.TITANSTEEL_NUGGET, "Titansteel Nugget");
+        addItemToList(ModItems.TITANIUM_PICKAXE, "Titanium Pickaxe");
+        addItemToList(ModItems.TITANIUM_AXE, "Titanium Axe");
+        addItemToList(ModItems.TITANIUM_SHOVEL, "Titanium Shovel");
+        addItemToList(ModItems.TITANIUM_HOE, "Titanium Hoe");
+        addItemToList(ModItems.TITANIUM_SWORD, "Titanium Sword");
 
         //Blocks
         addBlockToList(ModBlocks.BLOCK_OF_SARONITE, "Block of Saronite");

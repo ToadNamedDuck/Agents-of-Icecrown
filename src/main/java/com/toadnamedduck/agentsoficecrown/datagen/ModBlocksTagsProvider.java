@@ -15,6 +15,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
+import static com.toadnamedduck.agentsoficecrown.item.ModSimpleTiers.incorrect_for_titanium_tool;
+import static com.toadnamedduck.agentsoficecrown.item.ModSimpleTiers.incorrect_for_titansteel_tool;
+
 public class ModBlocksTagsProvider extends BlockTagsProvider {
     public ModBlocksTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper){
         super(output, lookupProvider, Constants.MODID, existingFileHelper);
@@ -77,5 +80,12 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
         tag(stones)
                 .add(ModBlocks.LICHSTONE.get())
                 ;
+
+        tag(incorrect_for_titanium_tool)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+        tag(incorrect_for_titansteel_tool)
+                .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
     }
+
 }
