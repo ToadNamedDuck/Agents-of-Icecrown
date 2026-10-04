@@ -1,22 +1,16 @@
 package com.toadnamedduck.agentsoficecrown.datagen;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
+import com.toadnamedduck.agentsoficecrown.ModTags;
 import com.toadnamedduck.agentsoficecrown.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
-
-import static com.toadnamedduck.agentsoficecrown.item.ModSimpleTiers.incorrect_for_titanium_tool;
-import static com.toadnamedduck.agentsoficecrown.item.ModSimpleTiers.incorrect_for_titansteel_tool;
 
 public class ModBlocksTagsProvider extends BlockTagsProvider {
     public ModBlocksTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper){
@@ -26,15 +20,23 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
 
-        TagKey<Block> stones = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "stones"));
-        TagKey<Block> saronite_ores = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/saronite"));
-        TagKey<Block> titanium_ores = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores/titanium"));
+        tag(ModTags.BLOCKS.ORES)
+                .addTag(ModTags.BLOCKS.SARONITE_ORES)
+                .addTag(ModTags.BLOCKS.TITANIUM_ORES);
 
-        TagKey<Block> ores = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "ores"));
+        tag(ModTags.BLOCKS.STORAGE_BLOCKS)
+                .addTag(ModTags.BLOCKS.SARONITE_BLOCK)
+                .addTag(ModTags.BLOCKS.TITANIUM_BLOCK)
+                .addTag(ModTags.BLOCKS.TITANSTEEL_BLOCK);
 
-        tag(ores)
-                .addTag(saronite_ores)
-                .addTag(titanium_ores);
+        tag(ModTags.BLOCKS.TITANSTEEL_BLOCK)
+                .add(ModBlocks.BLOCK_OF_TITANSTEEL.get());
+
+        tag(ModTags.BLOCKS.TITANIUM_BLOCK)
+                .add(ModBlocks.BLOCK_OF_TITANIUM.get());
+
+        tag(ModTags.BLOCKS.SARONITE_BLOCK)
+                .add(ModBlocks.BLOCK_OF_SARONITE.get());
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
@@ -48,12 +50,12 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
                 ;
 
-        tag(saronite_ores)
+        tag(ModTags.BLOCKS.SARONITE_ORES)
                 .add(ModBlocks.SARONITE_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SARONITE_ORE.get())
                 ;
 
-        tag(titanium_ores)
+        tag(ModTags.BLOCKS.TITANIUM_ORES)
                 .add(ModBlocks.TITANIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
                 ;
@@ -77,14 +79,14 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
                 ;
 
-        tag(stones)
+        tag(ModTags.BLOCKS.STONES)
                 .add(ModBlocks.LICHSTONE.get())
                 ;
 
-        tag(incorrect_for_titanium_tool)
+        tag(ModTags.BLOCKS.INCORRECT_FOR_TITANIUM_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
 
-        tag(incorrect_for_titansteel_tool)
+        tag(ModTags.BLOCKS.INCORRECT_FOR_TITANSTEEL_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
     }
 
