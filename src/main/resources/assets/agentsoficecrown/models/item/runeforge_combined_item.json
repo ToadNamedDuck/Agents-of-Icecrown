@@ -1,7 +1,7 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench, by ToadNamedDuck",
-	"parent": "runeforge_bottom",
+	"parent": "agentsoficecrown:block/runeforge_bottom",
 	"ambientocclusion": false,
 	"texture_size": [64, 64],
 	"textures": {

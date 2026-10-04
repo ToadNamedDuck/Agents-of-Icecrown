@@ -7,6 +7,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import static com.toadnamedduck.agentsoficecrown.item.ModArmorMaterials.titanium;
 import static com.toadnamedduck.agentsoficecrown.item.ModSimpleTiers.titaniumTier;
 
 public class ModItems {
@@ -99,7 +100,31 @@ public class ModItems {
                     new Item.Properties()
                             .stacksTo(1)
                             .attributes(DiggerItem.createAttributes(titaniumTier, -2.0f,-1.0f))
-                    ));
+            ));
+
+    public static final DeferredItem<ArmorItem> TITANIUM_HELMET = MOD_ITEMS.register("titanium_helmet", () ->
+            new ArmorItem(titanium, ArmorItem.Type.HELMET,
+                    new Item.Properties()
+                            .durability(ArmorItem.Type.HELMET.getDurability(21))
+            ));
+
+    public static final DeferredItem<ArmorItem> TITANIUM_CHESTPLATE = MOD_ITEMS.register("titanium_chestplate", () ->
+            new ArmorItem(titanium, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties()
+                            .durability(ArmorItem.Type.CHESTPLATE.getDurability(21))
+            ));
+
+    public static final DeferredItem<ArmorItem> TITANIUM_LEGGINGS = MOD_ITEMS.register("titanium_leggings", () ->
+            new ArmorItem(titanium, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties()
+                        .durability(ArmorItem.Type.LEGGINGS.getDurability(21))
+            ));
+
+    public static final DeferredItem<ArmorItem> TITANIUM_BOOTS = MOD_ITEMS.register("titanium_boots", () ->
+            new ArmorItem(titanium, ArmorItem.Type.BOOTS,
+                    new Item.Properties()
+                            .durability(ArmorItem.Type.BOOTS.getDurability(21))
+            ));
 
     public static void register(IEventBus modEventBus){
         MOD_ITEMS.register(modEventBus);
