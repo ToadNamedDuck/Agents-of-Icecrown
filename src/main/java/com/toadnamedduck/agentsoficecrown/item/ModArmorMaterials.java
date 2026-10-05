@@ -2,6 +2,7 @@ package com.toadnamedduck.agentsoficecrown.item;
 
 
 import com.toadnamedduck.agentsoficecrown.Constants;
+import com.toadnamedduck.agentsoficecrown.ModTags;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -40,7 +41,7 @@ public class ModArmorMaterials {
 
 
     public static Holder<ArmorMaterial> titanium = MOD_ARMORS.register("titanium", () ->
-            new ArmorMaterial(titaniumDefenseMap, 9, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(ModItems.TITANIUM_INGOT), titaniumLayers,0.0f, 0.0f)
+            new ArmorMaterial(titaniumDefenseMap, 9, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(ModTags.ITEMS.TITANIUM_INGOT), titaniumLayers,0.0f, 0.0f)
     );
 
     public static void register(IEventBus eventBus){

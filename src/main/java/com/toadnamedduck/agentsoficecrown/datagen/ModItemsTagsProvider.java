@@ -11,9 +11,11 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
@@ -54,6 +56,10 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
                 .addTag(ModTags.ITEMS.TITANIUM_NUGGET)
                 .addTag(ModTags.ITEMS.TITANSTEEL_NUGGET);
 
+        tag(ModTags.ITEMS.TOOLS)
+                .addTag(ModTags.ITEMS.MELEE_WEAPON)
+                .addTag(ModTags.ITEMS.MINING_TOOL);
+
         //Tag actual items lol
         tag(ModTags.ITEMS.RAW_SARONITE)
                 .add(ModItems.RAW_SARONITE_ORE.get());
@@ -85,5 +91,41 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
         tag(ModTags.ITEMS.BEACON_PAYMENT_ITEMS)
                 .addTag(ModTags.ITEMS.SARONITE_INGOT)
                 .addTag(ModTags.ITEMS.TITANSTEEL_INGOT);
+
+        tag(ItemTags.SWORDS)
+                .add(ModItems.TITANIUM_SWORD.get());
+
+        tag(ItemTags.PICKAXES)
+                .add(ModItems.TITANIUM_PICKAXE.get());
+
+        tag(ItemTags.SHOVELS)
+                .add(ModItems.TITANIUM_SHOVEL.get());
+
+        tag(ItemTags.HOES)
+                .add(ModItems.TITANIUM_HOE.get());
+
+        tag(ItemTags.AXES)
+                .add(ModItems.TITANIUM_AXE.get());
+
+        tag(ItemTags.HEAD_ARMOR)
+                .add(ModItems.TITANIUM_HELMET.get());
+
+        tag(ItemTags.CHEST_ARMOR)
+                .add(ModItems.TITANIUM_CHESTPLATE.get());
+
+        tag(ItemTags.LEG_ARMOR)
+                .add(ModItems.TITANIUM_LEGGINGS.get());
+
+        tag(ItemTags.FOOT_ARMOR)
+                .add(ModItems.TITANIUM_BOOTS.get());
+
+        tag(ModTags.ITEMS.MINING_TOOL)
+                .add(ModItems.TITANIUM_PICKAXE.get())
+                .add(ModItems.TITANIUM_SHOVEL.get())
+                .add(ModItems.TITANIUM_HOE.get());
+
+        tag(ModTags.ITEMS.MELEE_WEAPON)
+                .add(ModItems.TITANIUM_AXE.get())
+                .add(ModItems.TITANIUM_SWORD.get());
     }
 }

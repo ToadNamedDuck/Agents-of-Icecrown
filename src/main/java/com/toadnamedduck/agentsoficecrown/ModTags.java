@@ -66,5 +66,9 @@ public class ModTags {
         public static final TagKey<Item> TITANSTEEL_INGOT = c("ingots/titansteel");
         public static final TagKey<Item> TITANSTEEL_NUGGET = c("nuggets/titansteel");
         public static final TagKey<Item> TITANSTEEL_BLOCK = c("storage_blocks/titansteel");
+
+        public static final TagKey<Item> TOOLS = c("tools");
+        public static final TagKey<Item> MELEE_WEAPON = c("tools/melee_weapon");
+        public static final TagKey<Item> MINING_TOOL = c("tools/mining_tool");
     }
 }
