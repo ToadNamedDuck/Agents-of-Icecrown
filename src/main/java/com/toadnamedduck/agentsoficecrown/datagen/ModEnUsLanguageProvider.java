@@ -43,7 +43,7 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addBlockToList(ModBlocks.DEEPSLATE_SARONITE_ORE, "Deepslate Saronite Ore");
         addBlockToList(ModBlocks.TITANIUM_ORE, "Titanium Ore");
         addBlockToList(ModBlocks.DEEPSLATE_TITANIUM_ORE, "Deepslate Titanium Ore");
-
+        addBlockToList(ModBlocks.ALTAR, "Unholy Altar");
         //Entities
 
         //Death Messages

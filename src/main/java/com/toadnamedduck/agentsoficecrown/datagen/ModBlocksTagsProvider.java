@@ -48,6 +48,7 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_SARONITE_ORE.get())
                 .add(ModBlocks.TITANIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
+                .add(ModBlocks.ALTAR.get())
                 ;
 
         tag(ModTags.BLOCKS.SARONITE_ORES)

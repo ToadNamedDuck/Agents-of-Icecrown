@@ -19,10 +19,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels(){
-        //Runeforge models
+        //Custom models
         ModelFile runeforgeBottomModel = models().getExistingFile(modLoc("block/runeforge_bottom"));
         ModelFile runeforgeTopModel = models().getExistingFile(modLoc("block/runeforge_top"));
+        ModelFile altarModel = models().getExistingFile(modLoc("block/altar"));
 
+        //Change model for runeforge based on state
         horizontalBlock(ModBlocks.RUNEFORGE.get(),state -> {
             if(state.getValue(RuneforgeBlock.HALF) == DoubleBlockHalf.LOWER){
                 return runeforgeBottomModel;
@@ -31,7 +33,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 return runeforgeTopModel;
             }
         });
+
+
+        //Items for blocks using custom models
         itemModels().withExistingParent("runeforge", modLoc("item/runeforge_combined_item"));
+        itemModels().withExistingParent("altar", modLoc("block/altar"));
 
         //Simple Blocks
         simpleBlockWithItem(ModBlocks.LICHSTONE.get(), models().cubeAll("lichstone", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/lichstone")));
@@ -42,5 +48,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.DEEPSLATE_SARONITE_ORE.get(), models().cubeAll("deepslate_saronite_ore", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/deepslate_saronite_ore")));
         simpleBlockWithItem(ModBlocks.TITANIUM_ORE.get(), models().cubeAll("titanium_ore", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/titanium_ore")));
         simpleBlockWithItem(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), models().cubeAll("deepslate_titanium_ore", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/deepslate_titanium_ore")));
+        simpleBlock(ModBlocks.ALTAR.get(), altarModel);
     }
 }

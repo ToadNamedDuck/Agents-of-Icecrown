@@ -68,6 +68,12 @@ public class ModBlockItems {
             new Item.Properties()
     );
 
+    public static DeferredItem<BlockItem> ALTAR = BLOCK_ITEMS.registerSimpleBlockItem(
+            "altar",
+            ModBlocks.ALTAR,
+            new Item.Properties()
+    );
+
     public static void register(IEventBus modEventBus){
         BLOCK_ITEMS.register(modEventBus);
     }

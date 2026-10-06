@@ -24,6 +24,8 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.LICHSTONE.get());
         dropSelf(ModBlocks.BLOCK_OF_TITANIUM.get());
         dropSelf(ModBlocks.BLOCK_OF_TITANSTEEL.get());
+        dropSelf(ModBlocks.ALTAR.get());
+
         add(ModBlocks.RUNEFORGE.get(), createDoorTable(ModBlocks.RUNEFORGE.get()));
 
         add(ModBlocks.SARONITE_ORE.get(), createOreDrop(ModBlocks.SARONITE_ORE.get(), ModItems.RAW_SARONITE_ORE.get()));
