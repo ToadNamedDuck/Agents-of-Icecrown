@@ -108,6 +108,7 @@ public class ModBlocks {
                     .pushReaction(PushReaction.BLOCK)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.SOUL_SAND)
+                    .noOcclusion()
             ));
 
     public static void register(IEventBus modEventBus){

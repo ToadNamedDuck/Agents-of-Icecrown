@@ -28,13 +28,17 @@ public class AltarBlock extends Block implements EntityBlock {
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        //Basically - if the entity somehow isn't an AltarBlockEntity, or if the ItemStack in it isn't empty, or the player hand ain't holding nothin, just do a default - otherwise, add item to altar :D
-        if(!(level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity) || !altarBlockEntity.getItemStack().isEmpty() || stack.isEmpty()){
+        //Basically - if the entity somehow isn't an AltarBlockEntity, or the player hand ain't holding nothin, just do a default - otherwise, add item to altar :D
+        if(!(level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity) || stack.isEmpty()){
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
+        //If the altar is full and player is holding an item - arm still swings, but nothing happens :)
+        if(!altarBlockEntity.getItemStack().isEmpty()){
+            return ItemInteractionResult.sidedSuccess(level.isClientSide());
+        }
         //Now that that's done, add the held item to the altar ON THE SERVER SIDE (and make sure the altar doesn't already have an item >.>)!
-        if(!level.isClientSide() && altarBlockEntity.getItemStack().isEmpty()){
-            altarBlockEntity.setItemStack(stack.copyWithCount(1)); //Add a copy of whatever in hand
+        if(!level.isClientSide()){
+            altarBlockEntity.setItemStack(stack.copyWithCount(1), level); //Add a copy of whatever in hand
             stack.consume(1, player);//Consume 1 from the player's stack
         }
         return ItemInteractionResult.sidedSuccess(level.isClientSide());
@@ -42,12 +46,17 @@ public class AltarBlock extends Block implements EntityBlock {
 
     @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+        //
+        AltarBlockEntity altar = (AltarBlockEntity) level.getBlockEntity(pos);
+        assert altar != null;
+        LogUtils.getLogger().info("Client Side?: {} | Altar Item: {}", level.isClientSide(), altar.getItemStack());
+        //
         if(!(level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity) || altarBlockEntity.getItemStack().isEmpty() || !player.getMainHandItem().isEmpty()){
             return InteractionResult.PASS;
         }
         if(!level.isClientSide()){
             player.setItemInHand(InteractionHand.MAIN_HAND, altarBlockEntity.getItemStack());
-            altarBlockEntity.setItemStack(ItemStack.EMPTY);
+            altarBlockEntity.setItemStack(ItemStack.EMPTY, level);
         }
         return InteractionResult.sidedSuccess(level.isClientSide());
     }

@@ -1,9 +1,15 @@
 package com.toadnamedduck.agentsoficecrown.block;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -18,17 +24,17 @@ public class AltarBlockEntity extends BlockEntity {
         return this.heldItem;
     }
 
-    public void setItemStack(ItemStack itemStack){
+    public void setItemStack(ItemStack itemStack, Level level){
             heldItem = itemStack;
             this.setChanged();
-
+            if(!level.isClientSide()){
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), AltarBlock.UPDATE_CLIENTS);
+            }
     }
     @Override
     protected void saveAdditional(@NotNull CompoundTag compoundTag, HolderLookup.@NotNull Provider registries){
         super.saveAdditional(compoundTag, registries);
-        if(!this.heldItem.isEmpty()){
-            compoundTag.put("Item", this.heldItem.save(registries));
-        }
+        compoundTag.put("Item", this.heldItem.saveOptional(registries));
     }
 
     @Override
@@ -40,5 +46,32 @@ public class AltarBlockEntity extends BlockEntity {
         else{
             this.heldItem = ItemStack.EMPTY;
         }
+    }
+
+    @Override
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registries) {
+        CompoundTag tag = new CompoundTag();
+        saveAdditional(tag, registries);
+        return tag;
+    }
+
+    @Override
+    public void handleUpdateTag(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
+        LogUtils.getLogger().info("Update handled");
+        super.handleUpdateTag(tag, registries);
+    }
+
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        LogUtils.getLogger().info("Got update packet");
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
+        //Super forwards to loadAdditional
+        LogUtils.getLogger().info("Received data packet - Item?: {}",packet.getTag().contains("Item"));
+        super.onDataPacket(connection, packet, registries);
+        //Probably something here to do with the BER
     }
 }
