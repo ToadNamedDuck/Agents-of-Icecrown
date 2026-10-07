@@ -46,11 +46,6 @@ public class AltarBlock extends Block implements EntityBlock {
 
     @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
-        //
-        AltarBlockEntity altar = (AltarBlockEntity) level.getBlockEntity(pos);
-        assert altar != null;
-        LogUtils.getLogger().info("Client Side?: {} | Altar Item: {}", level.isClientSide(), altar.getItemStack());
-        //
         if(!(level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity) || altarBlockEntity.getItemStack().isEmpty() || !player.getMainHandItem().isEmpty()){
             return InteractionResult.PASS;
         }
@@ -59,5 +54,15 @@ public class AltarBlock extends Block implements EntityBlock {
             altarBlockEntity.setItemStack(ItemStack.EMPTY, level);
         }
         return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+
+    @Override
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+        if(level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity){
+            altarBlockEntity.dropContents(level, pos);
+            level.updateNeighborsAt(pos, this);
+        }
+        super.onRemove(state, level, pos, newState, movedByPiston);
     }
 }

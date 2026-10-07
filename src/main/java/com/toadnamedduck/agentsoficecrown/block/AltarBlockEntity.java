@@ -8,6 +8,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -22,6 +23,12 @@ public class AltarBlockEntity extends BlockEntity {
 
     public ItemStack getItemStack(){
         return this.heldItem;
+    }
+
+    public void dropContents(Level level, BlockPos pos){
+        if(!level.isClientSide() && !this.getItemStack().isEmpty()){
+            Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), this.heldItem);
+        }
     }
 
     public void setItemStack(ItemStack itemStack, Level level){
@@ -57,20 +64,17 @@ public class AltarBlockEntity extends BlockEntity {
 
     @Override
     public void handleUpdateTag(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
-        LogUtils.getLogger().info("Update handled");
         super.handleUpdateTag(tag, registries);
     }
 
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
-        LogUtils.getLogger().info("Got update packet");
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
         //Super forwards to loadAdditional
-        LogUtils.getLogger().info("Received data packet - Item?: {}",packet.getTag().contains("Item"));
         super.onDataPacket(connection, packet, registries);
         //Probably something here to do with the BER
     }
