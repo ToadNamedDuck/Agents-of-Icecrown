@@ -1,6 +1,6 @@
 package com.toadnamedduck.agentsoficecrown;
 
-import com.toadnamedduck.agentsoficecrown.block.ModBlockEntities;
+import com.toadnamedduck.agentsoficecrown.blockentity.ModBlockEntities;
 import com.toadnamedduck.agentsoficecrown.item.ModArmorMaterials;
 import com.toadnamedduck.agentsoficecrown.item.ModItems;
 import org.slf4j.Logger;

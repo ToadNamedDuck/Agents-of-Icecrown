@@ -1,6 +1,6 @@
-package com.toadnamedduck.agentsoficecrown.block;
+package com.toadnamedduck.agentsoficecrown.blockentity;
 
-import com.mojang.logging.LogUtils;
+import com.toadnamedduck.agentsoficecrown.block.AltarBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;

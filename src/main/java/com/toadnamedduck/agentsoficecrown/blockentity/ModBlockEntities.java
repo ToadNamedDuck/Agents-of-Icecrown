@@ -1,6 +1,7 @@
-package com.toadnamedduck.agentsoficecrown.block;
+package com.toadnamedduck.agentsoficecrown.blockentity;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
+import com.toadnamedduck.agentsoficecrown.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;

@@ -1,6 +1,6 @@
 package com.toadnamedduck.agentsoficecrown.block;
 
-import com.mojang.logging.LogUtils;
+import com.toadnamedduck.agentsoficecrown.blockentity.AltarBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -58,7 +58,7 @@ public class AltarBlock extends Block implements EntityBlock {
 
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+    protected void onRemove(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean movedByPiston) {
         if(level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity){
             altarBlockEntity.dropContents(level, pos);
             level.updateNeighborsAt(pos, this);
