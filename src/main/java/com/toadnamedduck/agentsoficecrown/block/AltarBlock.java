@@ -1,5 +1,6 @@
 package com.toadnamedduck.agentsoficecrown.block;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -16,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class AltarBlock extends Block implements EntityBlock {
-    //EntityBlocks got hands :(
     public AltarBlock(Properties properties) {
         super(properties);
     }
@@ -32,8 +32,8 @@ public class AltarBlock extends Block implements EntityBlock {
         if(!(level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity) || !altarBlockEntity.getItemStack().isEmpty() || stack.isEmpty()){
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        //Now that that's done, add the held item to the altar ON THE SERVER SIDE !
-        if(!level.isClientSide()){
+        //Now that that's done, add the held item to the altar ON THE SERVER SIDE (and make sure the altar doesn't already have an item >.>)!
+        if(!level.isClientSide() && altarBlockEntity.getItemStack().isEmpty()){
             altarBlockEntity.setItemStack(stack.copyWithCount(1)); //Add a copy of whatever in hand
             stack.consume(1, player);//Consume 1 from the player's stack
         }
@@ -42,13 +42,13 @@ public class AltarBlock extends Block implements EntityBlock {
 
     @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
-        if(!level.isClientSide() && level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity && !altarBlockEntity.getItemStack().isEmpty()){
-            //Logic that grabs the item and puts it in the player's hand
-            ItemStack tempStack = altarBlockEntity.getItemStack();
-            altarBlockEntity.setItemStack(ItemStack.EMPTY);
-            player.setItemInHand(player.getUsedItemHand(), tempStack);
-            return InteractionResult.SUCCESS;
+        if(!(level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity) || altarBlockEntity.getItemStack().isEmpty() || !player.getMainHandItem().isEmpty()){
+            return InteractionResult.PASS;
         }
-        return InteractionResult.PASS;
+        if(!level.isClientSide()){
+            player.setItemInHand(InteractionHand.MAIN_HAND, altarBlockEntity.getItemStack());
+            altarBlockEntity.setItemStack(ItemStack.EMPTY);
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide());
     }
 }

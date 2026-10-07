@@ -23,7 +23,7 @@ public class AltarBlockEntity extends BlockEntity {
             this.setChanged();
 
     }
-
+    @Override
     protected void saveAdditional(@NotNull CompoundTag compoundTag, HolderLookup.@NotNull Provider registries){
         super.saveAdditional(compoundTag, registries);
         if(!this.heldItem.isEmpty()){
@@ -31,6 +31,7 @@ public class AltarBlockEntity extends BlockEntity {
         }
     }
 
+    @Override
     protected void loadAdditional(@NotNull CompoundTag compoundTag, HolderLookup.@NotNull Provider registries){
         super.loadAdditional(compoundTag, registries);
         if(compoundTag.contains("Item")){
