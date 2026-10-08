@@ -76,6 +76,5 @@ public class AltarBlockEntity extends BlockEntity {
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
         //Super forwards to loadAdditional
         super.onDataPacket(connection, packet, registries);
-        //Probably something here to do with the BER
     }
 }
