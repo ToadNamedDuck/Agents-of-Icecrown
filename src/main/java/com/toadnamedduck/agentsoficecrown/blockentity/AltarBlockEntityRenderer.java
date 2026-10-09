@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -37,7 +36,7 @@ public class AltarBlockEntityRenderer implements BlockEntityRenderer<AltarBlockE
             //bobbing + translation
             float sinOffset = (Mth.sin((cycleTime * bobSpeed)));
             poseStack.translate(0.5, 0.75+sinOffset*0.125, 0.5);
-            
+
             //rotation
             poseStack.mulPose(Axis.YP.rotationDegrees(degrees));
 
