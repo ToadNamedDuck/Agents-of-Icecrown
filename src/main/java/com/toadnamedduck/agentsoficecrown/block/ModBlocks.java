@@ -1,6 +1,7 @@
 package com.toadnamedduck.agentsoficecrown.block;
 import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.fluid.ModFluids;
+import com.toadnamedduck.agentsoficecrown.sound.ModSoundTypes;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
@@ -107,7 +108,7 @@ public class ModBlocks {
                     .strength(1.5f, 6.0f)
                     .pushReaction(PushReaction.BLOCK)
                     .requiresCorrectToolForDrops()
-                    .sound(SoundType.SOUL_SAND)
+                    .sound(ModSoundTypes.ALTAR)
                     .noOcclusion()
             ));
 

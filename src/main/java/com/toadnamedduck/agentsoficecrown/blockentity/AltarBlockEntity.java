@@ -77,4 +77,6 @@ public class AltarBlockEntity extends BlockEntity {
         //Super forwards to loadAdditional
         super.onDataPacket(connection, packet, registries);
     }
+
+
 }
