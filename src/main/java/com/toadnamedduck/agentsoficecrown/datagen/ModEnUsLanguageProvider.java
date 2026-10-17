@@ -53,6 +53,11 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
 
         //GUIs
 
+        //Tooltips
+        addByKey("tooltip.agentsoficecrown.inert", "Inert");
+        addByKey("tooltip.agentsoficecrown.souls", "Souls: %s");
+        addByKey("tooltip.agentsoficecrown.soulbinding_owner_mismatch", "This weapon resists your command.");
+
         //Misc - Creative Mode Tab
         addByKey("creativetab.agentsoficecrown.icecrown_tab", "Agents of Icecrown");
     }

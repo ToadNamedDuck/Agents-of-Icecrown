@@ -64,5 +64,15 @@ public abstract class ModLanguageProvider extends LanguageProvider {
         if(!this.coveredKeys.contains("creativetab.agentsoficecrown.icecrown_tab")){
             throw new IllegalStateException("Missing lang entry for: creativetab.agentsoficecrown.icecrown_tab");
         }
+        //Tooltip transations
+        if(!this.coveredKeys.contains("tooltip.agentsoficecrown.inert")){
+            throw new IllegalStateException("Missing lang entry for tooltip.agentsoficecrown.inert");
+        }
+        if(!this.coveredKeys.contains("tooltip.agentsoficecrown.souls")){
+            throw new IllegalStateException("Missing lang entry for tooltip.agentsoficecrown.souls");
+        }
+        if(!this.coveredKeys.contains("tooltip.agentsoficecrown.soulbinding_owner_mismatch")){
+            throw new IllegalStateException("Missing lang entry for: tooltip.agentsoficecrown.soulbinding_owner_mismatch");
+        }
     }
 }
