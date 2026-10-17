@@ -11,11 +11,13 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.MOD_CREATIVE_TAB;
+
 public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MODID);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ICECROWN_TAB = CREATIVE_MODE_TABS.register("icecrown_tab",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("creativetab.agentsoficecrown.icecrown_tab"))
+                    .title(MOD_CREATIVE_TAB)
                     .icon(() -> new ItemStack(ModBlockItems.BLOCK_OF_SARONITE.get()))
                     .displayItems((params, output) -> {
                         for(DeferredHolder<Item, ? extends Item> block: ModBlockItems.BLOCK_ITEMS.getEntries()){

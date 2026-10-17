@@ -12,7 +12,11 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
+import java.util.Arrays;
 import java.util.List;
+
+import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.INERT;
+import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.SOULBINDING_OWNER_MISMATCH;
 
 @EventBusSubscriber(modid = Constants.MODID)
 public class ModEvents {
@@ -27,14 +31,14 @@ public class ModEvents {
         SoulBinding binding = item.get(ModDataComponents.SOUL_BINDING.get());
 
         if(binding == null){
-            tooltip.add(Component.translatable("tooltip.agentsoficecrown.inert").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+            tooltip.add(INERT.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
         }
         else{
             tooltip.add(Component.translatable("tooltip.agentsoficecrown.souls", binding.souls()).withStyle(ChatFormatting.AQUA));
 
             Player holdingPlayer = tooltipEvent.getEntity();
             if(holdingPlayer != null && !holdingPlayer.getUUID().equals(binding.owner())){
-                tooltip.add(Component.translatable("tooltip.agentsoficecrown.soulbinding_owner_mismatch").withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.ITALIC));
+                tooltip.add(SOULBINDING_OWNER_MISMATCH.withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.ITALIC));
             }
         }
     }

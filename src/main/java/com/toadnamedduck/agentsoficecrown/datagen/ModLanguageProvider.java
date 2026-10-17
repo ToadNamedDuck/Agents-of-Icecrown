@@ -1,6 +1,7 @@
 package com.toadnamedduck.agentsoficecrown.datagen;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
+import com.toadnamedduck.agentsoficecrown.ModTranslatableComponents;
 import com.toadnamedduck.agentsoficecrown.block.ModBlocks;
 import com.toadnamedduck.agentsoficecrown.item.ModItems;
 import net.minecraft.data.PackOutput;
@@ -60,19 +61,11 @@ public abstract class ModLanguageProvider extends LanguageProvider {
                 throw new IllegalStateException("Missing lang entry for: " + key);
             }
         }
-        //Misc checks not in a loop-worthy registry, like single creative tab
-        if(!this.coveredKeys.contains("creativetab.agentsoficecrown.icecrown_tab")){
-            throw new IllegalStateException("Missing lang entry for: creativetab.agentsoficecrown.icecrown_tab");
-        }
-        //Tooltip transations
-        if(!this.coveredKeys.contains("tooltip.agentsoficecrown.inert")){
-            throw new IllegalStateException("Missing lang entry for tooltip.agentsoficecrown.inert");
-        }
-        if(!this.coveredKeys.contains("tooltip.agentsoficecrown.souls")){
-            throw new IllegalStateException("Missing lang entry for tooltip.agentsoficecrown.souls");
-        }
-        if(!this.coveredKeys.contains("tooltip.agentsoficecrown.soulbinding_owner_mismatch")){
-            throw new IllegalStateException("Missing lang entry for: tooltip.agentsoficecrown.soulbinding_owner_mismatch");
+        for(var component: ModTranslatableComponents.MOD_TRANSLATABLE){
+            String key = component.getString();
+            if(!this.coveredKeys.contains(key)){
+                throw new IllegalStateException("Missing lang entry for: " + key);
+            }
         }
     }
 }
