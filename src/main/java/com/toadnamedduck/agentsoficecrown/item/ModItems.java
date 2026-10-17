@@ -8,6 +8,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import static com.toadnamedduck.agentsoficecrown.item.ModArmorMaterials.titanium;
+import static com.toadnamedduck.agentsoficecrown.item.ModSimpleTiers.saroniteTier;
 import static com.toadnamedduck.agentsoficecrown.item.ModSimpleTiers.titaniumTier;
 
 public class ModItems {
@@ -124,6 +125,13 @@ public class ModItems {
             new ArmorItem(titanium, ArmorItem.Type.BOOTS,
                     new Item.Properties()
                             .durability(ArmorItem.Type.BOOTS.getDurability(21))
+            ));
+
+    public static final DeferredItem<SwordItem> SARONITE_SWORD = MOD_ITEMS.register("saronite_sword", () ->
+            new SwordItem(saroniteTier,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .attributes(SwordItem.createAttributes(saroniteTier, 4.0f, -2.4f))
             ));
 
     public static void register(IEventBus modEventBus){

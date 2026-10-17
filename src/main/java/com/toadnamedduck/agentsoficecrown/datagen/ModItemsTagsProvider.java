@@ -124,8 +124,12 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
                 .add(ModItems.TITANIUM_SHOVEL.get())
                 .add(ModItems.TITANIUM_HOE.get());
 
+        tag(ModTags.ITEMS.SARONITE_WEAPONS)
+                .add(ModItems.SARONITE_SWORD.get());
+
         tag(ModTags.ITEMS.MELEE_WEAPON)
                 .add(ModItems.TITANIUM_AXE.get())
-                .add(ModItems.TITANIUM_SWORD.get());
+                .add(ModItems.TITANIUM_SWORD.get())
+                .addTag(ModTags.ITEMS.SARONITE_WEAPONS);
     }
 }

@@ -1,6 +1,7 @@
 package com.toadnamedduck.agentsoficecrown;
 
 import com.toadnamedduck.agentsoficecrown.blockentity.ModBlockEntities;
+import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponents;
 import com.toadnamedduck.agentsoficecrown.item.ModArmorMaterials;
 import com.toadnamedduck.agentsoficecrown.item.ModItems;
 import org.slf4j.Logger;
@@ -53,6 +54,8 @@ public class AgentsofIcecrown {
         ModArmorMaterials.register(modEventBus);
         //BlockEntities
         ModBlockEntities.register(modEventBus);
+        //Data Components
+        ModDataComponents.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (AgentsofIcecrown) to respond directly to events.

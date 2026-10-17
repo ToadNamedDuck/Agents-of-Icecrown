@@ -32,6 +32,7 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addItemToList(ModItems.TITANIUM_CHESTPLATE, "Titanium Chestplate");
         addItemToList(ModItems.TITANIUM_LEGGINGS, "Titanium Leggings");
         addItemToList(ModItems.TITANIUM_BOOTS, "Titanium Boots");
+        addItemToList(ModItems.SARONITE_SWORD, "Saronite Sword");
         //Blocks
         addBlockToList(ModBlocks.BLOCK_OF_SARONITE, "Block of Saronite");
         addBlockToList(ModBlocks.LICHSTONE, "Lichstone");

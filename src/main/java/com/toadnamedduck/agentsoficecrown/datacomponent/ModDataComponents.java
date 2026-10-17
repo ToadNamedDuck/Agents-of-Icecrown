@@ -17,6 +17,6 @@ public class ModDataComponents {
             );
 
     public static void register(IEventBus modEventBus){
-        modEventBus.register(MOD_DATA_COMPONENTS);
+        MOD_DATA_COMPONENTS.register(modEventBus);
     }
 }

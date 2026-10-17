@@ -89,6 +89,10 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
 
         tag(ModTags.BLOCKS.INCORRECT_FOR_TITANSTEEL_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+
+        tag(ModTags.BLOCKS.INCORRECT_FOR_SARONITE_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL)
+                ;
     }
 
 }
