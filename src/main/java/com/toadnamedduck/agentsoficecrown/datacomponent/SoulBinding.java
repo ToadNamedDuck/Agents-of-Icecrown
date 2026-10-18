@@ -28,6 +28,17 @@ public record SoulBinding(UUID owner, int souls){
             SoulBinding::new
     );
 
+    private static double roundToHalf(double value){
+        return Math.round(value*2.0)/2.0;
+    }
+
+    public static double bonusDamage(int souls){
+        //TODO: Add config for number of souls to hit dmg cap, and config for max bonus
+        //rn the cap is gonna just be 1000, for a max of 21 bonus dmg
+        double fraction = Math.sqrt(Math.min(souls, 1000)/(double)1000);
+        return roundToHalf(21.0 * fraction);
+    }
+
     //Helper for creating a new record for the weapons (To update the soul counter)
     public SoulBinding withSouls(int souls){
         return new SoulBinding(owner, souls);

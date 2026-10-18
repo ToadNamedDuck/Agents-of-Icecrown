@@ -22,7 +22,7 @@ public class ModDataComponentHelpers {
             }
         }
 
-        private static SoulBinding findBinding(ItemStack stack){
+        public static SoulBinding findBinding(ItemStack stack){
             return stack.get(ModDataComponents.SOUL_BINDING.get());
         }
     }
