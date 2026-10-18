@@ -2,11 +2,14 @@ package com.toadnamedduck.agentsoficecrown.event;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.ModTags;
-import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponents;
+import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers;
 import com.toadnamedduck.agentsoficecrown.datacomponent.SoulBinding;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -15,9 +18,9 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.INERT;
@@ -63,5 +66,22 @@ public class ModEvents {
                     EquipmentSlotGroup.MAINHAND
             );
         }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDeathEvent(LivingDeathEvent event){
+        //Adding souls on kill to soulbound weapon
+
+        Entity killer = event.getSource().getEntity();
+        if(!(killer instanceof ServerPlayer)) return;
+        //Make sure the kill is from melee
+        if(!(event.getSource().getDirectEntity() == killer)) return;
+
+        ItemStack item = killer.getWeaponItem();
+        SoulBinding binding = findBinding(item);
+        if(item.isEmpty() || binding == null || !(binding.owner().equals(killer.getUUID()))) return;
+
+        int victimHP = Mth.floor(event.getEntity().getMaxHealth());
+        ModDataComponentHelpers.SOUL_BINDING.setSouls(item, binding.souls() + (victimHP/20));
     }
 }
