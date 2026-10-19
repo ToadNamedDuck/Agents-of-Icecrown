@@ -27,9 +27,8 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.List;
 
-import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.INERT;
-import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.SOULBINDING_OWNER_MISMATCH;
-import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.findBinding;
+import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.*;
+import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.*;
 
 @EventBusSubscriber(modid = Constants.MODID)
 public class ModEvents {
@@ -55,6 +54,9 @@ public class ModEvents {
             if(holdingPlayer != null && !holdingPlayer.getUUID().equals(binding.owner())){
                 tooltip.add(SOULBINDING_OWNER_MISMATCH.withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.ITALIC));
             }
+            if(isSpent(item)){
+                tooltip.add(SOULBINDING_DURABILITY_SPENT.withStyle(ChatFormatting.RED));
+            }
         }
     }
 
@@ -67,7 +69,8 @@ public class ModEvents {
         if(dmg == null) return;
 
         SoulBinding binding = findBinding(event.getTo());
-        if(binding != null && binding.owner().equals(player.getUUID())){
+        refreshDurabilityState(event.getTo());
+        if(binding != null && binding.owner().equals(player.getUUID()) && !isSpent(event.getTo())){
             double bonusDMG = SoulBinding.bonusDamage(binding.souls());
             dmg.addOrUpdateTransientModifier(new AttributeModifier(SOUL_DAMAGE_MODIFIER_ID, bonusDMG, AttributeModifier.Operation.ADD_VALUE));
         }
@@ -91,5 +94,19 @@ public class ModEvents {
 
         int victimHP = Mth.floor(event.getEntity().getMaxHealth());
         ModDataComponentHelpers.SOUL_BINDING.setSouls(item, binding.souls() + (victimHP/20));
+    }
+
+    @SubscribeEvent
+    public static void onItemAttributeEvent(ItemAttributeModifierEvent event){
+        if(!ModDataComponentHelpers.SOUL_BINDING.isSpent(event.getItemStack())) return;
+
+        for (var entry: List.copyOf(event.getModifiers())){
+            if(entry.attribute().equals(Attributes.ATTACK_DAMAGE)){
+                event.replaceModifier(entry.attribute(),
+                        new AttributeModifier(entry.modifier().id(), 0, entry.modifier().operation()),
+                        entry.slot()
+                );
+            }
+        }
     }
 }

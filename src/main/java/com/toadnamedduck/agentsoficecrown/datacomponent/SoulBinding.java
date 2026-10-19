@@ -10,13 +10,14 @@ import net.minecraft.util.ExtraCodecs;
 
 import java.util.UUID;
 
-public record SoulBinding(UUID owner, int souls){
+public record SoulBinding(UUID owner, int souls, boolean spent){
 
     //Codec for how to read the data
     public static final Codec<SoulBinding> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
                     UUIDUtil.CODEC.fieldOf("owner").forGetter(SoulBinding::owner),
-                    ExtraCodecs.NON_NEGATIVE_INT.optionalFieldOf("souls", 0).forGetter(SoulBinding::souls)
+                    ExtraCodecs.NON_NEGATIVE_INT.optionalFieldOf("souls", 0).forGetter(SoulBinding::souls),
+                    Codec.BOOL.optionalFieldOf("spent", false).forGetter(SoulBinding::spent)
             ).apply(instance, SoulBinding::new)
     );
 
@@ -25,6 +26,7 @@ public record SoulBinding(UUID owner, int souls){
     public static final StreamCodec<ByteBuf, SoulBinding> STREAM_CODEC = StreamCodec.composite(
         UUIDUtil.STREAM_CODEC, SoulBinding::owner,
             ByteBufCodecs.VAR_INT, SoulBinding::souls,
+            ByteBufCodecs.BOOL, SoulBinding::spent,
             SoulBinding::new
     );
 
@@ -41,6 +43,8 @@ public record SoulBinding(UUID owner, int souls){
 
     //Helper for creating a new record for the weapons (To update the soul counter)
     public SoulBinding withSouls(int souls){
-        return new SoulBinding(owner, souls);
+        return new SoulBinding(owner, souls, spent);
     }
+
+    public SoulBinding withSpent(boolean spent) {return new SoulBinding(owner, souls, spent);}
 }

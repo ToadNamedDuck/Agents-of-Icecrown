@@ -57,6 +57,7 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addByKey("tooltip.agentsoficecrown.inert", "Inert");
         addByKey("tooltip.agentsoficecrown.souls", "Souls: %s (+%s damage)");
         addByKey("tooltip.agentsoficecrown.soulbinding_owner_mismatch", "This weapon resists your command.");
+        addByKey("tooltip.agentsoficecrown.soulbinding_durability_spent", "Repair this damaged weapon at a Runeforge.");
 
         //Misc - Creative Mode Tab
         addByKey("creativetab.agentsoficecrown.icecrown_tab", "Agents of Icecrown");
