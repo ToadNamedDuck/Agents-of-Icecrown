@@ -81,7 +81,7 @@ public class ModEvents {
         //Adding souls on kill to soulbound weapon
 
         Entity killer = event.getSource().getEntity();
-        if(!(killer instanceof ServerPlayer)) return;
+        if(!(killer instanceof ServerPlayer) || killer instanceof FakePlayer) return;
         //Make sure the kill is from melee
         if(!(event.getSource().getDirectEntity() == killer)) return;
 
