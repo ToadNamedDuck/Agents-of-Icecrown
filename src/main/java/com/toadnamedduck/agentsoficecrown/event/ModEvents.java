@@ -10,15 +10,19 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.List;
@@ -45,7 +49,7 @@ public class ModEvents {
             tooltip.add(INERT.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
         }
         else{
-            tooltip.add(Component.translatable("tooltip.agentsoficecrown.souls", binding.souls()).withStyle(ChatFormatting.AQUA));
+            tooltip.add(Component.translatable("tooltip.agentsoficecrown.souls", binding.souls(), SoulBinding.bonusDamage(binding.souls())).withStyle(ChatFormatting.AQUA));
 
             Player holdingPlayer = tooltipEvent.getEntity();
             if(holdingPlayer != null && !holdingPlayer.getUUID().equals(binding.owner())){
@@ -55,16 +59,20 @@ public class ModEvents {
     }
 
     @SubscribeEvent
-    public static void onItemAttributeModifierEvent(ItemAttributeModifierEvent event){
-        ItemStack item = event.getItemStack();
-        SoulBinding binding = findBinding(item);
+    public static void onEquipmentChange(LivingEquipmentChangeEvent event){
+        if(event.getSlot() != EquipmentSlot.MAINHAND) return;
+        if(!(event.getEntity() instanceof ServerPlayer player) || player instanceof FakePlayer) return;
 
-        if(binding != null){
+        AttributeInstance dmg = player.getAttribute(Attributes.ATTACK_DAMAGE);
+        if(dmg == null) return;
+
+        SoulBinding binding = findBinding(event.getTo());
+        if(binding != null && binding.owner().equals(player.getUUID())){
             double bonusDMG = SoulBinding.bonusDamage(binding.souls());
-            event.addModifier(Attributes.ATTACK_DAMAGE,
-                    new AttributeModifier(SOUL_DAMAGE_MODIFIER_ID, bonusDMG, AttributeModifier.Operation.ADD_VALUE),
-                    EquipmentSlotGroup.MAINHAND
-            );
+            dmg.addOrUpdateTransientModifier(new AttributeModifier(SOUL_DAMAGE_MODIFIER_ID, bonusDMG, AttributeModifier.Operation.ADD_VALUE));
+        }
+        else{
+            dmg.removeModifier(SOUL_DAMAGE_MODIFIER_ID);
         }
     }
 

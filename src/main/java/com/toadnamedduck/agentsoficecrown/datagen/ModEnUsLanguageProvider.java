@@ -55,7 +55,7 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
 
         //Tooltips
         addByKey("tooltip.agentsoficecrown.inert", "Inert");
-        addByKey("tooltip.agentsoficecrown.souls", "Souls: %s");
+        addByKey("tooltip.agentsoficecrown.souls", "Souls: %s (+%s damage)");
         addByKey("tooltip.agentsoficecrown.soulbinding_owner_mismatch", "This weapon resists your command.");
 
         //Misc - Creative Mode Tab

@@ -36,7 +36,7 @@ public record SoulBinding(UUID owner, int souls){
         //TODO: Add config for number of souls to hit dmg cap, and config for max bonus
         //rn the cap is gonna just be 1000, for a max of 21 bonus dmg
         double fraction = Math.sqrt(Math.min(souls, 1000)/(double)1000);
-        return roundToHalf(21.0 * fraction);
+        return roundToHalf(20.0 * fraction);
     }
 
     //Helper for creating a new record for the weapons (To update the soul counter)
