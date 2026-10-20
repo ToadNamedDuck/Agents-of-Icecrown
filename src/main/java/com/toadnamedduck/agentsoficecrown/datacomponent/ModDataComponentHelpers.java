@@ -1,5 +1,6 @@
 package com.toadnamedduck.agentsoficecrown.datacomponent;
 
+import com.toadnamedduck.agentsoficecrown.ModTags;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -19,8 +20,9 @@ public class ModDataComponentHelpers {
 
         public static void awaken(ItemStack stack, Player player){
             SoulBinding binding = findBinding(stack);
-            if(binding == null){
+            if(binding == null && stack.is(ModTags.ITEMS.MELEE_WEAPON)){
                 stack.set(ModDataComponents.SOUL_BINDING.get(), new SoulBinding(player.getUUID(), 0, false));
+                refreshDurabilityState(stack);
                 //Could also give it an enchant glint, or change the model/texture of the weapon
             }
         }
