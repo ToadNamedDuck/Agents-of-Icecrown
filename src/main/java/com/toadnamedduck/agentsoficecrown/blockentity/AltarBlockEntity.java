@@ -7,7 +7,6 @@ import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
@@ -21,8 +20,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Containers;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -43,7 +40,7 @@ public class AltarBlockEntity extends BlockEntity {
     }
     private ItemStack heldItem = ItemStack.EMPTY;
     //ritual prep
-    private static final int RITUAL_LENGTH_IN_TICKS = 100;
+    private static final int RITUAL_LENGTH_IN_TICKS = 101;
     private static final int RITUAL_HEALTH_PER_OPERATION = 2;
     private final int RITUAL_HEALTH_START_MINIMUM = 11;
     private static final int RITUAL_HEALTH_FLOOR = 1;//Will not take you below 1 hp, like say if you get attacked.
@@ -143,7 +140,7 @@ public class AltarBlockEntity extends BlockEntity {
                 return;
             }
             player.hurt(level.damageSources().magic(), Math.min(RITUAL_HEALTH_PER_OPERATION, player.getHealth() - RITUAL_HEALTH_FLOOR));
-            serverLevel.playSound(null, pos.getX() +0.5, pos.getY() +0.5, pos.getZ()+0.5, SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS, 1, (0.6f + 0.8f * elapsed / RITUAL_LENGTH_IN_TICKS));
+            serverLevel.playSound(null, pos.getX() +0.5, pos.getY() +0.5, pos.getZ()+0.5, SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS, 1, (0.9f + 0.8f * elapsed / RITUAL_LENGTH_IN_TICKS));
         }
         serverLevel.sendParticles(ParticleTypes.SOUL, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, 4, 0.25, 0.25, 0.25, 0.02);
     }
