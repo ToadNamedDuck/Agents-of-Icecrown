@@ -1,14 +1,17 @@
 package com.toadnamedduck.agentsoficecrown.blockentity;
 
 import com.toadnamedduck.agentsoficecrown.ModTags;
+import com.toadnamedduck.agentsoficecrown.ModTranslatableComponents;
 import com.toadnamedduck.agentsoficecrown.block.AltarBlock;
 import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -50,6 +53,10 @@ public class AltarBlockEntity extends BlockEntity {
     private UUID ritualPlayerID = null;
     private long ritualStartTime = -1;
 
+    private static void tell(Player player, MutableComponent key){
+        player.displayClientMessage(key, true);
+    }
+
     public boolean tryStartRitual(Player player){
         Level level = this.getLevel();
         if(level == null){
@@ -59,27 +66,27 @@ public class AltarBlockEntity extends BlockEntity {
             return false;
         }
         if(ritualPlayerID != null){
-            //todo: error saying a ritual is in progress
+            tell(player, ModTranslatableComponents.RITUAL_IN_PROGRESS.withStyle(ChatFormatting.RED));
             return false;
         }
         if(heldItem.isEmpty()){
-            //todo: error message saying the altar holds nothing
+            tell(player, ModTranslatableComponents.RITUAL_ALTAR_EMPTY.withStyle(ChatFormatting.RED));
             return false;
         }
         if(!heldItem.is(ModTags.ITEMS.SARONITE_WEAPONS)){
-            //todo: error message saying this ritual will not work on this item
+            tell(player, ModTranslatableComponents.RITUAL_WRONG_ITEM.withStyle(ChatFormatting.RED));
             return false;
         }
         if(findBinding(heldItem) != null){
-            //todo: error saying this weapon is already bound
+            tell(player, ModTranslatableComponents.RITUAL_ALREADY_BOUND.withStyle(ChatFormatting.RED));
             return false;
         }
         if(!(player.getHealth() > RITUAL_HEALTH_START_MINIMUM)){
-            //todo: error saying the player should needs to heal
+            tell(player, ModTranslatableComponents.RITUAL_HEALTH_TOO_LOW.withStyle(ChatFormatting.RED));
             return false;
         }
         if(!isStructureSet(level, this.getBlockPos())){
-            //Todo: error message saying the ritual is not adequately prepared
+            tell(player, ModTranslatableComponents.RITUAL_NOT_PREPARED.withStyle(ChatFormatting.RED));
             return false;
         }
 
@@ -99,16 +106,18 @@ public class AltarBlockEntity extends BlockEntity {
         }
     }
 
-    public void cancelRitual(){
+    public void cancelRitual(Player player){
         endRitual();
-        //todo: maybe a sound/effect or message stating the ritual was cancelled
+        tell(player, ModTranslatableComponents.RITUAL_CANCELLED.withStyle(ChatFormatting.RED));
+
     }
 
     private void completeRitual(ServerPlayer player){
         if(!(this.heldItem).isEmpty() && findBinding(this.heldItem) == null){
             ModDataComponentHelpers.SOUL_BINDING.awaken(this.heldItem, player);
             //todo: mark player with the attribute here
-            //todo: burst of soul particles and some kind of sound. message saying this weapon is now bound to you.
+            //todo: burst of soul particles and some kind of sound.
+            tell(player, ModTranslatableComponents.RITUAL_SUCCESS.withStyle(ChatFormatting.GREEN));
         }
         endRitual();
     }
@@ -116,7 +125,9 @@ public class AltarBlockEntity extends BlockEntity {
     public static void tick(Level level, BlockPos pos, BlockState state, AltarBlockEntity altarBlockEntity){
         if(altarBlockEntity.ritualPlayerID == null ||  !(level instanceof ServerLevel serverLevel)) return;
         if(!(level.getPlayerByUUID(altarBlockEntity.ritualPlayerID) instanceof ServerPlayer player) || !player.isAlive() || altarBlockEntity.heldItem.isEmpty()) {
-            altarBlockEntity.cancelRitual();
+            if(level.getPlayerByUUID(altarBlockEntity.ritualPlayerID) != null){
+                altarBlockEntity.cancelRitual(level.getPlayerByUUID(altarBlockEntity.ritualPlayerID));
+            }
             return;
         }
 
@@ -128,7 +139,7 @@ public class AltarBlockEntity extends BlockEntity {
 
         if(elapsed % 20 == 0){
             if(!altarBlockEntity.isStructureSet(level, altarBlockEntity.getBlockPos())){
-                altarBlockEntity.cancelRitual();
+                altarBlockEntity.cancelRitual(player);
                 return;
             }
             player.hurt(level.damageSources().magic(), Math.min(RITUAL_HEALTH_PER_OPERATION, player.getHealth() - RITUAL_HEALTH_FLOOR));

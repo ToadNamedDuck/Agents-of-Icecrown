@@ -47,6 +47,16 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addBlockToList(ModBlocks.ALTAR, "Unholy Altar");
         //Entities
 
+        //Ritual
+        addByKey("altarritual.agentsoficecrown.in_progress", "There is a ritual already in progress.");
+        addByKey("altarritual.agentsoficecrown.altar_empty", "You cannot perform a ritual on nothing.");
+        addByKey("altarritual.agentsoficecrown.altar_wrong_item", "This item cannot be used in the ritual.");
+        addByKey("altarritual.agentsoficecrown.altar_already_bound", "This weapon is already bound to someone.");
+        addByKey("altarritual.agentsoficecrown.health_too_low", "You need more health to perform this ritual.");
+        addByKey("altarritual.agentsoficecrown.ritual_not_prepared", "The ritual site is not adequate.");
+        addByKey("altarritual.agentsoficecrown.ritual_cancelled", "The ritual has been cancelled. Coward.");
+        addByKey("altarritual.agentsoficecrown.ritual_successful", "This weapon is now bound to you. Conquer now.");
+
         //Death Messages
 
         //Advancements
