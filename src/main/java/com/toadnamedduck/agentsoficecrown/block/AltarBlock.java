@@ -1,6 +1,7 @@
 package com.toadnamedduck.agentsoficecrown.block;
 
 import com.toadnamedduck.agentsoficecrown.blockentity.AltarBlockEntity;
+import com.toadnamedduck.agentsoficecrown.blockentity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -9,9 +10,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -63,6 +67,19 @@ public class AltarBlock extends Block implements EntityBlock {
         return UNIFIED_ALTAR;
     }
 
+    @Nullable
+    @SuppressWarnings("unchecked")
+    private static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> serverType, BlockEntityType<E> clientType, BlockEntityTicker<? super E> ticker) {
+        return clientType == serverType ? (BlockEntityTicker<A>) ticker : null;
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type){
+        if(level.isClientSide()) return null;
+        return createTickerHelper(type, ModBlockEntities.ALTAR_BLOCK_ENTITY.get(), AltarBlockEntity::tick);
+    }
+
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         //Basically - if the entity somehow isn't an AltarBlockEntity, or the player hand ain't holding nothin, just do a default - otherwise, add item to altar :D
@@ -87,6 +104,10 @@ public class AltarBlock extends Block implements EntityBlock {
             return InteractionResult.PASS;
         }
         if(!level.isClientSide()){
+            if(player.isShiftKeyDown()){
+                altarBlockEntity.tryStartRitual(player);
+                return InteractionResult.sidedSuccess(level.isClientSide());
+            }
             player.setItemInHand(InteractionHand.MAIN_HAND, altarBlockEntity.getItemStack());
             altarBlockEntity.setItemStack(ItemStack.EMPTY, level);
         }
