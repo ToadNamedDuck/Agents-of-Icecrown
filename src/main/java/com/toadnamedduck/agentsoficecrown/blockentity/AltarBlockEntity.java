@@ -111,12 +111,13 @@ public class AltarBlockEntity extends BlockEntity {
 
     }
 
-    private void completeRitual(ServerPlayer player){
+    private void completeRitual(ServerPlayer player, ServerLevel level, BlockPos pos){
         if(!(this.heldItem).isEmpty() && findBinding(this.heldItem) == null){
             ModDataComponentHelpers.SOUL_BINDING.awaken(this.heldItem, player);
             player.setData(ModAttachments.BOUND, true);
             SoulBoundDebuffHelpers.addOrRemoveDebuff(player);
-            //todo: burst of soul particles and some kind of sound.
+            level.playSound(null, pos.getX() +0.5, pos.getY()+0.5, pos.getZ()+0.5, SoundEvents.ELDER_GUARDIAN_CURSE, SoundSource.BLOCKS, 1, 0.75f);
+            level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pos.getX()+0.5, pos.getY()+0.7, pos.getZ()+0.5, 7, 0.25, 0.25, 0.25, 0.02);
             tell(player, ModTranslatableComponents.RITUAL_SUCCESS.withStyle(ChatFormatting.GREEN));
         }
         endRitual();
@@ -133,7 +134,7 @@ public class AltarBlockEntity extends BlockEntity {
 
         long elapsed = level.getGameTime() - altarBlockEntity.ritualStartTime;
         if(elapsed >= RITUAL_LENGTH_IN_TICKS){
-            altarBlockEntity.completeRitual(player);
+            altarBlockEntity.completeRitual(player, serverLevel, pos);
             return;
         }
 
