@@ -145,6 +145,14 @@ public class ModItems {
                             .attributes(AxeItem.createAttributes(saroniteTier, 7.0f, -3.1f))
             ));
 
+    public static final DeferredItem<Item> SARONITE_WING = MOD_ITEMS.register("saronite_wing", () ->
+            new Item(
+                    new Item.Properties()
+                            .stacksTo(64)
+                            .rarity(Rarity.RARE)
+                            .fireResistant()
+            ));
+
     public static void register(IEventBus modEventBus){
         MOD_ITEMS.register(modEventBus);
     }

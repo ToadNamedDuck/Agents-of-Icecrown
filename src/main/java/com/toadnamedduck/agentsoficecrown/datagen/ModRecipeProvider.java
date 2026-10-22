@@ -192,6 +192,28 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_sword"));
 
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.COMBAT, ModItems.SARONITE_SWORD.get())
+                .define('X', ModTags.ITEMS.SARONITE_INGOT)
+                .define('Y', Items.STICK)
+                .define('Z', ModItems.SARONITE_WING.get())
+                .pattern(" X ")
+                .pattern("ZXZ")
+                .pattern(" Y ")
+                .unlockedBy("has_item", has(ModItems.SARONITE_WING.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_sword"));
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.COMBAT, ModItems.SARONITE_AXE.get())
+                .define('X', ModTags.ITEMS.SARONITE_INGOT)
+                .define('Y', Items.STICK)
+                .define('Z', ModItems.SARONITE_WING.get())
+                .pattern("XXZ")
+                .pattern("XY ")
+                .pattern(" Z ")
+                .unlockedBy("has_item", has(ModItems.SARONITE_WING.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_axe"));
+
         //Armor
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.COMBAT, ModItems.TITANIUM_HELMET.get())
@@ -226,5 +248,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("X X")
                 .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_boots"));
+
+        //Misc Items
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, ModItems.SARONITE_WING.get())
+                .define('X', ModTags.ITEMS.SARONITE_INGOT)
+                .pattern("XXX")
+                .pattern(" XX")
+                .pattern("  X")
+                .unlockedBy("has_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_wing"));
     }
 }
