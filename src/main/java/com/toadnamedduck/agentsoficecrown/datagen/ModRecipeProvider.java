@@ -251,7 +251,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         //Misc Items
         ShapedRecipeBuilder
-                .shaped(RecipeCategory.MISC, ModItems.SARONITE_WING.get())
+                .shaped(RecipeCategory.MISC, ModItems.SARONITE_WING.get(), 4)
                 .define('X', ModTags.ITEMS.SARONITE_INGOT)
                 .pattern("XXX")
                 .pattern(" XX")
