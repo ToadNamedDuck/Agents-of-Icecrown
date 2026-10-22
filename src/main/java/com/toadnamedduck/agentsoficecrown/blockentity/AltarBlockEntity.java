@@ -2,6 +2,8 @@ package com.toadnamedduck.agentsoficecrown.blockentity;
 
 import com.toadnamedduck.agentsoficecrown.ModTags;
 import com.toadnamedduck.agentsoficecrown.ModTranslatableComponents;
+import com.toadnamedduck.agentsoficecrown.attachment.ModAttachments;
+import com.toadnamedduck.agentsoficecrown.attachment.SoulBoundDebuffHelpers;
 import com.toadnamedduck.agentsoficecrown.block.AltarBlock;
 import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers;
 import net.minecraft.ChatFormatting;
@@ -112,7 +114,8 @@ public class AltarBlockEntity extends BlockEntity {
     private void completeRitual(ServerPlayer player){
         if(!(this.heldItem).isEmpty() && findBinding(this.heldItem) == null){
             ModDataComponentHelpers.SOUL_BINDING.awaken(this.heldItem, player);
-            //todo: mark player with the attribute here
+            player.setData(ModAttachments.BOUND, true);
+            SoulBoundDebuffHelpers.addOrRemoveDebuff(player);
             //todo: burst of soul particles and some kind of sound.
             tell(player, ModTranslatableComponents.RITUAL_SUCCESS.withStyle(ChatFormatting.GREEN));
         }

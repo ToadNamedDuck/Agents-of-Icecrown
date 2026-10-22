@@ -2,6 +2,7 @@ package com.toadnamedduck.agentsoficecrown.event;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.ModTags;
+import com.toadnamedduck.agentsoficecrown.attachment.SoulBoundDebuffHelpers;
 import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers;
 import com.toadnamedduck.agentsoficecrown.datacomponent.SoulBinding;
 import net.minecraft.ChatFormatting;
@@ -24,6 +25,7 @@ import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.List;
 
@@ -107,6 +109,13 @@ public class ModEvents {
                         entry.slot()
                 );
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(PlayerTickEvent.Post event){
+        if(event.getEntity() instanceof ServerPlayer player && player.tickCount % 20 == 0){
+            SoulBoundDebuffHelpers.addOrRemoveDebuff(player);
         }
     }
 }
