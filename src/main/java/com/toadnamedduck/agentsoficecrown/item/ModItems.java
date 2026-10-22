@@ -131,7 +131,18 @@ public class ModItems {
             new SwordItem(saroniteTier,
                     new Item.Properties()
                             .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .fireResistant()
                             .attributes(SwordItem.createAttributes(saroniteTier, 4.0f, -2.4f))
+            ));
+
+    public static final DeferredItem<AxeItem> SARONITE_AXE = MOD_ITEMS.register("saronite_axe", () ->
+            new AxeItem(saroniteTier,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .fireResistant()
+                            .attributes(AxeItem.createAttributes(saroniteTier, 7.0f, -3.1f))
             ));
 
     public static void register(IEventBus modEventBus){

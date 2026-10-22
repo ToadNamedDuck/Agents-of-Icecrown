@@ -93,7 +93,8 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
                 .addTag(ModTags.ITEMS.TITANSTEEL_INGOT);
 
         tag(ItemTags.SWORDS)
-                .add(ModItems.TITANIUM_SWORD.get());
+                .add(ModItems.TITANIUM_SWORD.get())
+                .add(ModItems.SARONITE_SWORD.get());
 
         tag(ItemTags.PICKAXES)
                 .add(ModItems.TITANIUM_PICKAXE.get());
@@ -105,7 +106,8 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
                 .add(ModItems.TITANIUM_HOE.get());
 
         tag(ItemTags.AXES)
-                .add(ModItems.TITANIUM_AXE.get());
+                .add(ModItems.TITANIUM_AXE.get())
+                .add(ModItems.SARONITE_AXE.get());
 
         tag(ItemTags.HEAD_ARMOR)
                 .add(ModItems.TITANIUM_HELMET.get());
@@ -125,7 +127,8 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
                 .add(ModItems.TITANIUM_HOE.get());
 
         tag(ModTags.ITEMS.SARONITE_WEAPONS)
-                .add(ModItems.SARONITE_SWORD.get());
+                .add(ModItems.SARONITE_SWORD.get())
+                .add(ModItems.SARONITE_AXE.get());
 
         tag(ModTags.ITEMS.MELEE_WEAPON)
                 .add(ModItems.TITANIUM_AXE.get())
