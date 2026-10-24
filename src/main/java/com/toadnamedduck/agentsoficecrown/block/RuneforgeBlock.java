@@ -7,6 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -17,12 +18,23 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class RuneforgeBlock extends HorizontalDirectionalBlock {
     public static final MapCodec<RuneforgeBlock> CODEC = simpleCodec(RuneforgeBlock::new);
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+
+    public static final VoxelShape BOTTOM_BASEPLATE = Block.box(0,0,0,16,3,16);
+    public static final VoxelShape BOTTOM_WALLS = Block.box(1, 3, 6, 15, 16, 16);
+    public static final VoxelShape BOTTOM = Shapes.or(BOTTOM_BASEPLATE, BOTTOM_WALLS);
+    public static final VoxelShape TOP_PLATE = Block.box(0,13,0, 16,16, 16);
+    public static final VoxelShape TOP_PLATE_1 = Block.box(1,12,1,15,13,15);
+    public static final VoxelShape TOP_WALLS = Block.box(1,0,6,15, 13, 16);
+    public static final VoxelShape TOP = Shapes.or(TOP_PLATE, TOP_PLATE_1, TOP_WALLS);
 
     public RuneforgeBlock(Properties properties){
         super(properties);
@@ -35,6 +47,24 @@ public class RuneforgeBlock extends HorizontalDirectionalBlock {
     @Override
     protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        DoubleBlockHalf half = state.getValue(HALF);
+        if(half == DoubleBlockHalf.UPPER){
+            return TOP;
+        }
+        return BOTTOM;
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        DoubleBlockHalf half = state.getValue(HALF);
+        if(half == DoubleBlockHalf.UPPER){
+            return TOP;
+        }
+        return BOTTOM;
     }
 
     @Override
