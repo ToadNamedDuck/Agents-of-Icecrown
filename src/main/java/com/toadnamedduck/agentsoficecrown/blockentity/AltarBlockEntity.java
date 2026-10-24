@@ -22,6 +22,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Containers;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -29,6 +31,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -118,6 +121,12 @@ public class AltarBlockEntity extends BlockEntity {
             SoulBoundDebuffHelpers.addOrRemoveDebuff(player);
             level.playSound(null, pos.getX() +0.5, pos.getY()+0.5, pos.getZ()+0.5, SoundEvents.ELDER_GUARDIAN_CURSE, SoundSource.BLOCKS, 1, 0.75f);
             level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pos.getX()+0.5, pos.getY()+0.7, pos.getZ()+0.5, 7, 0.25, 0.25, 0.25, 0.02);
+            LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(level);
+            if(bolt != null){
+                bolt.moveTo(Vec3.atBottomCenterOf(pos));
+                bolt.setVisualOnly(true);
+                level.addFreshEntity(bolt);
+            }
             tell(player, ModTranslatableComponents.RITUAL_SUCCESS.withStyle(ChatFormatting.GREEN));
         }
         endRitual();
