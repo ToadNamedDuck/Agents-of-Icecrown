@@ -112,6 +112,13 @@ public class ModBlocks {
                     .noOcclusion()
             ));
 
+    public static final DeferredBlock<SoulCondenser> SOUL_CONDENSER = BLOCKS.register(
+            "soul_condenser",
+            () -> new SoulCondenser(BlockBehaviour.Properties.of()
+                    .strength(1.5f, 6.0f)
+                    .pushReaction(PushReaction.BLOCK)
+            ));
+
     public static void register(IEventBus modEventBus){
         BLOCKS.register(modEventBus);
     }
