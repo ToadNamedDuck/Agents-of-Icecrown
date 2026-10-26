@@ -20,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 
 import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.SOUL_CONDENSER_TITLE;
@@ -30,6 +31,8 @@ import static com.toadnamedduck.agentsoficecrown.menu.SoulCondenserItemHandler.O
 public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvider {
     private int progress = 0;
     private static final int MAX_PROGRESS = 200;
+    private final SoulCondenserItemHandler inventory = new SoulCondenserItemHandler(this::setChanged);
+    private static final int SOULS_PER_ITEM = 50;
     private final ContainerData containerData = new ContainerData() {
         @Override
         public int get(int i) {
@@ -51,9 +54,49 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
             return 2;
         }
     };
+    private final IItemHandler automationView = new IItemHandler() {
+        @Override
+        public int getSlots() {
+            return inventory.getSlots();
+        }
 
-    private final SoulCondenserItemHandler inventory = new SoulCondenserItemHandler(this::setChanged);
-    private static final int SOULS_PER_ITEM = 50;
+        @Override
+        public @NotNull ItemStack getStackInSlot(int i) {
+            return inventory.getStackInSlot(i);
+        }
+
+        @Override
+        public ItemStack insertItem(int i, @NotNull ItemStack itemStack, boolean b) {
+            if(i == INPUT){
+                return inventory.insertItem(i, itemStack, b);
+            }
+            else{
+                return itemStack;
+            }
+        }
+
+        @Override
+        public @NotNull ItemStack extractItem(int slot, int amount, boolean b) {
+            ItemStack item = inventory.getStackInSlot(slot);
+            SoulBinding binding = findBinding(item);
+            if(slot == INPUT && !item.isEmpty() && binding != null && binding.souls() >= SOULS_PER_ITEM) return ItemStack.EMPTY;
+            return inventory.extractItem(slot, amount, b);
+        }
+
+        @Override
+        public int getSlotLimit(int i) {
+            return inventory.getSlotLimit(i);
+        }
+
+        @Override
+        public boolean isItemValid(int i, @NotNull ItemStack itemStack) {
+            return inventory.isItemValid(i, itemStack);
+        }
+    };
+
+    public IItemHandler getAutomationView(){
+        return automationView;
+    }
 
     public SoulCondenserBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.SOUL_CONDENSER_ENTITY.get(), pos, blockState);

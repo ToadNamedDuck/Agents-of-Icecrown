@@ -40,7 +40,7 @@ public class SoulCondenser extends Block implements EntityBlock {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult){
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult){
         if(level.isClientSide()) return InteractionResult.sidedSuccess(true);
         if(level.getBlockEntity(pos) instanceof SoulCondenserBlockEntity entity){
             player.openMenu(entity);
