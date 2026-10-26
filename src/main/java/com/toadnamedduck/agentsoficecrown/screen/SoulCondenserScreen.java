@@ -1,9 +1,11 @@
 package com.toadnamedduck.agentsoficecrown.screen;
 
+import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.menu.SoulCondenserMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class SoulCondenserScreen extends AbstractContainerScreen<SoulCondenserMenu> {
@@ -11,14 +13,18 @@ public class SoulCondenserScreen extends AbstractContainerScreen<SoulCondenserMe
         super(menu, inv, title);
     }
     private static final int SQUARE_LENGTH = 18;
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Constants.MODID, "textures/gui/soul_condenser.png");
+    private static final int ARROW_X = 102, ARROW_Y = 32, ARROW_W = 15, ARROW_H = 22;
+    private static final int FILLED_U = 0, FILLED_V = 166;
 
     @Override
     protected void renderBg(GuiGraphics g, float partialTick, int mouseX, int mouseY){
-        g.fill(leftPos, topPos, leftPos + imageWidth, topPos + imageHeight, 0xFFC6C6C6);
-        g.fill(leftPos + 56, topPos + 17, leftPos + 56 + SQUARE_LENGTH, topPos + 17 + SQUARE_LENGTH, 0xFF8B8B8B);//input
-        g.fill(leftPos +56, topPos + 53, leftPos + 56 + SQUARE_LENGTH, topPos + 53 + SQUARE_LENGTH, 0xFF8B8B8B);//output
+        g.blit(TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 
-        //todo: Arrow
+        int h = menu.getScaledProgress(ARROW_H);
+        if(h > 0){
+            g.blit(TEXTURE, leftPos + ARROW_X, topPos + ARROW_Y, FILLED_U, FILLED_V, ARROW_W, h);
+        }
     }
 
     @Override

@@ -34,8 +34,8 @@ public class SoulCondenserMenu extends AbstractContainerMenu {
 
 
         // I/O have first two indices
-        this.addSlot(new SlotItemHandler(itemHandler, INPUT, 56, 17));
-        this.addSlot(new SlotItemHandler(itemHandler, OUTPUT, 56, 53));
+        this.addSlot(new SlotItemHandler(itemHandler, INPUT, 80, 17));
+        this.addSlot(new SlotItemHandler(itemHandler, OUTPUT, 80, 53));
 
         //Inventory
         for(int r = 0; r < 3; r++){
@@ -95,5 +95,11 @@ public class SoulCondenserMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player){
         return stillValid(access, player, ModBlocks.SOUL_CONDENSER.get());
+    }
+
+    public int getScaledProgress(int size) {
+        int prog = data.get(0), maxProg = data.get(1);
+        if(maxProg != 0 && prog != 0) return (prog*size)/maxProg;
+        else return 0;
     }
 }
