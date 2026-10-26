@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -88,6 +89,14 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
         progress = compoundTag.getInt("Progress");
     }
 
+    public void dropContents(Level level, BlockPos pos){
+        if(!level.isClientSide()){
+            for(int i = 0; i < inventory.getSlots(); i++){
+                Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(i));
+            }
+        }
+    }
+
     public static void tick(Level level, BlockPos pos, BlockState state, SoulCondenserBlockEntity entity){
         ItemStack input = entity.inventory.getStackInSlot(INPUT);
         SoulBinding binding = findBinding(input);
@@ -108,9 +117,11 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
 
             if(entity.inventory.getStackInSlot(OUTPUT).isEmpty()){
                 entity.inventory.setStackInSlot(OUTPUT, new ItemStack(ModItems.COALESCED_SOULS.get()));
+                entity.progress = 0;
             }
             else{
                 entity.inventory.getStackInSlot(OUTPUT).grow(1);
+                entity.progress = 0;
             }
         }
         entity.setChanged();

@@ -48,6 +48,7 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addBlockToList(ModBlocks.TITANIUM_ORE, "Titanium Ore");
         addBlockToList(ModBlocks.DEEPSLATE_TITANIUM_ORE, "Deepslate Titanium Ore");
         addBlockToList(ModBlocks.ALTAR, "Unholy Altar");
+        addBlockToList(ModBlocks.SOUL_CONDENSER, "Soul Condenser");
         //Entities
 
         //Ritual

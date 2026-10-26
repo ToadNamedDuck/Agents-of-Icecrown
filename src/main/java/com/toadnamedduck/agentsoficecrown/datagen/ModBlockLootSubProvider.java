@@ -25,6 +25,7 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BLOCK_OF_TITANIUM.get());
         dropSelf(ModBlocks.BLOCK_OF_TITANSTEEL.get());
         dropSelf(ModBlocks.ALTAR.get());
+        dropSelf(ModBlocks.SOUL_CONDENSER.get());
 
         add(ModBlocks.RUNEFORGE.get(), createDoorTable(ModBlocks.RUNEFORGE.get()));
 

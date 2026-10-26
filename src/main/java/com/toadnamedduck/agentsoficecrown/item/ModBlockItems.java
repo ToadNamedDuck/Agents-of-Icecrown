@@ -74,6 +74,12 @@ public class ModBlockItems {
             new Item.Properties()
     );
 
+    public static DeferredItem<BlockItem> SOUL_CONDENSER = BLOCK_ITEMS.registerSimpleBlockItem(
+            "soul_condenser",
+            ModBlocks.SOUL_CONDENSER,
+            new Item.Properties()
+    );
+
     public static void register(IEventBus modEventBus){
         BLOCK_ITEMS.register(modEventBus);
     }
