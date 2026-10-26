@@ -153,6 +153,12 @@ public class ModItems {
                             .fireResistant()
             ));
 
+    public static final DeferredItem<Item> COALESCED_SOULS = MOD_ITEMS.register("coalesced_souls", () ->
+        new Item(
+                new Item.Properties()
+                        .stacksTo(64)
+        ));
+
     public static void register(IEventBus modEventBus){
         MOD_ITEMS.register(modEventBus);
     }

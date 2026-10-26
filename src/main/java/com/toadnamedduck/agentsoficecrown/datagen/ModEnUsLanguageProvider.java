@@ -35,6 +35,7 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addItemToList(ModItems.SARONITE_SWORD, "Saronite Sword");
         addItemToList(ModItems.SARONITE_AXE, "Saronite Axe");
         addItemToList(ModItems.SARONITE_WING, "Saronite Wing");
+        addItemToList(ModItems.COALESCED_SOULS, "Coalesced Souls");
         //Blocks
         addBlockToList(ModBlocks.BLOCK_OF_SARONITE, "Block of Saronite");
         addBlockToList(ModBlocks.LICHSTONE, "Lichstone");
@@ -64,6 +65,7 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         //Advancements
 
         //GUIs
+        addByKey("gui.agentsoficecrown.soul_cond_title", "Soul Condenser");
 
         //Tooltips
         addByKey("tooltip.agentsoficecrown.inert", "Inert");

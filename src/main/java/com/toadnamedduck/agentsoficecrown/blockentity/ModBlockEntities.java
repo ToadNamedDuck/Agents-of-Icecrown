@@ -19,6 +19,13 @@ public class ModBlockEntities {
                     .build(null)
     );
 
+    public static final Supplier<BlockEntityType<SoulCondenserBlockEntity>> SOUL_CONDENSER_ENTITY = MOD_BLOCK_ENTITIES.register("soul_condenser_block_entity", () ->
+            BlockEntityType.Builder.of(
+                    SoulCondenserBlockEntity::new,
+                    ModBlocks.SOUL_CONDENSER.get())
+                    .build(null)
+            );
+
     public static void register(IEventBus modEventBus){
         MOD_BLOCK_ENTITIES.register(modEventBus);
     }

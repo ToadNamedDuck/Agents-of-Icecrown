@@ -10,8 +10,10 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
+import static com.toadnamedduck.agentsoficecrown.menu.SoulCondenserItemHandler.INPUT;
+import static com.toadnamedduck.agentsoficecrown.menu.SoulCondenserItemHandler.OUTPUT;
+
 public class SoulCondenserMenu extends AbstractContainerMenu {
-    private static final int INPUT = 0, OUTPUT = 1;
     private final ContainerData data;
     private final ContainerLevelAccess access;
     private static final int MACHINE_SLOTS = 2;
@@ -63,17 +65,17 @@ public class SoulCondenserMenu extends AbstractContainerMenu {
             if(!moveItemStackTo(slotItem, INV_START_INDEX, SLOTS_END_EXCLUSIVE, true)){
                 return ItemStack.EMPTY;
             }
-            //Player inv to machine
-            else{
-                //Checks the mayplace rule for the first slot, which only accepts items with a SoulBinding data component
-                if(!moveItemStackTo(slotItem, INPUT, INPUT + 1, false)){
-                    //If it wasn't accepted into the first slot, we can't insert into the output, so we need to keep the bounce between hotbar and inv functionality lol
-                    if(index < HOTBAR_START_INDEX){
-                        if(!moveItemStackTo(slotItem, HOTBAR_START_INDEX, SLOTS_END_EXCLUSIVE, false)) return ItemStack.EMPTY;
-                    }
-                    else{
-                        if(!moveItemStackTo(slotItem, INV_START_INDEX, HOTBAR_START_INDEX, false)) return ItemStack.EMPTY;
-                    }
+        }
+        //Player inv to machine
+        else {
+            //Checks the mayplace rule for the first slot, which only accepts items with a SoulBinding data component
+            if (!moveItemStackTo(slotItem, INPUT, INPUT + 1, false)) {
+                //If it wasn't accepted into the first slot, we can't insert into the output, so we need to keep the bounce between hotbar and inv functionality lol
+                if (index < HOTBAR_START_INDEX) {
+                    if (!moveItemStackTo(slotItem, HOTBAR_START_INDEX, SLOTS_END_EXCLUSIVE, false))
+                        return ItemStack.EMPTY;
+                } else {
+                    if (!moveItemStackTo(slotItem, INV_START_INDEX, HOTBAR_START_INDEX, false)) return ItemStack.EMPTY;
                 }
             }
         }

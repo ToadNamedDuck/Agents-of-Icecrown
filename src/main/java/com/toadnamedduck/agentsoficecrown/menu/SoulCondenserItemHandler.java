@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.findBinding;
 
 public class SoulCondenserItemHandler extends ItemStackHandler {
+    public static final int INPUT = 0;
+    public static final int OUTPUT = 1;
     private final Runnable onChanged;
 
     public SoulCondenserItemHandler(Runnable onChanged){
