@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 
+import static com.toadnamedduck.agentsoficecrown.Constants.SOULS_PER_ITEM;
 import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.SOUL_CONDENSER_TITLE;
 import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.findBinding;
 import static com.toadnamedduck.agentsoficecrown.menu.SoulCondenserItemHandler.INPUT;
@@ -32,7 +33,6 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
     private int progress = 0;
     private static final int MAX_PROGRESS = 200;
     private final SoulCondenserItemHandler inventory = new SoulCondenserItemHandler(this::setChanged);
-    private static final int SOULS_PER_ITEM = 50;
     private final ContainerData containerData = new ContainerData() {
         @Override
         public int get(int i) {
@@ -66,7 +66,7 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
         }
 
         @Override
-        public ItemStack insertItem(int i, @NotNull ItemStack itemStack, boolean b) {
+        public @NotNull ItemStack insertItem(int i, @NotNull ItemStack itemStack, boolean b) {
             if(i == INPUT){
                 return inventory.insertItem(i, itemStack, b);
             }
@@ -115,7 +115,11 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
 
     @Override
     public AbstractContainerMenu createMenu(int containerID, @NotNull Inventory playerInv, @NotNull Player player){
-        return new SoulCondenserMenu(containerID, playerInv, inventory, containerData, ContainerLevelAccess.create(this.getLevel(), this.getBlockPos()));
+        Level lvl = this.getLevel();
+        if(lvl != null){
+            return new SoulCondenserMenu(containerID, playerInv, inventory, containerData, ContainerLevelAccess.create(this.getLevel(), this.getBlockPos()));
+        }
+        return null;
     }
 
     @Override
@@ -160,12 +164,11 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
 
             if(entity.inventory.getStackInSlot(OUTPUT).isEmpty()){
                 entity.inventory.setStackInSlot(OUTPUT, new ItemStack(ModItems.COALESCED_SOULS.get()));
-                entity.progress = 0;
             }
             else{
                 entity.inventory.getStackInSlot(OUTPUT).grow(1);
-                entity.progress = 0;
             }
+            entity.progress = 0;
         }
         entity.setChanged();
     }

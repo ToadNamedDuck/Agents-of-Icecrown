@@ -73,9 +73,11 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addByKey("tooltip.agentsoficecrown.souls", "Souls: %s (+%s damage)");
         addByKey("tooltip.agentsoficecrown.soulbinding_owner_mismatch", "This weapon resists your command.");
         addByKey("tooltip.agentsoficecrown.soulbinding_durability_spent", "Repair this damaged weapon at a Runeforge.");
+        addByKey("tooltip.agentsoficecrown.coalesced_souls_tooltip", "Sneak right-click to store souls in your soulbound weapon in the other hand.");
 
         //Misc - Creative Mode Tab
         addByKey("creativetab.agentsoficecrown.icecrown_tab", "Agents of Icecrown");
+        addByKey("item.agentsoficecrown.coalesced_souls_no_binding", "Put a soulbound weapon that belongs to you in the other hand!");
     }
 
 }

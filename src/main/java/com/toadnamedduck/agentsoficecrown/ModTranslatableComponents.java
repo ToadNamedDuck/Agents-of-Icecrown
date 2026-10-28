@@ -19,7 +19,9 @@ public class ModTranslatableComponents {
     public static final MutableComponent RITUAL_CANCELLED = Component.translatable("altarritual.agentsoficecrown.ritual_cancelled");
     public static final MutableComponent RITUAL_SUCCESS = Component.translatable("altarritual.agentsoficecrown.ritual_successful");
     public static final MutableComponent SOUL_CONDENSER_TITLE = Component.translatable("gui.agentsoficecrown.soul_cond_title");
+    public static final MutableComponent COALESCED_SOULS_TOOLTIP = Component.translatable("tooltip.agentsoficecrown.coalesced_souls_tooltip");
+    public static final MutableComponent COALESCED_SOULS_NO_BINDING = Component.translatable("item.agentsoficecrown.coalesced_souls_no_binding");
 
     public static final Set<MutableComponent> MOD_TRANSLATABLE = Set.of(INERT, SOULS, SOULBINDING_OWNER_MISMATCH, SOULBINDING_DURABILITY_SPENT, MOD_CREATIVE_TAB, RITUAL_IN_PROGRESS,
-            RITUAL_ALTAR_EMPTY, RITUAL_WRONG_ITEM, RITUAL_ALREADY_BOUND, RITUAL_HEALTH_TOO_LOW, RITUAL_NOT_PREPARED, RITUAL_CANCELLED, RITUAL_SUCCESS, SOUL_CONDENSER_TITLE);
+            RITUAL_ALTAR_EMPTY, RITUAL_WRONG_ITEM, RITUAL_ALREADY_BOUND, RITUAL_HEALTH_TOO_LOW, RITUAL_NOT_PREPARED, RITUAL_CANCELLED, RITUAL_SUCCESS, SOUL_CONDENSER_TITLE, COALESCED_SOULS_TOOLTIP, COALESCED_SOULS_NO_BINDING);
 }
