@@ -9,6 +9,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -164,9 +167,11 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
 
             if(entity.inventory.getStackInSlot(OUTPUT).isEmpty()){
                 entity.inventory.setStackInSlot(OUTPUT, new ItemStack(ModItems.COALESCED_SOULS.get()));
+                if(level instanceof ServerLevel) level.playSound(null, pos.getX() +0.5, pos.getY() +0.5, pos.getZ() + 0.5, SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS, 1, 1);
             }
             else{
                 entity.inventory.getStackInSlot(OUTPUT).grow(1);
+                if(level instanceof ServerLevel) level.playSound(null, pos.getX() +0.5, pos.getY() +0.5, pos.getZ() + 0.5, SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS, 1, 1);
             }
             entity.progress = 0;
         }

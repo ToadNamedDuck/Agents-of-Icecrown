@@ -117,6 +117,7 @@ public class ModBlocks {
             () -> new SoulCondenser(BlockBehaviour.Properties.of()
                     .strength(1.5f, 6.0f)
                     .pushReaction(PushReaction.BLOCK)
+                    .requiresCorrectToolForDrops()
             ));
 
     public static void register(IEventBus modEventBus){
