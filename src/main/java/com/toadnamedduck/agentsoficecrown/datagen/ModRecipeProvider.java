@@ -10,6 +10,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -45,6 +46,12 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_raw_titanium", has(ModItems.RAW_TITANIUM_ORE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_ingot_from_blasting"));
 
+        SimpleCookingRecipeBuilder
+                .smelting(Ingredient.of(ModItems.SARONITE_WING.get()), RecipeCategory.MISC, ModItems.SARONITE_INGOT.get(), 1.0f, 200)
+                .group("saronite")
+                .unlockedBy("has_saronite_wing", has(ModItems.SARONITE_WING))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_ingot_from_wing"));
+
 
         //Ingot -> Block
         ShapedRecipeBuilder
@@ -53,7 +60,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXX")
                 .pattern("XXX")
                 .pattern("XXX")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
+                .unlockedBy("has_saronite_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_block_from_ingot"));
 
         ShapedRecipeBuilder
@@ -62,7 +69,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXX")
                 .pattern("XXX")
                 .pattern("XXX")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_saronite_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_block_from_ingot"));
 
         ShapedRecipeBuilder
@@ -71,7 +78,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXX")
                 .pattern("XXX")
                 .pattern("XXX")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANSTEEL_INGOT))
+                .unlockedBy("has_titansteel_ingot", has(ModTags.ITEMS.TITANSTEEL_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titansteel_block_from_ingot"));
 
         //Nugget -> Ingot
@@ -81,7 +88,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXX")
                 .pattern("XXX")
                 .pattern("XXX")
-                .unlockedBy("has_nugget", has(ModTags.ITEMS.SARONITE_NUGGET))
+                .unlockedBy("has_saronite_nugget", has(ModTags.ITEMS.SARONITE_NUGGET))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_ingot_from_nugget"));
 
         ShapedRecipeBuilder
@@ -90,7 +97,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXX")
                 .pattern("XXX")
                 .pattern("XXX")
-                .unlockedBy("has_nugget", has(ModTags.ITEMS.TITANIUM_NUGGET))
+                .unlockedBy("has_titanium_nugget", has(ModTags.ITEMS.TITANIUM_NUGGET))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_ingot_from_nugget"));
 
         ShapedRecipeBuilder
@@ -99,45 +106,45 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXX")
                 .pattern("XXX")
                 .pattern("XXX")
-                .unlockedBy("has_nugget", has(ModTags.ITEMS.TITANSTEEL_NUGGET))
+                .unlockedBy("has_titansteel_nugget", has(ModTags.ITEMS.TITANSTEEL_NUGGET))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titansteel_ingot_from_nugget"));
 
         //Block -> Ingot
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, ModItems.SARONITE_INGOT.get(), 9)
                 .requires(ModTags.ITEMS.SARONITE_BLOCK)
-                .unlockedBy("has_block", has(ModTags.ITEMS.SARONITE_BLOCK))
+                .unlockedBy("has_saronite_block", has(ModTags.ITEMS.SARONITE_BLOCK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_ingot_from_block"));
 
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, ModItems.TITANIUM_INGOT.get(), 9)
                 .requires(ModTags.ITEMS.TITANIUM_BLOCK)
-                .unlockedBy("has_block", has(ModTags.ITEMS.TITANIUM_BLOCK))
+                .unlockedBy("has_titanium_block", has(ModTags.ITEMS.TITANIUM_BLOCK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_ingot_from_block"));
 
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, ModItems.TITANSTEEL_INGOT.get(), 9)
                 .requires(ModTags.ITEMS.TITANSTEEL_BLOCK)
-                .unlockedBy("has_block", has(ModTags.ITEMS.TITANSTEEL_BLOCK))
+                .unlockedBy("has_titansteel_block", has(ModTags.ITEMS.TITANSTEEL_BLOCK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titansteel_ingot_from_block"));
 
         //Ingot -> Nugget
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, ModItems.SARONITE_NUGGET.get(), 9)
                 .requires(ModTags.ITEMS.SARONITE_INGOT)
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
+                .unlockedBy("has_saronite_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_nugget_from_ingot"));
 
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, ModItems.TITANIUM_NUGGET.get(), 9)
                 .requires(ModTags.ITEMS.TITANIUM_INGOT)
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_nugget_from_ingot"));
 
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, ModItems.TITANSTEEL_NUGGET.get(), 9)
                 .requires(ModTags.ITEMS.TITANSTEEL_INGOT)
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANSTEEL_INGOT))
+                .unlockedBy("has_titansteel_ingot", has(ModTags.ITEMS.TITANSTEEL_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titansteel_nugget_from_ingot"));
 
         //Tools
@@ -148,7 +155,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXX")
                 .pattern(" Y ")
                 .pattern(" Y ")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_pickaxe"));
 
         ShapedRecipeBuilder
@@ -158,7 +165,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XX ")
                 .pattern("XY ")
                 .pattern(" Y ")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_axe"));
 
         ShapedRecipeBuilder
@@ -168,7 +175,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern(" X ")
                 .pattern(" Y ")
                 .pattern(" Y ")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_shovel"));
 
         ShapedRecipeBuilder
@@ -178,7 +185,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XX ")
                 .pattern(" Y ")
                 .pattern(" Y ")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_hoe"));
 
         //Weapons
@@ -189,7 +196,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern(" X ")
                 .pattern(" X ")
                 .pattern(" Y ")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_sword"));
 
         ShapedRecipeBuilder
@@ -200,7 +207,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern(" X ")
                 .pattern("ZXZ")
                 .pattern(" Y ")
-                .unlockedBy("has_item", has(ModItems.SARONITE_WING.get()))
+                .unlockedBy("has_saronite_wing", has(ModItems.SARONITE_WING.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_sword"));
 
         ShapedRecipeBuilder
@@ -211,7 +218,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXZ")
                 .pattern("XYZ")
                 .pattern(" Y ")
-                .unlockedBy("has_item", has(ModItems.SARONITE_WING.get()))
+                .unlockedBy("has_saronite_wing", has(ModItems.SARONITE_WING.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_axe"));
 
         //Armor
@@ -220,7 +227,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('X', ModTags.ITEMS.TITANIUM_INGOT)
                 .pattern("XXX")
                 .pattern("X X")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_helmet"));
 
         ShapedRecipeBuilder
@@ -229,7 +236,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("X X")
                 .pattern("XXX")
                 .pattern("XXX")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_chestplate"));
 
         ShapedRecipeBuilder
@@ -238,7 +245,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXX")
                 .pattern("X X")
                 .pattern("X X")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_leggings"));
 
         ShapedRecipeBuilder
@@ -246,7 +253,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('X', ModTags.ITEMS.TITANIUM_INGOT)
                 .pattern("X X")
                 .pattern("X X")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
+                .unlockedBy("has_titanium_ingot", has(ModTags.ITEMS.TITANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium_boots"));
 
         //Misc Items
@@ -256,7 +263,30 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("XXX")
                 .pattern(" XX")
                 .pattern("  X")
-                .unlockedBy("has_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
+                .unlockedBy("has_saronite_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_wing"));
+
+        //Blocks/Machines
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, ModBlocks.SOUL_CONDENSER.get())
+                .define('X', ModTags.ITEMS.SARONITE_INGOT)
+                .define('Y', Items.SOUL_SAND)
+                .define('Z', Tags.Items.STONES)
+                .pattern("X X")
+                .pattern("ZXZ")
+                .pattern("XYX")
+                .unlockedBy("has_saronite_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "soul_condenser"));
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, ModBlocks.SOUL_CONDENSER.get())
+                .define('X', ModTags.ITEMS.SARONITE_INGOT)
+                .define('Y', ModItems.COALESCED_SOULS)
+                .define('Z', Items.BONE_BLOCK)
+                .pattern("XYX")
+                .pattern("XZX")
+                .pattern("ZZZ")
+                .unlockedBy("has_coalesced_souls", has(ModItems.COALESCED_SOULS.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "runeforge"));
     }
 }
