@@ -209,8 +209,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('Y', Items.STICK)
                 .define('Z', ModItems.SARONITE_WING.get())
                 .pattern("XXZ")
-                .pattern("XY ")
-                .pattern(" Z ")
+                .pattern("XYZ")
+                .pattern(" Y ")
                 .unlockedBy("has_item", has(ModItems.SARONITE_WING.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_axe"));
 
