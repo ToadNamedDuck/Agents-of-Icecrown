@@ -40,15 +40,15 @@ public class ModEvents {
     public static void onToolTip(ItemTooltipEvent tooltipEvent){
         ItemStack item = tooltipEvent.getItemStack();
 
-        if(!item.is(ModTags.ITEMS.SARONITE_WEAPONS)) return;
+        if(!item.is(ModTags.ITEMS.MELEE_WEAPON)) return;
 
         List<Component> tooltip = tooltipEvent.getToolTip();
         SoulBinding binding = findBinding(item);
 
-        if(binding == null){
+        if(binding == null && item.is(ModTags.ITEMS.SARONITE_WEAPONS)){
             tooltip.add(INERT.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
         }
-        else{
+        if(binding != null){
             tooltip.add(Component.translatable("tooltip.agentsoficecrown.souls", binding.souls(), SoulBinding.bonusDamage(binding.souls())).withStyle(ChatFormatting.AQUA));
 
             Player holdingPlayer = tooltipEvent.getEntity();
