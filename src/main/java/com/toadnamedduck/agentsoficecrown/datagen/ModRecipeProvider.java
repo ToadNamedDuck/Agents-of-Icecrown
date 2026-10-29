@@ -279,7 +279,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "soul_condenser"));
 
         ShapedRecipeBuilder
-                .shaped(RecipeCategory.MISC, ModBlocks.SOUL_CONDENSER.get())
+                .shaped(RecipeCategory.MISC, ModBlocks.RUNEFORGE.get())
                 .define('X', ModTags.ITEMS.SARONITE_INGOT)
                 .define('Y', ModItems.COALESCED_SOULS)
                 .define('Z', Items.BONE_BLOCK)
