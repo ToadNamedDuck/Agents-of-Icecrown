@@ -288,5 +288,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("ZZZ")
                 .unlockedBy("has_coalesced_souls", has(ModItems.COALESCED_SOULS.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "runeforge"));
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, ModBlocks.ALTAR.get())
+                .define('X', ModTags.ITEMS.STONES)
+                .define('Y', Items.SOUL_SAND)
+                .pattern("X X")
+                .pattern("XXX")
+                .pattern("XYX")
+                .unlockedBy("has_soul_sand", has(Items.SOUL_SAND))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "altar"));
     }
 }
