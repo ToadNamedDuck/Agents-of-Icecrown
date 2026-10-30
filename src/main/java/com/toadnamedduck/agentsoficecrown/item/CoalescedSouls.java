@@ -1,5 +1,6 @@
 package com.toadnamedduck.agentsoficecrown.item;
 
+import com.toadnamedduck.agentsoficecrown.Config;
 import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.datacomponent.SoulBinding;
 import net.minecraft.ChatFormatting;
@@ -48,7 +49,7 @@ public class CoalescedSouls extends Item {
         }
 
         if(!level.isClientSide){
-            setSouls(other, binding.souls() + Constants.SOULS_PER_ITEM);
+            setSouls(other, binding.souls() + Config.COALESCED_SOULS_SOUL_VALUE.get());
             self.consume(1, player);
             Vec3 look = player.getLookAngle();
             Vec3 spot = player.getEyePosition().add(look.scale(0.7)).add(0, -0.15, 0);

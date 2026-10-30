@@ -2,6 +2,7 @@ package com.toadnamedduck.agentsoficecrown.datacomponent;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.toadnamedduck.agentsoficecrown.Config;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -35,10 +36,9 @@ public record SoulBinding(UUID owner, int souls, boolean spent){
     }
 
     public static double bonusDamage(int souls){
-        //TODO: Add config for number of souls to hit dmg cap, and config for max bonus
-        //rn the cap is gonna just be 1000, for a max of 21 bonus dmg
-        double fraction = Math.sqrt(Math.min(souls, 1000)/(double)1000);
-        return roundToHalf(20.0 * fraction);
+        int cap = Config.SOULBINDING_MAX_EFFECTIVE_SOULS.get();
+        double fraction = Math.sqrt(Math.min(souls, cap)/(double)cap);
+        return roundToHalf(Config.SOULBINDING_MAX_DAMAGE_BONUS.get() * fraction);
     }
 
     //Helper for creating a new record for the weapons (To update the soul counter)

@@ -1,5 +1,6 @@
 package com.toadnamedduck.agentsoficecrown.blockentity;
 
+import com.toadnamedduck.agentsoficecrown.Config;
 import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers;
 import com.toadnamedduck.agentsoficecrown.datacomponent.SoulBinding;
 import com.toadnamedduck.agentsoficecrown.item.ModItems;
@@ -26,7 +27,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-import static com.toadnamedduck.agentsoficecrown.Constants.SOULS_PER_ITEM;
 import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.SOUL_CONDENSER_TITLE;
 import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.findBinding;
 import static com.toadnamedduck.agentsoficecrown.menu.SoulCondenserItemHandler.INPUT;
@@ -82,7 +82,7 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
         public @NotNull ItemStack extractItem(int slot, int amount, boolean b) {
             ItemStack item = inventory.getStackInSlot(slot);
             SoulBinding binding = findBinding(item);
-            if(slot == INPUT && !item.isEmpty() && binding != null && binding.souls() >= SOULS_PER_ITEM) return ItemStack.EMPTY;
+            if(slot == INPUT && !item.isEmpty() && binding != null && binding.souls() >= Config.COALESCED_SOULS_SOUL_VALUE.get()) return ItemStack.EMPTY;
             return inventory.extractItem(slot, amount, b);
         }
 
@@ -148,9 +148,10 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, SoulCondenserBlockEntity entity){
+        int soulValue = Config.COALESCED_SOULS_SOUL_VALUE.get();
         ItemStack input = entity.inventory.getStackInSlot(INPUT);
         SoulBinding binding = findBinding(input);
-        boolean canWork = binding != null && binding.souls() >= SOULS_PER_ITEM && entity.canAcceptOutput();
+        boolean canWork = binding != null && binding.souls() >= soulValue && entity.canAcceptOutput();
 
         if(!canWork){
             if(entity.progress != 0){
@@ -162,7 +163,7 @@ public class SoulCondenserBlockEntity extends BlockEntity implements MenuProvide
 
         entity.progress++;
         if(entity.progress >= MAX_PROGRESS){
-            ModDataComponentHelpers.SOUL_BINDING.setSouls(input, binding.souls() - SOULS_PER_ITEM);
+            ModDataComponentHelpers.SOUL_BINDING.setSouls(input, binding.souls() - soulValue);
             entity.inventory.setStackInSlot(INPUT, input);
 
             if(entity.inventory.getStackInSlot(OUTPUT).isEmpty()){

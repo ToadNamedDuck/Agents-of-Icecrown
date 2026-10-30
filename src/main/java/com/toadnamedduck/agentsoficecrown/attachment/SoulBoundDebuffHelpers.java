@@ -1,5 +1,6 @@
 package com.toadnamedduck.agentsoficecrown.attachment;
 
+import com.toadnamedduck.agentsoficecrown.Config;
 import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers;
 import com.toadnamedduck.agentsoficecrown.datacomponent.SoulBinding;
@@ -20,7 +21,7 @@ public class SoulBoundDebuffHelpers {
 
     public static void addOrRemoveDebuff(ServerPlayer player){
         boolean debuff = player.getData(ModAttachments.BOUND) && !holdingBoundWeapon(player);
-        setModifier(player, Attributes.MAX_HEALTH, DEBUFF_ID, -4.0, AttributeModifier.Operation.ADD_VALUE, debuff);
+        setModifier(player, Attributes.MAX_HEALTH, DEBUFF_ID, -Config.SOULBINDING_DEBUFF_HEALTH_PENALTY.get(), AttributeModifier.Operation.ADD_VALUE, debuff);
         setModifier(player, Attributes.ATTACK_DAMAGE, DEBUFF_ID, -0.10, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL, debuff);
     }
 
@@ -39,8 +40,9 @@ public class SoulBoundDebuffHelpers {
     private static void setModifier(Player player, Holder<Attribute> attribute, ResourceLocation modifierID, double amount, AttributeModifier.Operation operation, boolean debuff){
         AttributeInstance instance = player.getAttribute(attribute);
         if(instance != null){
-            if(debuff && !instance.hasModifier(modifierID)){
-                instance.addTransientModifier(new AttributeModifier(modifierID, amount, operation));
+            AttributeModifier existing = instance.getModifier(modifierID);
+            if(debuff && (existing == null || existing.amount() != amount)){
+                instance.addOrUpdateTransientModifier(new AttributeModifier(modifierID, amount, operation));
             }
             if(!debuff && instance.hasModifier(modifierID)){
                 instance.removeModifier(modifierID);
