@@ -40,7 +40,6 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
-                .add(ModBlocks.LICHSTONE.get())
                 .add(ModBlocks.RUNEFORGE.get())
                 .add(ModBlocks.BLOCK_OF_TITANIUM.get())
                 .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
@@ -82,7 +81,6 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
                 ;
 
         tag(ModTags.BLOCKS.STONES)
-                .add(ModBlocks.LICHSTONE.get())
                 ;
 
         tag(ModTags.BLOCKS.INCORRECT_FOR_TITANIUM_TOOL)

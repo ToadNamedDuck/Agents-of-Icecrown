@@ -38,7 +38,6 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addItemToList(ModItems.COALESCED_SOULS, "Coalesced Souls");
         //Blocks
         addBlockToList(ModBlocks.BLOCK_OF_SARONITE, "Block of Saronite");
-        addBlockToList(ModBlocks.LICHSTONE, "Lichstone");
         addBlockToList(ModBlocks.LIQUID_SARONITE, "Liquid Saronite");
         addBlockToList(ModBlocks.RUNEFORGE, "Runeforge");
         addBlockToList(ModBlocks.BLOCK_OF_TITANIUM, "Block of Titanium");

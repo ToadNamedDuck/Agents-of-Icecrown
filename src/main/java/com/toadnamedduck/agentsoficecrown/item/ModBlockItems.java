@@ -14,12 +14,6 @@ import static com.toadnamedduck.agentsoficecrown.block.ModBlocks.*;
 public class ModBlockItems {
     public static DeferredRegister.Items BLOCK_ITEMS = DeferredRegister.createItems(Constants.MODID);
 
-    public static DeferredItem<BlockItem> LICHSTONE = BLOCK_ITEMS.registerSimpleBlockItem(
-            "lichstone",
-            ModBlocks.LICHSTONE,
-            new Item.Properties()
-            );
-
     public static DeferredItem<BlockItem> BLOCK_OF_SARONITE = BLOCK_ITEMS.registerSimpleBlockItem(
             "block_of_saronite",
             ModBlocks.BLOCK_OF_SARONITE,

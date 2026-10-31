@@ -40,7 +40,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().withExistingParent("altar", modLoc("block/altar"));
 
         //Simple Blocks
-        simpleBlockWithItem(ModBlocks.LICHSTONE.get(), models().cubeAll("lichstone", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/lichstone")));
         simpleBlockWithItem(ModBlocks.BLOCK_OF_SARONITE.get(), models().cubeAll("block_of_saronite", ResourceLocation.fromNamespaceAndPath(Constants.MODID,"block/block_of_saronite")));
         simpleBlockWithItem(ModBlocks.BLOCK_OF_TITANSTEEL.get(), models().cubeAll("block_of_titansteel", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/block_of_titansteel")));
         simpleBlockWithItem(ModBlocks.BLOCK_OF_TITANIUM.get(), models().cubeAll("block_of_titanium", ResourceLocation.fromNamespaceAndPath(Constants.MODID, "block/block_of_titanium")));

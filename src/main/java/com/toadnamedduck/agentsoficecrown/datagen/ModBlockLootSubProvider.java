@@ -21,7 +21,6 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
     @Override
     protected void generate(){
         dropSelf(ModBlocks.BLOCK_OF_SARONITE.get());
-        dropSelf(ModBlocks.LICHSTONE.get());
         dropSelf(ModBlocks.BLOCK_OF_TITANIUM.get());
         dropSelf(ModBlocks.BLOCK_OF_TITANSTEEL.get());
         dropSelf(ModBlocks.ALTAR.get());

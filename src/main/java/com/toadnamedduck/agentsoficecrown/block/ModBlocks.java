@@ -17,14 +17,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Constants.MODID);
 
-    public static final DeferredBlock<Block> LICHSTONE = BLOCKS.register(
-            "lichstone",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(1.5f, 6.0f)
-                    .sound(SoundType.STONE)
-                    .requiresCorrectToolForDrops()
-            ));
-
     public static final DeferredBlock<LiquidBlock> LIQUID_SARONITE = BLOCKS.register("liquid_saronite", () ->
             new LiquidBlock(ModFluids.LIQUID_SARONITE_SOURCE.get(), BlockBehaviour.Properties.of()
                     .liquid()
