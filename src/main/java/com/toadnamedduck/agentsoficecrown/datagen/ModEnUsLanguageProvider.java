@@ -18,20 +18,6 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addItemToList(ModItems.LIQUID_SARONITE_BUCKET, "Bucket of Liquid Saronite");
         addItemToList(ModItems.SARONITE_INGOT, "Saronite Ingot");
         addItemToList(ModItems.SARONITE_NUGGET, "Saronite Nugget");
-        addItemToList(ModItems.RAW_TITANIUM_ORE, "Raw Titanium Ore");
-        addItemToList(ModItems.TITANIUM_INGOT, "Titanium Ingot");
-        addItemToList(ModItems.TITANIUM_NUGGET, "Titanium Nugget");
-        addItemToList(ModItems.TITANSTEEL_INGOT, "Titansteel Ingot");
-        addItemToList(ModItems.TITANSTEEL_NUGGET, "Titansteel Nugget");
-        addItemToList(ModItems.TITANIUM_PICKAXE, "Titanium Pickaxe");
-        addItemToList(ModItems.TITANIUM_AXE, "Titanium Axe");
-        addItemToList(ModItems.TITANIUM_SHOVEL, "Titanium Shovel");
-        addItemToList(ModItems.TITANIUM_HOE, "Titanium Hoe");
-        addItemToList(ModItems.TITANIUM_SWORD, "Titanium Sword");
-        addItemToList(ModItems.TITANIUM_HELMET, "Titanium Helmet");
-        addItemToList(ModItems.TITANIUM_CHESTPLATE, "Titanium Chestplate");
-        addItemToList(ModItems.TITANIUM_LEGGINGS, "Titanium Leggings");
-        addItemToList(ModItems.TITANIUM_BOOTS, "Titanium Boots");
         addItemToList(ModItems.SARONITE_SWORD, "Saronite Sword");
         addItemToList(ModItems.SARONITE_AXE, "Saronite Axe");
         addItemToList(ModItems.SARONITE_WING, "Saronite Wing");
@@ -40,12 +26,8 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addBlockToList(ModBlocks.BLOCK_OF_SARONITE, "Block of Saronite");
         addBlockToList(ModBlocks.LIQUID_SARONITE, "Liquid Saronite");
         addBlockToList(ModBlocks.RUNEFORGE, "Runeforge");
-        addBlockToList(ModBlocks.BLOCK_OF_TITANIUM, "Block of Titanium");
-        addBlockToList(ModBlocks.BLOCK_OF_TITANSTEEL, "Block of Titansteel");
         addBlockToList(ModBlocks.SARONITE_ORE, "Saronite Ore");
         addBlockToList(ModBlocks.DEEPSLATE_SARONITE_ORE, "Deepslate Saronite Ore");
-        addBlockToList(ModBlocks.TITANIUM_ORE, "Titanium Ore");
-        addBlockToList(ModBlocks.DEEPSLATE_TITANIUM_ORE, "Deepslate Titanium Ore");
         addBlockToList(ModBlocks.ALTAR, "Unholy Altar");
         addBlockToList(ModBlocks.SOUL_CONDENSER, "Soul Condenser");
         //Entities

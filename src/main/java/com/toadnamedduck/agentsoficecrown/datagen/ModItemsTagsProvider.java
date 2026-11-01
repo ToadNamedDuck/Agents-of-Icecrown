@@ -31,30 +31,22 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
 
         this.copy(ModTags.BLOCKS.STONES, ModTags.ITEMS.STONES);
         this.copy(ModTags.BLOCKS.SARONITE_ORES, ModTags.ITEMS.SARONITE_ORES);
-        this.copy(ModTags.BLOCKS.TITANIUM_ORES, ModTags.ITEMS.TITANIUM_ORES);
         this.copy(ModTags.BLOCKS.STORAGE_BLOCKS, ModTags.ITEMS.STORAGE_BLOCKS);
         this.copy(ModTags.BLOCKS.ORES, ModTags.ITEMS.ORES);
         this.copy(ModTags.BLOCKS.SARONITE_BLOCK, ModTags.ITEMS.SARONITE_BLOCK);
-        this.copy(ModTags.BLOCKS.TITANIUM_BLOCK, ModTags.ITEMS.TITANIUM_BLOCK);
-        this.copy(ModTags.BLOCKS.TITANSTEEL_BLOCK, ModTags.ITEMS.TITANSTEEL_BLOCK);
 
         //Fold subtags into broader c category
         tag(ModTags.ITEMS.BUCKETS)
                 .addTag(ModTags.ITEMS.SARONITE_BUCKET);
 
         tag(ModTags.ITEMS.RAW_MATERIALS)
-                .addTag(ModTags.ITEMS.RAW_SARONITE)
-                .addTag(ModTags.ITEMS.RAW_TITANIUM);
+                .addTag(ModTags.ITEMS.RAW_SARONITE);
 
         tag(ModTags.ITEMS.INGOTS)
-                .addTag(ModTags.ITEMS.SARONITE_INGOT)
-                .addTag(ModTags.ITEMS.TITANIUM_INGOT)
-                .addTag(ModTags.ITEMS.TITANSTEEL_INGOT);
+                .addTag(ModTags.ITEMS.SARONITE_INGOT);
 
         tag(ModTags.ITEMS.NUGGETS)
-                .addTag(ModTags.ITEMS.SARONITE_NUGGET)
-                .addTag(ModTags.ITEMS.TITANIUM_NUGGET)
-                .addTag(ModTags.ITEMS.TITANSTEEL_NUGGET);
+                .addTag(ModTags.ITEMS.SARONITE_NUGGET);
 
         tag(ModTags.ITEMS.TOOLS)
                 .addTag(ModTags.ITEMS.MELEE_WEAPON)
@@ -73,66 +65,43 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
         tag(ModTags.ITEMS.SARONITE_NUGGET)
                 .add(ModItems.SARONITE_NUGGET.get());
 
-        tag(ModTags.ITEMS.RAW_TITANIUM)
-                .add(ModItems.RAW_TITANIUM_ORE.get());
-
-        tag(ModTags.ITEMS.TITANIUM_INGOT)
-                .add(ModItems.TITANIUM_INGOT.get());
-
-        tag(ModTags.ITEMS.TITANIUM_NUGGET)
-                .add(ModItems.TITANIUM_NUGGET.get());
-
-        tag(ModTags.ITEMS.TITANSTEEL_INGOT)
-                .add(ModItems.TITANSTEEL_INGOT.get());
-
-        tag(ModTags.ITEMS.TITANSTEEL_NUGGET)
-                .add(ModItems.TITANSTEEL_NUGGET.get());
-
         tag(ModTags.ITEMS.BEACON_PAYMENT_ITEMS)
-                .addTag(ModTags.ITEMS.SARONITE_INGOT)
-                .addTag(ModTags.ITEMS.TITANSTEEL_INGOT);
+                .addTag(ModTags.ITEMS.SARONITE_INGOT);
 
         tag(ItemTags.SWORDS)
-                .add(ModItems.TITANIUM_SWORD.get())
                 .add(ModItems.SARONITE_SWORD.get());
 
-        tag(ItemTags.PICKAXES)
-                .add(ModItems.TITANIUM_PICKAXE.get());
+        tag(ItemTags.PICKAXES);
 
-        tag(ItemTags.SHOVELS)
-                .add(ModItems.TITANIUM_SHOVEL.get());
+        tag(ItemTags.SHOVELS);
 
-        tag(ItemTags.HOES)
-                .add(ModItems.TITANIUM_HOE.get());
+        tag(ItemTags.HOES);
 
         tag(ItemTags.AXES)
-                .add(ModItems.TITANIUM_AXE.get())
                 .add(ModItems.SARONITE_AXE.get());
 
-        tag(ItemTags.HEAD_ARMOR)
-                .add(ModItems.TITANIUM_HELMET.get());
-
-        tag(ItemTags.CHEST_ARMOR)
-                .add(ModItems.TITANIUM_CHESTPLATE.get());
-
-        tag(ItemTags.LEG_ARMOR)
-                .add(ModItems.TITANIUM_LEGGINGS.get());
-
-        tag(ItemTags.FOOT_ARMOR)
-                .add(ModItems.TITANIUM_BOOTS.get());
-
-        tag(ModTags.ITEMS.MINING_TOOL)
-                .add(ModItems.TITANIUM_PICKAXE.get())
-                .add(ModItems.TITANIUM_SHOVEL.get())
-                .add(ModItems.TITANIUM_HOE.get());
+//        tag(ItemTags.HEAD_ARMOR)
+//                .add(ModItems.TITANIUM_HELMET.get());
+//
+//        tag(ItemTags.CHEST_ARMOR)
+//                .add(ModItems.TITANIUM_CHESTPLATE.get());
+//
+//        tag(ItemTags.LEG_ARMOR)
+//                .add(ModItems.TITANIUM_LEGGINGS.get());
+//
+//        tag(ItemTags.FOOT_ARMOR)
+//                .add(ModItems.TITANIUM_BOOTS.get());
+//
+//        tag(ModTags.ITEMS.MINING_TOOL)
+//                .add(ModItems.TITANIUM_PICKAXE.get())
+//                .add(ModItems.TITANIUM_SHOVEL.get())
+//                .add(ModItems.TITANIUM_HOE.get());
 
         tag(ModTags.ITEMS.SARONITE_WEAPONS)
                 .add(ModItems.SARONITE_SWORD.get())
                 .add(ModItems.SARONITE_AXE.get());
 
         tag(ModTags.ITEMS.MELEE_WEAPON)
-                .add(ModItems.TITANIUM_AXE.get())
-                .add(ModItems.TITANIUM_SWORD.get())
                 .addTag(ModTags.ITEMS.SARONITE_WEAPONS);
     }
 }

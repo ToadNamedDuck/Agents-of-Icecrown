@@ -46,22 +46,6 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
             ));
 
-    public static final DeferredBlock<Block> BLOCK_OF_TITANIUM = BLOCKS.register(
-                "block_of_titanium",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(5.0f, 6.0f)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.METAL)
-            ));
-
-    public static final DeferredBlock<Block> BLOCK_OF_TITANSTEEL = BLOCKS.register(
-            "block_of_titansteel",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(50.0F, 1200.0F)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.NETHERITE_BLOCK)
-            ));
-
     public static final DeferredBlock<Block> SARONITE_ORE = BLOCKS.register(
             "saronite_ore",
             () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.of()
@@ -72,22 +56,6 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> DEEPSLATE_SARONITE_ORE = BLOCKS.register(
             "deepslate_saronite_ore",
-            () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.of()
-                    .strength(4.5f,3.0f)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.DEEPSLATE)
-            ));
-
-    public static final DeferredBlock<Block> TITANIUM_ORE = BLOCKS.register(
-            "titanium_ore",
-            () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.of()
-                    .strength(3.0f,3.0f)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.STONE)
-            ));
-
-    public static final DeferredBlock<Block> DEEPSLATE_TITANIUM_ORE = BLOCKS.register(
-            "deepslate_titanium_ore",
             () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.of()
                     .strength(4.5f,3.0f)
                     .requiresCorrectToolForDrops()

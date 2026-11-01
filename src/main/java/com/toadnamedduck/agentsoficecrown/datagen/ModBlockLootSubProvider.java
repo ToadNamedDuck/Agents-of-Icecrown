@@ -21,8 +21,6 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
     @Override
     protected void generate(){
         dropSelf(ModBlocks.BLOCK_OF_SARONITE.get());
-        dropSelf(ModBlocks.BLOCK_OF_TITANIUM.get());
-        dropSelf(ModBlocks.BLOCK_OF_TITANSTEEL.get());
         dropSelf(ModBlocks.ALTAR.get());
         dropSelf(ModBlocks.SOUL_CONDENSER.get());
 
@@ -30,8 +28,6 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
 
         add(ModBlocks.SARONITE_ORE.get(), createOreDrop(ModBlocks.SARONITE_ORE.get(), ModItems.RAW_SARONITE_ORE.get()));
         add(ModBlocks.DEEPSLATE_SARONITE_ORE.get(), createOreDrop(ModBlocks.DEEPSLATE_SARONITE_ORE.get(), ModItems.RAW_SARONITE_ORE.get()));
-        add(ModBlocks.TITANIUM_ORE.get(),createOreDrop(ModBlocks.TITANIUM_ORE.get(), ModItems.RAW_TITANIUM_ORE.get()));
-        add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(),createOreDrop(ModBlocks.DEEPSLATE_TITANIUM_ORE.get(), ModItems.RAW_TITANIUM_ORE.get()));
     }
 
     @Override

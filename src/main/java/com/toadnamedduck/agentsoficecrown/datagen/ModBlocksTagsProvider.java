@@ -21,19 +21,11 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider provider) {
 
         tag(ModTags.BLOCKS.ORES)
-                .addTag(ModTags.BLOCKS.SARONITE_ORES)
-                .addTag(ModTags.BLOCKS.TITANIUM_ORES);
+                .addTag(ModTags.BLOCKS.SARONITE_ORES);
 
         tag(ModTags.BLOCKS.STORAGE_BLOCKS)
-                .addTag(ModTags.BLOCKS.SARONITE_BLOCK)
-                .addTag(ModTags.BLOCKS.TITANIUM_BLOCK)
-                .addTag(ModTags.BLOCKS.TITANSTEEL_BLOCK);
+                .addTag(ModTags.BLOCKS.SARONITE_BLOCK);
 
-        tag(ModTags.BLOCKS.TITANSTEEL_BLOCK)
-                .add(ModBlocks.BLOCK_OF_TITANSTEEL.get());
-
-        tag(ModTags.BLOCKS.TITANIUM_BLOCK)
-                .add(ModBlocks.BLOCK_OF_TITANIUM.get());
 
         tag(ModTags.BLOCKS.SARONITE_BLOCK)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get());
@@ -41,12 +33,8 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
                 .add(ModBlocks.RUNEFORGE.get())
-                .add(ModBlocks.BLOCK_OF_TITANIUM.get())
-                .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
                 .add(ModBlocks.SARONITE_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SARONITE_ORE.get())
-                .add(ModBlocks.TITANIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
                 .add(ModBlocks.ALTAR.get())
                 .add(ModBlocks.SOUL_CONDENSER.get())
                 ;
@@ -56,38 +44,22 @@ public class ModBlocksTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_SARONITE_ORE.get())
                 ;
 
-        tag(ModTags.BLOCKS.TITANIUM_ORES)
-                .add(ModBlocks.TITANIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
-                ;
-
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.RUNEFORGE.get())
                 ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
-                .add(ModBlocks.BLOCK_OF_TITANIUM.get())
-                .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
                 .add(ModBlocks.SARONITE_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SARONITE_ORE.get())
-                .add(ModBlocks.TITANIUM_ORE.get())
-                .add(ModBlocks.DEEPSLATE_TITANIUM_ORE.get())
                 ;
 
         tag(BlockTags.BEACON_BASE_BLOCKS)
                 .add(ModBlocks.BLOCK_OF_SARONITE.get())
-                .add(ModBlocks.BLOCK_OF_TITANSTEEL.get())
                 ;
 
         tag(ModTags.BLOCKS.STONES)
                 ;
-
-        tag(ModTags.BLOCKS.INCORRECT_FOR_TITANIUM_TOOL)
-                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
-
-        tag(ModTags.BLOCKS.INCORRECT_FOR_TITANSTEEL_TOOL)
-                .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
 
         tag(ModTags.BLOCKS.INCORRECT_FOR_SARONITE_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL)

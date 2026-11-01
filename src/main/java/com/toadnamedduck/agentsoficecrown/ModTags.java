@@ -22,13 +22,8 @@ public class ModTags {
         public static final TagKey<Block> STORAGE_BLOCKS = c("storage_blocks");
 
         public static final TagKey<Block> SARONITE_ORES = c("ores/saronite");
-        public static final TagKey<Block> TITANIUM_ORES = c("ores/titanium");
-        public static final TagKey<Block> INCORRECT_FOR_TITANIUM_TOOL = aoi("incorrect_for_titanium_tool");
         public static final TagKey<Block> INCORRECT_FOR_SARONITE_TOOL = aoi("incorrect_for_saronite_tool");
-        public static final TagKey<Block> INCORRECT_FOR_TITANSTEEL_TOOL = aoi("incorrect_for_titansteel_tool");
         public static final TagKey<Block> SARONITE_BLOCK = c("storage_blocks/saronite");
-        public static final TagKey<Block> TITANIUM_BLOCK = c("storage_blocks/titanium");
-        public static final TagKey<Block> TITANSTEEL_BLOCK = c("storage_blocks/titansteel");
     }
 
     public static class ITEMS {
@@ -53,20 +48,12 @@ public class ModTags {
         public static final TagKey<Item> STORAGE_BLOCKS = c("storage_blocks");
         public static final TagKey<Item> SARONITE_WEAPONS = c("saronite_weapons");
         public static final TagKey<Item> SARONITE_ORES = c("ores/saronite");
-        public static final TagKey<Item> TITANIUM_ORES = c("ores/titanium");
         public static final TagKey<Item> BEACON_PAYMENT_ITEMS = mc("beacon_payment_items");
         public static final TagKey<Item> RAW_SARONITE = c("raw_materials/saronite");
         public static final TagKey<Item> SARONITE_INGOT = c("ingots/saronite");
         public static final TagKey<Item> SARONITE_NUGGET = c("nuggets/saronite");
         public static final TagKey<Item> SARONITE_BLOCK = c("storage_blocks/saronite");
         public static final TagKey<Item> SARONITE_BUCKET = c("buckets/liquid_saronite");
-        public static final TagKey<Item> RAW_TITANIUM = c("raw_materials/titanium");
-        public static final TagKey<Item> TITANIUM_INGOT = c("ingots/titanium");
-        public static final TagKey<Item> TITANIUM_NUGGET = c("nuggets/titanium");
-        public static final TagKey<Item> TITANIUM_BLOCK = c("storage_blocks/titanium");
-        public static final TagKey<Item> TITANSTEEL_INGOT = c("ingots/titansteel");
-        public static final TagKey<Item> TITANSTEEL_NUGGET = c("nuggets/titansteel");
-        public static final TagKey<Item> TITANSTEEL_BLOCK = c("storage_blocks/titansteel");
 
         public static final TagKey<Item> TOOLS = c("tools");
         public static final TagKey<Item> MELEE_WEAPON = c("tools/melee_weapon");
