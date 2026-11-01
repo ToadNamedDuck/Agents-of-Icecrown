@@ -16,7 +16,7 @@ import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class ModBiomeModifiers {
-    public static final ResourceKey<BiomeModifier> ADD_SARONITE_ORE = ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "add_saroite_ore"));
+    public static final ResourceKey<BiomeModifier> ADD_SARONITE_ORE = ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "add_saronite_ore"));
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context){
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
