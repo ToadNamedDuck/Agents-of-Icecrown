@@ -4,13 +4,13 @@ import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.menu.RuneforgeMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.RUNEFORGE_AWAKEN_BUTTON;
-import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.RUNEFORGE_REPAIR_BUTTON;
+import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.*;
 
 public class RuneforgeScreen extends AbstractContainerScreen<RuneforgeMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Constants.MODID, "textures/gui/runeforge.png");
@@ -50,5 +50,7 @@ public class RuneforgeScreen extends AbstractContainerScreen<RuneforgeMenu> {
                 .bounds(leftPos + 10, topPos + 44, 56, 20)
                 .build());
 
+        awakenButton.setTooltip(Tooltip.create(RUNEFORGE_AWAKEN_TOOLTIP));
+        repairButton.setTooltip(Tooltip.create(RUNEFORGE_REPAIR_TOOLTIP));
     }
 }
