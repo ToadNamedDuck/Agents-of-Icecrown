@@ -10,10 +10,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.RUNEFORGE_AWAKEN_BUTTON;
+import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.RUNEFORGE_REPAIR_BUTTON;
 
 public class RuneforgeScreen extends AbstractContainerScreen<RuneforgeMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Constants.MODID, "textures/gui/runeforge.png");
     private Button awakenButton;
+    private Button repairButton;
 
     public RuneforgeScreen(RuneforgeMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -27,6 +29,7 @@ public class RuneforgeScreen extends AbstractContainerScreen<RuneforgeMenu> {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         awakenButton.active = menu.canAwaken();
+        repairButton.active = menu.canRepair();
         super.render(g, mouseX, mouseY, partialTick);
         renderTooltip(g, mouseX, mouseY);
     }
@@ -38,8 +41,14 @@ public class RuneforgeScreen extends AbstractContainerScreen<RuneforgeMenu> {
         awakenButton = addRenderableWidget(Button.builder(
                         RUNEFORGE_AWAKEN_BUTTON,
                         b -> minecraft.gameMode.handleInventoryButtonClick(menu.containerId, RuneforgeMenu.AWAKEN_BUTTON))
-                .bounds(leftPos + 108, topPos + 34, 56, 20)
+                .bounds(leftPos + 10, topPos + 22, 56, 20)
                 .build());
-    }
 
+        repairButton = addRenderableWidget(Button.builder(
+                        RUNEFORGE_REPAIR_BUTTON,
+                        b -> minecraft.gameMode.handleInventoryButtonClick(menu.containerId, RuneforgeMenu.REPAIR_BUTTON))
+                .bounds(leftPos + 10, topPos + 44, 56, 20)
+                .build());
+
+    }
 }

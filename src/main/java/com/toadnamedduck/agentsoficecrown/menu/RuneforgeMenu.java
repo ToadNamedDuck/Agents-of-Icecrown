@@ -2,6 +2,7 @@ package com.toadnamedduck.agentsoficecrown.menu;
 
 import com.toadnamedduck.agentsoficecrown.ModTags;
 import com.toadnamedduck.agentsoficecrown.block.ModBlocks;
+import com.toadnamedduck.agentsoficecrown.datacomponent.SoulBinding;
 import com.toadnamedduck.agentsoficecrown.item.ModItems;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -15,8 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import org.jetbrains.annotations.NotNull;
 
-import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.awaken;
-import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.findBinding;
+import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.*;
 
 public class RuneforgeMenu extends AbstractContainerMenu {
     private final Container container = new SimpleContainer(2);
@@ -30,6 +30,8 @@ public class RuneforgeMenu extends AbstractContainerMenu {
     public static final int REPAIR_BUTTON = 1;
     public static final int RUNEFORGES_START = 2;
     public static final int SOUL_COST = 1;
+    public static final int WEAPON_REPAIR_COST = 1;//Souls from the weapons soul counter
+    public static final double WEAPON_REPAIR_PERCENT = 0.10;
 
     public RuneforgeMenu(int id, Inventory playerInv){
         this(id, playerInv, ContainerLevelAccess.NULL);
@@ -115,6 +117,7 @@ public class RuneforgeMenu extends AbstractContainerMenu {
 
         return switch(id){
             case AWAKEN_BUTTON -> awakenWeapon(player);
+            case REPAIR_BUTTON -> repairWeapon(player);
             default -> false;
         };
     }
@@ -123,6 +126,26 @@ public class RuneforgeMenu extends AbstractContainerMenu {
         if(!canAwaken()) return false;
         if(!awaken(this.slots.get(WEAPON_SLOT).getItem(), player)) return false;
         this.slots.get(SOUL_SLOT).remove(SOUL_COST);
+        return true;
+    }
+
+    public boolean canRepair(){
+        ItemStack weapon = getSlot(WEAPON_SLOT).getItem();
+        if(weapon.isEmpty() || weapon.getMaxDamage() <= 0) return false;
+
+        SoulBinding binding = findBinding(weapon);
+
+        return binding != null && binding.souls() >= WEAPON_REPAIR_COST && weapon.getDamageValue() > 0;
+    }
+
+    private boolean repairWeapon(Player player){
+        if(!canRepair()) return false;
+
+        ItemStack weapon = getSlot(WEAPON_SLOT).getItem();
+        int repAmount = Math.max(1, (int) (weapon.getMaxDamage() * WEAPON_REPAIR_PERCENT));
+        weapon.setDamageValue(Math.max(0, weapon.getDamageValue() - repAmount));
+        setSouls(weapon, findBinding(weapon).souls() - WEAPON_REPAIR_COST);
+        refreshDurabilityState(weapon);
         return true;
     }
 }

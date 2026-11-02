@@ -23,6 +23,7 @@ public class ModTranslatableComponents {
     public static final MutableComponent COALESCED_SOULS_NO_BINDING = Component.translatable("item.agentsoficecrown.coalesced_souls_no_binding");
     public static final MutableComponent RUNEFORGE_TITLE = Component.translatable("gui.agentsoficecrown.runeforge_title");
     public static final MutableComponent RUNEFORGE_AWAKEN_BUTTON = Component.translatable("gui.agentsoficecrown.runeforge_awaken_button");
+    public static final MutableComponent RUNEFORGE_REPAIR_BUTTON = Component.translatable("gui.agentsoficecrown.runeforge_repair_button");
 
     public static final Set<MutableComponent> MOD_TRANSLATABLE = Set.of(INERT, SOULS, SOULBINDING_OWNER_MISMATCH, SOULBINDING_DURABILITY_SPENT, MOD_CREATIVE_TAB, RITUAL_IN_PROGRESS,
             RITUAL_ALTAR_EMPTY, RITUAL_WRONG_ITEM, RITUAL_ALREADY_BOUND, RITUAL_HEALTH_TOO_LOW, RITUAL_NOT_PREPARED, RITUAL_CANCELLED, RITUAL_SUCCESS, SOUL_CONDENSER_TITLE, COALESCED_SOULS_TOOLTIP, COALESCED_SOULS_NO_BINDING,
