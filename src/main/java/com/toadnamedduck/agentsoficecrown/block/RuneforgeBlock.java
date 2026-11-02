@@ -1,10 +1,15 @@
 package com.toadnamedduck.agentsoficecrown.block;
 
 import com.mojang.serialization.MapCodec;
+import com.toadnamedduck.agentsoficecrown.menu.RuneforgeMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -18,11 +23,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.RUNEFORGE_AWAKEN_TITLE;
 
 public class RuneforgeBlock extends HorizontalDirectionalBlock {
     public static final MapCodec<RuneforgeBlock> CODEC = simpleCodec(RuneforgeBlock::new);
@@ -128,5 +136,18 @@ public class RuneforgeBlock extends HorizontalDirectionalBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder){
         builder.add(FACING).add(HALF);
+    }
+
+    @Override
+    protected @Nullable MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+        return new SimpleMenuProvider((containerId, playerInv, player) -> new RuneforgeMenu(containerId, playerInv, ContainerLevelAccess.create(level, pos)),
+                RUNEFORGE_AWAKEN_TITLE);
+    }
+
+    @Override
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+        if(level.isClientSide()) return InteractionResult.sidedSuccess(true);
+        player.openMenu(state.getMenuProvider(level, pos));
+        return InteractionResult.CONSUME;
     }
 }

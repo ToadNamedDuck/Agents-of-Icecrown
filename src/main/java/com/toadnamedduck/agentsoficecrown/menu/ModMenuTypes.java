@@ -15,6 +15,9 @@ public class ModMenuTypes {
     public static final Supplier<MenuType<SoulCondenserMenu>> SOUL_CONDENSER_MENU_TYPE = MOD_MENU_TYPES.register("soul_condenser_menu", () ->
             new MenuType<SoulCondenserMenu>(SoulCondenserMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
+    public static final Supplier<MenuType<RuneforgeMenu>> RUNEFORGE_MENU_TYPE = MOD_MENU_TYPES.register("runeforge_menu", () ->
+            new MenuType<RuneforgeMenu>(RuneforgeMenu::new, FeatureFlags.DEFAULT_FLAGS));
+
     public static void register(IEventBus modEventBus){
         MOD_MENU_TYPES.register(modEventBus);
     }

@@ -12,7 +12,7 @@ public class SoulCondenserScreen extends AbstractContainerScreen<SoulCondenserMe
     public SoulCondenserScreen(SoulCondenserMenu menu, Inventory inv, Component title){
         super(menu, inv, title);
     }
-    private static final int SQUARE_LENGTH = 18;
+
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Constants.MODID, "textures/gui/soul_condenser.png");
     private static final int ARROW_X = 102, ARROW_Y = 32, ARROW_W = 15, ARROW_H = 22;
     private static final int FILLED_U = 0, FILLED_V = 166;

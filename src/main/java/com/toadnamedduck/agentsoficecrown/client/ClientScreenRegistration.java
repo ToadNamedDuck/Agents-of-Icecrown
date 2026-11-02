@@ -2,6 +2,7 @@ package com.toadnamedduck.agentsoficecrown.client;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.menu.ModMenuTypes;
+import com.toadnamedduck.agentsoficecrown.screen.RuneforgeAwakenScreen;
 import com.toadnamedduck.agentsoficecrown.screen.SoulCondenserScreen;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -13,5 +14,6 @@ public class ClientScreenRegistration {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event){
         event.register(ModMenuTypes.SOUL_CONDENSER_MENU_TYPE.get(), SoulCondenserScreen::new);
+        event.register(ModMenuTypes.RUNEFORGE_MENU_TYPE.get(), RuneforgeAwakenScreen::new);
     }
 }
