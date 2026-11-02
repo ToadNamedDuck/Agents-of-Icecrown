@@ -18,13 +18,14 @@ public class ModDataComponentHelpers {
             }
         }
 
-        public static void awaken(ItemStack stack, Player player){
+        public static boolean awaken(ItemStack stack, Player player){
             SoulBinding binding = findBinding(stack);
             if(binding == null && stack.is(ModTags.ITEMS.MELEE_WEAPON)){
                 stack.set(ModDataComponents.SOUL_BINDING.get(), new SoulBinding(player.getUUID(), 0, false));
                 refreshDurabilityState(stack);
-                //Could also give it an enchant glint, or change the model/texture of the weapon
+                return true;
             }
+            return false;
         }
 
         public static SoulBinding findBinding(ItemStack stack){

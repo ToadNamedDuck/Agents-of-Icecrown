@@ -3,6 +3,7 @@ package com.toadnamedduck.agentsoficecrown.menu;
 import com.toadnamedduck.agentsoficecrown.ModTags;
 import com.toadnamedduck.agentsoficecrown.block.ModBlocks;
 import com.toadnamedduck.agentsoficecrown.item.ModItems;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,7 +12,11 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.common.util.FakePlayer;
 import org.jetbrains.annotations.NotNull;
+
+import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.awaken;
+import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers.SOUL_BINDING.findBinding;
 
 public class RuneforgeMenu extends AbstractContainerMenu {
     private final Container container = new SimpleContainer(2);
@@ -22,6 +27,9 @@ public class RuneforgeMenu extends AbstractContainerMenu {
     public static final int HOTBAR_START = 27 + INV_START;
     public static final int HOTBAR_END_EXCL = 36 + INV_START;
     public static final int AWAKEN_BUTTON = 0;
+    public static final int REPAIR_BUTTON = 1;
+    public static final int RUNEFORGES_START = 2;
+    public static final int SOUL_COST = 1;
 
     public RuneforgeMenu(int id, Inventory playerInv){
         this(id, playerInv, ContainerLevelAccess.NULL);
@@ -50,6 +58,13 @@ public class RuneforgeMenu extends AbstractContainerMenu {
         }
     }
 
+    public boolean canAwaken(){
+        ItemStack weapon = getSlot(WEAPON_SLOT).getItem();
+        ItemStack soul = getSlot(SOUL_SLOT).getItem();
+
+        if(weapon.isEmpty()) return false;
+        return findBinding(weapon) == null && soul.getCount() >= SOUL_COST;
+    }
 
     @Override
     public @NotNull ItemStack quickMoveStack(@NotNull Player player, int index) {
@@ -90,5 +105,24 @@ public class RuneforgeMenu extends AbstractContainerMenu {
     public void removed(@NotNull Player player){
         super.removed(player);
         access.execute(((level, pos) -> clearContainer(player, container)));
+    }
+
+    @Override
+    public boolean clickMenuButton(Player player, int id) {
+        if(!(player instanceof ServerPlayer) || player instanceof FakePlayer) return false;
+
+        if(id >= RUNEFORGES_START) return false;//NYI
+
+        return switch(id){
+            case AWAKEN_BUTTON -> awakenWeapon(player);
+            default -> false;
+        };
+    }
+
+    private boolean awakenWeapon(Player player){
+        if(!canAwaken()) return false;
+        if(!awaken(this.slots.get(WEAPON_SLOT).getItem(), player)) return false;
+        this.slots.get(SOUL_SLOT).remove(SOUL_COST);
+        return true;
     }
 }

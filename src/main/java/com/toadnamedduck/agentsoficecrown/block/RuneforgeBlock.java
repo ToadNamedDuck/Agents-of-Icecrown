@@ -30,7 +30,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.RUNEFORGE_AWAKEN_TITLE;
+import static com.toadnamedduck.agentsoficecrown.ModTranslatableComponents.RUNEFORGE_TITLE;
 
 public class RuneforgeBlock extends HorizontalDirectionalBlock {
     public static final MapCodec<RuneforgeBlock> CODEC = simpleCodec(RuneforgeBlock::new);
@@ -141,7 +141,7 @@ public class RuneforgeBlock extends HorizontalDirectionalBlock {
     @Override
     protected @Nullable MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
         return new SimpleMenuProvider((containerId, playerInv, player) -> new RuneforgeMenu(containerId, playerInv, ContainerLevelAccess.create(level, pos)),
-                RUNEFORGE_AWAKEN_TITLE);
+                RUNEFORGE_TITLE);
     }
 
     @Override

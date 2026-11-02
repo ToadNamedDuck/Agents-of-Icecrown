@@ -48,7 +48,8 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
 
         //GUIs
         addByKey("gui.agentsoficecrown.soul_cond_title", "Soul Condenser");
-        addByKey("gui.agentsoficecrown.runeforge_awaken_title", "Runeforge - Awakening");
+        addByKey("gui.agentsoficecrown.runeforge_title", "Runeforge");
+        addByKey("gui.agentsoficecrown.runeforge_awaken_button", "Awaken");
 
         //Tooltips
         addByKey("tooltip.agentsoficecrown.inert", "Inert");
