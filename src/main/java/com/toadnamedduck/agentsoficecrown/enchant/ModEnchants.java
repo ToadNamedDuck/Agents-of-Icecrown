@@ -16,6 +16,7 @@ import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.ApplyMobEffect;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +45,12 @@ public class ModEnchants {
                                         LevelBasedValue.constant(3), LevelBasedValue.constant(3),//Base effect 3 seconds
                                         LevelBasedValue.constant(0), LevelBasedValue.constant(0)//No level scaling
                                 ))
+                        .withEffect(EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new FreezeEffect(LevelBasedValue.constant(300)),
+                                LootItemRandomChanceCondition.randomChance(0.45f)
+                                )
                         .build(RAZORICE.location()));
     }
 }

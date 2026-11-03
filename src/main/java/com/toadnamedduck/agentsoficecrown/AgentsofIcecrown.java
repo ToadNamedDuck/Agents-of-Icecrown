@@ -5,6 +5,7 @@ import com.toadnamedduck.agentsoficecrown.attachment.ModAttachments;
 import com.toadnamedduck.agentsoficecrown.block.ModBlocks;
 import com.toadnamedduck.agentsoficecrown.blockentity.ModBlockEntities;
 import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponents;
+import com.toadnamedduck.agentsoficecrown.enchant.ModEntityEffects;
 import com.toadnamedduck.agentsoficecrown.fluid.ModFluidTypes;
 import com.toadnamedduck.agentsoficecrown.fluid.ModFluids;
 import com.toadnamedduck.agentsoficecrown.item.ModArmorMaterials;
@@ -46,6 +47,8 @@ public class AgentsofIcecrown {
         ModAttachments.register(modEventBus);
         //Menus
         ModMenuTypes.register(modEventBus);
+        //Enchant Effects
+        ModEntityEffects.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
