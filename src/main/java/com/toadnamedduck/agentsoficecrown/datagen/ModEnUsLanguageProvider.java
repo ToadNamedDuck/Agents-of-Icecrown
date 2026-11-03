@@ -61,6 +61,9 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addByKey("gui.agentsoficecrown.awaken_button_tooltip", "Awaken a melee weapon by consuming a Coalesced Soul.");
         addByKey("gui.agentsoficecrown.repair_button_tooltip", "Consumes souls from the weapon's store to repair it.");
 
+        //Enchants
+        addByKey("enchantment.agentsoficecrown.razorice", "Rune of Razorice");
+
         //Misc - Creative Mode Tab
         addByKey("creativetab.agentsoficecrown.icecrown_tab", "Agents of Icecrown");
         addByKey("item.agentsoficecrown.coalesced_souls_no_binding", "Put a soulbound weapon that belongs to you in the other hand!");

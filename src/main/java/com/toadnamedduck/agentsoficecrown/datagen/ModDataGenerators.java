@@ -26,7 +26,7 @@ public class ModDataGenerators {
         gen.addProvider(event.includeServer(), blockTags);
         gen.addProvider(event.includeServer(), new ModItemsTagsProvider(out, lookupProvider, blockTags, existingFileHelper));
         gen.addProvider(event.includeServer(), new ModBlockStateProvider(out, existingFileHelper));
-        gen.addProvider(event.includeServer(), new ModWorldGenProvider(out, lookupProvider));
+        gen.addProvider(event.includeServer(), new ModDatapackRegistriesProvider(out, lookupProvider));
 
         gen.addProvider(event.includeClient(), new ModEnUsLanguageProvider(out));
         gen.addProvider(event.includeClient(), new ModItemModelProvider(out, existingFileHelper));

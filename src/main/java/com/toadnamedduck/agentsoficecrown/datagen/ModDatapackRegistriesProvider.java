@@ -1,6 +1,7 @@
 package com.toadnamedduck.agentsoficecrown.datagen;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
+import com.toadnamedduck.agentsoficecrown.enchant.ModEnchants;
 import com.toadnamedduck.agentsoficecrown.worldgen.ModBiomeModifiers;
 import com.toadnamedduck.agentsoficecrown.worldgen.ModConfiguredFeatures;
 import com.toadnamedduck.agentsoficecrown.worldgen.ModPlacedFeatures;
@@ -14,13 +15,14 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
+public class ModDatapackRegistriesProvider extends DatapackBuiltinEntriesProvider {
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
-            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap);
+            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap)
+            .add(Registries.ENCHANTMENT, ModEnchants::bootstrap);
 
-    public ModWorldGenProvider (PackOutput output, CompletableFuture<HolderLookup.Provider> registries){
+    public ModDatapackRegistriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries){
         super(output, registries, BUILDER, Set.of(Constants.MODID));
     }
 }
