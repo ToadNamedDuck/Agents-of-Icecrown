@@ -20,13 +20,15 @@ public class ModDataGenerators {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         ModBlocksTagsProvider blockTags = new ModBlocksTagsProvider(out, lookupProvider, existingFileHelper);
+        ModDatapackRegistriesProvider datas = new ModDatapackRegistriesProvider(out, lookupProvider);
 
         gen.addProvider(event.includeServer(), new ModRecipeProvider(out, lookupProvider));
         gen.addProvider(event.includeServer(), new ModLootTableProvider(out, lookupProvider));
         gen.addProvider(event.includeServer(), blockTags);
         gen.addProvider(event.includeServer(), new ModItemsTagsProvider(out, lookupProvider, blockTags, existingFileHelper));
         gen.addProvider(event.includeServer(), new ModBlockStateProvider(out, existingFileHelper));
-        gen.addProvider(event.includeServer(), new ModDatapackRegistriesProvider(out, lookupProvider));
+        gen.addProvider(event.includeServer(), datas);
+        gen.addProvider(event.includeServer(), new ModEnchantmentTagsProvider(out, datas.getRegistryProvider(), existingFileHelper));
 
         gen.addProvider(event.includeClient(), new ModEnUsLanguageProvider(out));
         gen.addProvider(event.includeClient(), new ModItemModelProvider(out, existingFileHelper));

@@ -31,6 +31,7 @@ public class ModEnchants {
 
     public static void bootstrap(BootstrapContext<Enchantment> context){
         HolderGetter<Item> items = context.lookup(Registries.ITEM);
+        HolderGetter<Enchantment> enchants = context.lookup(Registries.ENCHANTMENT);
 
         context.register(RAZORICE,
                 Enchantment.enchantment(new Enchantment.EnchantmentDefinition(
@@ -38,8 +39,8 @@ public class ModEnchants {
                                 Optional.empty(),
                                 1,
                                 1,
-                                new Enchantment.Cost(10000,0),
-                                new Enchantment.Cost(10000,0),
+                                new Enchantment.Cost(0,0),
+                                new Enchantment.Cost(0,0),
                                 1,
                                 List.of(EquipmentSlotGroup.MAINHAND)
                                 ))
@@ -57,6 +58,7 @@ public class ModEnchants {
                                 new FreezeEffect(LevelBasedValue.constant(300)),
                                 LootItemRandomChanceCondition.randomChance(0.45f)
                                 )
+                        .exclusiveWith(enchants.getOrThrow(ModTags.ENCHANTMENTS.RUNEFORGE_ENCHANTS))
                         .build(RAZORICE.location()));
 
         context.register(FALLEN_CRUSADER,
@@ -65,8 +67,8 @@ public class ModEnchants {
                         Optional.empty(),
                         1,
                         1,
-                        new Enchantment.Cost(10000,0),
-                        new Enchantment.Cost(10000,0),
+                        new Enchantment.Cost(0,0),
+                        new Enchantment.Cost(0,0),
                         1,
                         List.of(EquipmentSlotGroup.MAINHAND)
                 ))
@@ -75,8 +77,9 @@ public class ModEnchants {
                                 EnchantmentTarget.ATTACKER,
                                 EnchantmentTarget.ATTACKER,
                                 new ApplyMobEffect(HolderSet.direct(MobEffects.DAMAGE_BOOST), LevelBasedValue.constant(15), LevelBasedValue.constant(15), LevelBasedValue.perLevel(1), LevelBasedValue.perLevel(1)),
-                                LootItemRandomChanceCondition.randomChance(0.05f)
-                        ).build(FALLEN_CRUSADER.location()));
+                                LootItemRandomChanceCondition.randomChance(0.05f))
+                        .exclusiveWith(enchants.getOrThrow(ModTags.ENCHANTMENTS.RUNEFORGE_ENCHANTS))
+                        .build(FALLEN_CRUSADER.location()));
 
         context.register(STONESKIN_GARGOYLE,
                 Enchantment.enchantment(
@@ -85,8 +88,8 @@ public class ModEnchants {
                                 Optional.empty(),
                                 1,
                                 1,
-                                new Enchantment.Cost(10000, 0),
-                                new Enchantment.Cost(10000, 0),
+                                new Enchantment.Cost(0, 0),
+                                new Enchantment.Cost(0, 0),
                                 1,
                                 List.of(EquipmentSlotGroup.MAINHAND)
                         ))
@@ -113,7 +116,8 @@ public class ModEnchants {
                                         Attributes.ARMOR_TOUGHNESS,
                                         LevelBasedValue.constant(2),
                                         AttributeModifier.Operation.ADD_VALUE
-                                )
-                        ).build(STONESKIN_GARGOYLE.location()));
+                                ))
+                        .exclusiveWith(enchants.getOrThrow(ModTags.ENCHANTMENTS.RUNEFORGE_ENCHANTS))
+                        .build(STONESKIN_GARGOYLE.location()));
     }
 }

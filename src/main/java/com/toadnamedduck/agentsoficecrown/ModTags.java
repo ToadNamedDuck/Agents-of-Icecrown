@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 
 public class ModTags {
@@ -58,5 +59,13 @@ public class ModTags {
         public static final TagKey<Item> TOOLS = c("tools");
         public static final TagKey<Item> MELEE_WEAPON = c("tools/melee_weapon");
         public static final TagKey<Item> MINING_TOOL = c("tools/mining_tool");
+    }
+
+    public static class ENCHANTMENTS {
+        private static TagKey<Enchantment> aoi(String path){
+            return TagKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Constants.MODID, path));
+        }
+
+        public static final TagKey<Enchantment> RUNEFORGE_ENCHANTS = aoi("runeforge_enchants");
     }
 }
