@@ -10,12 +10,15 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.ApplyMobEffect;
+import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 
 import java.util.List;
@@ -24,6 +27,7 @@ import java.util.Optional;
 public class ModEnchants {
     public static final ResourceKey<Enchantment> RAZORICE = ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "razorice"));
     public static final ResourceKey<Enchantment> FALLEN_CRUSADER = ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Constants.MODID,"fallen_crusader"));
+    public static final ResourceKey<Enchantment> STONESKIN_GARGOYLE = ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "stoneskin_gargoyle"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context){
         HolderGetter<Item> items = context.lookup(Registries.ITEM);
@@ -34,8 +38,8 @@ public class ModEnchants {
                                 Optional.empty(),
                                 1,
                                 1,
-                                new Enchantment.Cost(1,0),
-                                new Enchantment.Cost(1,0),
+                                new Enchantment.Cost(10000,0),
+                                new Enchantment.Cost(10000,0),
                                 1,
                                 List.of(EquipmentSlotGroup.MAINHAND)
                                 ))
@@ -61,8 +65,8 @@ public class ModEnchants {
                         Optional.empty(),
                         1,
                         1,
-                        new Enchantment.Cost(1,0),
-                        new Enchantment.Cost(1,0),
+                        new Enchantment.Cost(10000,0),
+                        new Enchantment.Cost(10000,0),
                         1,
                         List.of(EquipmentSlotGroup.MAINHAND)
                 ))
@@ -73,5 +77,43 @@ public class ModEnchants {
                                 new ApplyMobEffect(HolderSet.direct(MobEffects.DAMAGE_BOOST), LevelBasedValue.constant(15), LevelBasedValue.constant(15), LevelBasedValue.perLevel(1), LevelBasedValue.perLevel(1)),
                                 LootItemRandomChanceCondition.randomChance(0.05f)
                         ).build(FALLEN_CRUSADER.location()));
+
+        context.register(STONESKIN_GARGOYLE,
+                Enchantment.enchantment(
+                        new Enchantment.EnchantmentDefinition(
+                                items.getOrThrow(ModTags.ITEMS.MELEE_WEAPON),
+                                Optional.empty(),
+                                1,
+                                1,
+                                new Enchantment.Cost(10000, 0),
+                                new Enchantment.Cost(10000, 0),
+                                1,
+                                List.of(EquipmentSlotGroup.MAINHAND)
+                        ))
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath(Constants.MODID, "stoneskin_gargoyle_armor"),
+                                        Attributes.ARMOR,
+                                        LevelBasedValue.constant(4),
+                                        AttributeModifier.Operation.ADD_VALUE
+                                ))
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath(Constants.MODID, "stoneskin_gargoyle_max_health"),
+                                        Attributes.MAX_HEALTH,
+                                        LevelBasedValue.constant(4),
+                                        AttributeModifier.Operation.ADD_VALUE
+                                ))
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.fromNamespaceAndPath(Constants.MODID, "stoneskin_gargoyle_armor_toughness"),
+                                        Attributes.ARMOR_TOUGHNESS,
+                                        LevelBasedValue.constant(2),
+                                        AttributeModifier.Operation.ADD_VALUE
+                                )
+                        ).build(STONESKIN_GARGOYLE.location()));
     }
 }

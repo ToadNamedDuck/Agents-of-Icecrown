@@ -64,6 +64,7 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         //Enchants
         addByKey("enchantment.agentsoficecrown.razorice", "Rune of Razorice");
         addByKey("enchantment.agentsoficecrown.fallen_crusader", "Rune of the Fallen Crusader");
+        addByKey("enchantment.agentsoficecrown.stoneskin_gargoyle", "Rune of the Stoneskin Gargoyle");
 
         //Misc
         addByKey("creativetab.agentsoficecrown.icecrown_tab", "Agents of Icecrown");
