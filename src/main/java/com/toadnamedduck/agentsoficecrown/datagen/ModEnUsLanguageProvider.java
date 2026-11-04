@@ -63,8 +63,9 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
 
         //Enchants
         addByKey("enchantment.agentsoficecrown.razorice", "Rune of Razorice");
+        addByKey("enchantment.agentsoficecrown.fallen_crusader", "Rune of the Fallen Crusader");
 
-        //Misc - Creative Mode Tab
+        //Misc
         addByKey("creativetab.agentsoficecrown.icecrown_tab", "Agents of Icecrown");
         addByKey("item.agentsoficecrown.coalesced_souls_no_binding", "Put a soulbound weapon that belongs to you in the other hand!");
     }

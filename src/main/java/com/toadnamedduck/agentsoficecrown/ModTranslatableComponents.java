@@ -27,8 +27,9 @@ public class ModTranslatableComponents {
     public static final MutableComponent RUNEFORGE_AWAKEN_TOOLTIP = Component.translatable("gui.agentsoficecrown.awaken_button_tooltip");
     public static final MutableComponent RUNEFORGE_REPAIR_TOOLTIP = Component.translatable("gui.agentsoficecrown.repair_button_tooltip");
     public static final MutableComponent ENCHANT_RAZORICE = Component.translatable("enchantment.agentsoficecrown.razorice");
+    public static final MutableComponent ENCHANT_FALLEN_CRUSADER = Component.translatable("enchantment.agentsoficecrown.fallen_crusader");
 
     public static final Set<MutableComponent> MOD_TRANSLATABLE = Set.of(INERT, SOULS, SOULBINDING_OWNER_MISMATCH, SOULBINDING_DURABILITY_SPENT, MOD_CREATIVE_TAB, RITUAL_IN_PROGRESS,
             RITUAL_ALTAR_EMPTY, RITUAL_WRONG_ITEM, RITUAL_ALREADY_BOUND, RITUAL_HEALTH_TOO_LOW, RITUAL_NOT_PREPARED, RITUAL_CANCELLED, RITUAL_SUCCESS, SOUL_CONDENSER_TITLE, COALESCED_SOULS_TOOLTIP, COALESCED_SOULS_NO_BINDING,
-            RUNEFORGE_TITLE, RUNEFORGE_AWAKEN_BUTTON, RUNEFORGE_AWAKEN_TOOLTIP, RUNEFORGE_REPAIR_TOOLTIP, ENCHANT_RAZORICE);
+            RUNEFORGE_TITLE, RUNEFORGE_AWAKEN_BUTTON, RUNEFORGE_AWAKEN_TOOLTIP, RUNEFORGE_REPAIR_TOOLTIP, ENCHANT_RAZORICE, ENCHANT_FALLEN_CRUSADER);
 }

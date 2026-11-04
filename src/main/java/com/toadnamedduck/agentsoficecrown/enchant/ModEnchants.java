@@ -23,6 +23,7 @@ import java.util.Optional;
 
 public class ModEnchants {
     public static final ResourceKey<Enchantment> RAZORICE = ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "razorice"));
+    public static final ResourceKey<Enchantment> FALLEN_CRUSADER = ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Constants.MODID,"fallen_crusader"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context){
         HolderGetter<Item> items = context.lookup(Registries.ITEM);
@@ -34,7 +35,8 @@ public class ModEnchants {
                                 1,
                                 1,
                                 new Enchantment.Cost(1,0),
-                                new Enchantment.Cost(1,0),1,
+                                new Enchantment.Cost(1,0),
+                                1,
                                 List.of(EquipmentSlotGroup.MAINHAND)
                                 ))
                         .withEffect(EnchantmentEffectComponents.POST_ATTACK,
@@ -52,5 +54,24 @@ public class ModEnchants {
                                 LootItemRandomChanceCondition.randomChance(0.45f)
                                 )
                         .build(RAZORICE.location()));
+
+        context.register(FALLEN_CRUSADER,
+                Enchantment.enchantment(new Enchantment.EnchantmentDefinition(
+                        items.getOrThrow(ModTags.ITEMS.MELEE_WEAPON),
+                        Optional.empty(),
+                        1,
+                        1,
+                        new Enchantment.Cost(1,0),
+                        new Enchantment.Cost(1,0),
+                        1,
+                        List.of(EquipmentSlotGroup.MAINHAND)
+                ))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.ATTACKER,
+                                new ApplyMobEffect(HolderSet.direct(MobEffects.DAMAGE_BOOST), LevelBasedValue.constant(15), LevelBasedValue.constant(15), LevelBasedValue.perLevel(1), LevelBasedValue.perLevel(1)),
+                                LootItemRandomChanceCondition.randomChance(0.05f)
+                        ).build(FALLEN_CRUSADER.location()));
     }
 }
