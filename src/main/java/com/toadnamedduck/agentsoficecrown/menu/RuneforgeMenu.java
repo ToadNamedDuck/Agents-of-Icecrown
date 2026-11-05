@@ -3,7 +3,13 @@ package com.toadnamedduck.agentsoficecrown.menu;
 import com.toadnamedduck.agentsoficecrown.ModTags;
 import com.toadnamedduck.agentsoficecrown.block.ModBlocks;
 import com.toadnamedduck.agentsoficecrown.datacomponent.SoulBinding;
+import com.toadnamedduck.agentsoficecrown.enchant.ModEnchants;
 import com.toadnamedduck.agentsoficecrown.item.ModItems;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -13,6 +19,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,6 +30,7 @@ import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentH
 public class RuneforgeMenu extends AbstractContainerMenu {
     private final Container container = new SimpleContainer(2);
     private final ContainerLevelAccess access;
+    private final Player player;
     public static final int WEAPON_SLOT = 0;
     public static final int SOUL_SLOT = 1;
     public static final int INV_START = 2;
@@ -28,7 +38,9 @@ public class RuneforgeMenu extends AbstractContainerMenu {
     public static final int HOTBAR_END_EXCL = 36 + INV_START;
     public static final int AWAKEN_BUTTON = 0;
     public static final int REPAIR_BUTTON = 1;
-    public static final int RUNEFORGES_START = 2;
+    public static final int RUNEFORGES_START = 2;//Razorice
+    public static final int FALLEN_CRUSADER = 3;
+    public static final int STONESKIN_GARGOYLE = 4;
     public static final int SOUL_COST = 1;
     public static final int WEAPON_REPAIR_COST = 1;//Souls from the weapons soul counter
     public static final double WEAPON_REPAIR_PERCENT = 0.10;
@@ -40,6 +52,7 @@ public class RuneforgeMenu extends AbstractContainerMenu {
     public RuneforgeMenu(int id, Inventory playerInv, ContainerLevelAccess access){
         super(ModMenuTypes.RUNEFORGE_MENU_TYPE.get(), id);
         this.access = access;
+        this.player = playerInv.player;
 
         //As always, first 2 slots are for the machine. We can inline the rules since we don't have a block entity for the runeforge and we don't need a full itemhandler
         this.addSlot(new Slot(container, WEAPON_SLOT, 80, 17){
@@ -113,16 +126,19 @@ public class RuneforgeMenu extends AbstractContainerMenu {
     public boolean clickMenuButton(Player player, int id) {
         if(!(player instanceof ServerPlayer) || player instanceof FakePlayer) return false;
 
-        if(id >= RUNEFORGES_START) return false;//NYI
+        if(id > STONESKIN_GARGOYLE) return false;
 
         return switch(id){
-            case AWAKEN_BUTTON -> awakenWeapon(player);
-            case REPAIR_BUTTON -> repairWeapon(player);
+            case AWAKEN_BUTTON -> awakenWeapon();
+            case REPAIR_BUTTON -> repairWeapon();
+            case RUNEFORGES_START -> enchantWeapon(ModEnchants.RAZORICE);
+            case FALLEN_CRUSADER -> enchantWeapon(ModEnchants.FALLEN_CRUSADER);
+            case STONESKIN_GARGOYLE -> enchantWeapon(ModEnchants.STONESKIN_GARGOYLE);
             default -> false;
         };
     }
 
-    private boolean awakenWeapon(Player player){
+    private boolean awakenWeapon(){
         if(!canAwaken()) return false;
         if(!awaken(this.slots.get(WEAPON_SLOT).getItem(), player)) return false;
         this.slots.get(SOUL_SLOT).remove(SOUL_COST);
@@ -138,7 +154,7 @@ public class RuneforgeMenu extends AbstractContainerMenu {
         return binding != null && binding.souls() >= WEAPON_REPAIR_COST && weapon.getDamageValue() > 0;
     }
 
-    private boolean repairWeapon(Player player){
+    private boolean repairWeapon(){
         if(!canRepair()) return false;
 
         ItemStack weapon = getSlot(WEAPON_SLOT).getItem();
@@ -146,6 +162,37 @@ public class RuneforgeMenu extends AbstractContainerMenu {
         weapon.setDamageValue(Math.max(0, weapon.getDamageValue() - repAmount));
         setSouls(weapon, findBinding(weapon).souls() - WEAPON_REPAIR_COST);
         refreshDurabilityState(weapon);
+        return true;
+    }
+
+    private Holder<Enchantment> getEnchantHolder(ResourceKey<Enchantment> enchant){
+        return player.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(enchant);
+    }
+
+    public boolean canApplyEnchant(ResourceKey<Enchantment> enchant){
+        ItemStack weapon = getSlot(WEAPON_SLOT).getItem();
+        SoulBinding binding = findBinding(weapon);
+        ItemEnchantments enchants = weapon.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+        Holder<Enchantment> passedEnchant = getEnchantHolder(enchant);
+        return !weapon.isEmpty() && binding != null && binding.owner().equals(player.getUUID()) && getSlot(SOUL_SLOT).getItem().getCount() >= SOUL_COST && !enchants.keySet().contains(passedEnchant);
+    }
+
+    private boolean enchantWeapon(ResourceKey<Enchantment> enchant){
+        if(!canApplyEnchant(enchant)) return false;
+        ItemStack weapon = getSlot(WEAPON_SLOT).getItem();
+        Holder<Enchantment> passedEnchantment = getEnchantHolder(enchant);
+        ItemEnchantments currentEnchants = weapon.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+
+        if(currentEnchants.keySet().contains(passedEnchantment)) return false;
+
+        EnchantmentHelper.updateEnchantments(weapon, mutable -> {
+            mutable.removeIf(holder -> holder.is(ModTags.ENCHANTMENTS.RUNEFORGE_ENCHANTS));
+        });
+        EnchantmentHelper.updateEnchantments(weapon, mutable -> {
+            mutable.set(passedEnchantment, 1);
+        });
+
+        this.slots.get(SOUL_SLOT).remove(SOUL_COST);
         return true;
     }
 }
