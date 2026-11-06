@@ -69,6 +69,46 @@ public class ModItems {
                         .stacksTo(64)
         ));
 
+    public static final DeferredItem<ArmorItem> SARONITE_HELMET = MOD_ITEMS.register("saronite_helmet", () ->
+            new ArmorItem(
+                    ModArmorMaterials.saronite,
+                    ArmorItem.Type.HELMET,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .fireResistant()
+            ));
+
+    public static final DeferredItem<ArmorItem> SARONITE_CHESTPLATE = MOD_ITEMS.register("saronite_chestplate", () ->
+            new ArmorItem(
+                    ModArmorMaterials.saronite,
+                    ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .fireResistant()
+            ));
+
+    public static final DeferredItem<ArmorItem> SARONITE_LEGGINGS = MOD_ITEMS.register("saronite_leggings", () ->
+            new ArmorItem(
+                    ModArmorMaterials.saronite,
+                    ArmorItem.Type.LEGGINGS,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .fireResistant()
+            ));
+
+    public static final DeferredItem<ArmorItem> SARONITE_BOOTS = MOD_ITEMS.register("saronite_boots", () ->
+            new ArmorItem(
+                    ModArmorMaterials.saronite,
+                    ArmorItem.Type.BOOTS,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.RARE)
+                            .fireResistant()
+            ));
+
     public static void register(IEventBus modEventBus){
         MOD_ITEMS.register(modEventBus);
     }

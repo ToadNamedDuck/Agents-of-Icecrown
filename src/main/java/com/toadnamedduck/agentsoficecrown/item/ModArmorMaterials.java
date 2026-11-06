@@ -21,30 +21,27 @@ public class ModArmorMaterials {
 
     public static DeferredRegister<ArmorMaterial> MOD_ARMORS = DeferredRegister.create(Registries.ARMOR_MATERIAL, Constants.MODID);
 
-    //Titanium stuff commented out to use as reference for future saronite armor
-
     //Set up armor values of each piece per type
-//    static Map<ArmorItem.Type, Integer>  titaniumDefenseMap = new EnumMap<>(Map.of(
-//            ArmorItem.Type.HELMET, 2,//2 6 5 2
-//            ArmorItem.Type.CHESTPLATE, 6,
-//            ArmorItem.Type.LEGGINGS, 5,
-//            ArmorItem.Type.BOOTS, 2
-//            )
-//    );
+    static Map<ArmorItem.Type, Integer>  saroniteDefenseMap = new EnumMap<>(Map.of(
+            ArmorItem.Type.HELMET, 2,//2 6 5 2
+            ArmorItem.Type.CHESTPLATE, 6,
+            ArmorItem.Type.LEGGINGS, 5,
+            ArmorItem.Type.BOOTS, 2
+            )
+    );
 
     //Layer setup for each armor material
-//    static List<ArmorMaterial.Layer> titaniumLayers = List.of(new ArmorMaterial.Layer(
-//            ResourceLocation.fromNamespaceAndPath(Constants.MODID, "titanium"),
-//            "",
-//            false
-//    ));
+    static List<ArmorMaterial.Layer> saroniteLayers = List.of(new ArmorMaterial.Layer(
+            ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite"),
+            "",
+            false
+    ));
 
     //Armor material setup
 
-
-//    public static Holder<ArmorMaterial> titanium = MOD_ARMORS.register("titanium", () ->
-//            new ArmorMaterial(titaniumDefenseMap, 9, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(ModTags.ITEMS.TITANIUM_INGOT), titaniumLayers,0.0f, 0.0f)
-//    );
+    public static Holder<ArmorMaterial> saronite = MOD_ARMORS.register("saronite", () ->
+            new ArmorMaterial(saroniteDefenseMap, 9, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(ModTags.ITEMS.SARONITE_INGOT), saroniteLayers,0.0f, 0.0f)
+    );
 
     public static void register(IEventBus eventBus){
         MOD_ARMORS.register(eventBus);

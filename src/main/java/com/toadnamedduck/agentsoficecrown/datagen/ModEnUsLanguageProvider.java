@@ -22,6 +22,11 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addItemToList(ModItems.SARONITE_AXE, "Saronite Axe");
         addItemToList(ModItems.SARONITE_WING, "Saronite Wing");
         addItemToList(ModItems.COALESCED_SOULS, "Coalesced Souls");
+        addItemToList(ModItems.SARONITE_HELMET, "Saronite Helmlet");
+        addItemToList(ModItems.SARONITE_CHESTPLATE, "Saronite Chestplate");
+        addItemToList(ModItems.SARONITE_LEGGINGS, "Saronite Leggings");
+        addItemToList(ModItems.SARONITE_BOOTS, "Saronite Boots");
+
         //Blocks
         addBlockToList(ModBlocks.BLOCK_OF_SARONITE, "Block of Saronite");
         addBlockToList(ModBlocks.LIQUID_SARONITE, "Liquid Saronite");
