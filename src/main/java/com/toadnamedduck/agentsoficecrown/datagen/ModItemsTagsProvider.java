@@ -71,31 +71,20 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
         tag(ItemTags.SWORDS)
                 .add(ModItems.SARONITE_SWORD.get());
 
-        tag(ItemTags.PICKAXES);
-
-        tag(ItemTags.SHOVELS);
-
-        tag(ItemTags.HOES);
-
         tag(ItemTags.AXES)
                 .add(ModItems.SARONITE_AXE.get());
 
-//        tag(ItemTags.HEAD_ARMOR)
-//                .add(ModItems.TITANIUM_HELMET.get());
-//
-//        tag(ItemTags.CHEST_ARMOR)
-//                .add(ModItems.TITANIUM_CHESTPLATE.get());
-//
-//        tag(ItemTags.LEG_ARMOR)
-//                .add(ModItems.TITANIUM_LEGGINGS.get());
-//
-//        tag(ItemTags.FOOT_ARMOR)
-//                .add(ModItems.TITANIUM_BOOTS.get());
-//
-//        tag(ModTags.ITEMS.MINING_TOOL)
-//                .add(ModItems.TITANIUM_PICKAXE.get())
-//                .add(ModItems.TITANIUM_SHOVEL.get())
-//                .add(ModItems.TITANIUM_HOE.get());
+        tag(ItemTags.HEAD_ARMOR)
+                .add(ModItems.SARONITE_HELMET.get());
+
+        tag(ItemTags.CHEST_ARMOR)
+                .add(ModItems.SARONITE_CHESTPLATE.get());
+
+        tag(ItemTags.LEG_ARMOR)
+                .add(ModItems.SARONITE_LEGGINGS.get());
+
+        tag(ItemTags.FOOT_ARMOR)
+                .add(ModItems.SARONITE_BOOTS.get());
 
         tag(ModTags.ITEMS.SARONITE_WEAPONS)
                 .add(ModItems.SARONITE_SWORD.get())
