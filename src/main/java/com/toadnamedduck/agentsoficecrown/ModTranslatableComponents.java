@@ -29,8 +29,15 @@ public class ModTranslatableComponents {
     public static final MutableComponent ENCHANT_RAZORICE = Component.translatable("enchantment.agentsoficecrown.razorice");
     public static final MutableComponent ENCHANT_FALLEN_CRUSADER = Component.translatable("enchantment.agentsoficecrown.fallen_crusader");
     public static final MutableComponent ENCHANTMENT_STONESKIN_GARGOYLE = Component.translatable("enchantment.agentsoficecrown.stoneskin_gargoyle");
+    public static final MutableComponent SOULBINDING_MAX_BONUS = Component.translatable("config.agentsoficecrown.soulbinding_max_bonus");
+    public static final MutableComponent SOULBINDING_EFFECTIVE_SOUL_CAP = Component.translatable("config.agentsoficecrown.soulbinding_effective_soul_cap");
+    public static final MutableComponent SOULBINDING_DEBUFF_HEALTH_PENALTY = Component.translatable("config.agentsoficecrown.soulbinding_health_penalty");
+    public static final MutableComponent COALESCED_SOULS_SOUL_VALUE = Component.translatable("config.agentsoficecrown.coalesced_souls_value");
+    public static final MutableComponent CONFIG_SOULBINDING = Component.translatable("agentsoficecrown.configuration.soulbinding");
+    public static final MutableComponent CONFIG_SOULS = Component.translatable("agentsoficecrown.configuration.souls");
 
     public static final Set<MutableComponent> MOD_TRANSLATABLE = Set.of(INERT, SOULS, SOULBINDING_OWNER_MISMATCH, SOULBINDING_DURABILITY_SPENT, MOD_CREATIVE_TAB, RITUAL_IN_PROGRESS,
             RITUAL_ALTAR_EMPTY, RITUAL_WRONG_ITEM, RITUAL_ALREADY_BOUND, RITUAL_HEALTH_TOO_LOW, RITUAL_NOT_PREPARED, RITUAL_CANCELLED, RITUAL_SUCCESS, SOUL_CONDENSER_TITLE, COALESCED_SOULS_TOOLTIP, COALESCED_SOULS_NO_BINDING,
-            RUNEFORGE_TITLE, RUNEFORGE_AWAKEN_BUTTON, RUNEFORGE_AWAKEN_TOOLTIP, RUNEFORGE_REPAIR_TOOLTIP, ENCHANT_RAZORICE, ENCHANT_FALLEN_CRUSADER, ENCHANTMENT_STONESKIN_GARGOYLE);
+            RUNEFORGE_TITLE, RUNEFORGE_AWAKEN_BUTTON, RUNEFORGE_AWAKEN_TOOLTIP, RUNEFORGE_REPAIR_TOOLTIP, ENCHANT_RAZORICE, ENCHANT_FALLEN_CRUSADER, ENCHANTMENT_STONESKIN_GARGOYLE, SOULBINDING_MAX_BONUS,
+            SOULBINDING_EFFECTIVE_SOUL_CAP, SOULBINDING_DEBUFF_HEALTH_PENALTY, COALESCED_SOULS_SOUL_VALUE, CONFIG_SOULBINDING, CONFIG_SOULS);
 }

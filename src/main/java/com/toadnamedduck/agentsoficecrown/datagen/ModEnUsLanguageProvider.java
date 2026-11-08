@@ -74,6 +74,14 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         //Misc
         addByKey("creativetab.agentsoficecrown.icecrown_tab", "Agents of Icecrown");
         addByKey("item.agentsoficecrown.coalesced_souls_no_binding", "Put a soulbound weapon that belongs to you in the other hand!");
+
+        //Config
+        addByKey("config.agentsoficecrown.soulbinding_max_bonus", "Soulbinding Maximum Bonus Damage");
+        addByKey("config.agentsoficecrown.soulbinding_effective_soul_cap", "Soulbinding Souls for Max Bonus");
+        addByKey("config.agentsoficecrown.soulbinding_health_penalty", "Max Health Loss from Soulbinding Debuff");
+        addByKey("config.agentsoficecrown.coalesced_souls_value", "Coalesced Souls Value in Souls");
+        addByKey("agentsoficecrown.configuration.soulbinding", "Soulbinding");
+        addByKey("agentsoficecrown.configuration.souls", "Souls");
     }
 
 }
