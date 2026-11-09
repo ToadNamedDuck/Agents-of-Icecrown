@@ -77,7 +77,7 @@ public class ModItems {
                             .stacksTo(1)
                             .rarity(Rarity.RARE)
                             .fireResistant()
-                            .durability(21)
+                            .durability(ArmorItem.Type.HELMET.getDurability(21))
             ));
 
     public static final DeferredItem<ArmorItem> SARONITE_CHESTPLATE = MOD_ITEMS.register("saronite_chestplate", () ->
@@ -88,7 +88,7 @@ public class ModItems {
                             .stacksTo(1)
                             .rarity(Rarity.RARE)
                             .fireResistant()
-                            .durability(21)
+                            .durability(ArmorItem.Type.CHESTPLATE.getDurability(21))
             ));
 
     public static final DeferredItem<ArmorItem> SARONITE_LEGGINGS = MOD_ITEMS.register("saronite_leggings", () ->
@@ -99,7 +99,7 @@ public class ModItems {
                             .stacksTo(1)
                             .rarity(Rarity.RARE)
                             .fireResistant()
-                            .durability(21)
+                            .durability(ArmorItem.Type.LEGGINGS.getDurability(21))
             ));
 
     public static final DeferredItem<ArmorItem> SARONITE_BOOTS = MOD_ITEMS.register("saronite_boots", () ->
@@ -110,7 +110,7 @@ public class ModItems {
                             .stacksTo(1)
                             .rarity(Rarity.RARE)
                             .fireResistant()
-                            .durability(21)
+                            .durability(ArmorItem.Type.BOOTS.getDurability(21))
             ));
 
     public static void register(IEventBus modEventBus){

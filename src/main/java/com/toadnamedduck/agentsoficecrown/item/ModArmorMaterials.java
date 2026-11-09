@@ -40,7 +40,7 @@ public class ModArmorMaterials {
     //Armor material setup
 
     public static Holder<ArmorMaterial> saronite = MOD_ARMORS.register("saronite", () ->
-            new ArmorMaterial(saroniteDefenseMap, 16, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(ModTags.ITEMS.SARONITE_INGOT), saroniteLayers,0.0f, 0.0f)
+            new ArmorMaterial(saroniteDefenseMap, 16, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(ModTags.ITEMS.SARONITE_INGOT), saroniteLayers,0.0f, 0.25f)
     );
 
     public static void register(IEventBus eventBus){
