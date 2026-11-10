@@ -65,6 +65,8 @@ public class ModEnUsLanguageProvider extends ModLanguageProvider {
         addByKey("tooltip.agentsoficecrown.coalesced_souls_tooltip", "Sneak right-click to store souls in your soulbound weapon in the other hand.");
         addByKey("gui.agentsoficecrown.awaken_button_tooltip", "Awaken a melee weapon by consuming a Coalesced Soul.");
         addByKey("gui.agentsoficecrown.repair_button_tooltip", "Consumes souls from the weapon's store to repair it.");
+        addByKey("tooltip.agentsoficecrown.saronite_set", "(%s/4) Saronite Set");
+        addByKey("tooltip.agentsoficecrown.saronite_set_info", "Once every 2 minutes, this set can save you from a lethal blow.");
 
         //Enchants
         addByKey("enchantment.agentsoficecrown.razorice", "Rune of Razorice");

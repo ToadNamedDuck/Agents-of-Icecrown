@@ -49,24 +49,39 @@ public class ModEvents {
     @SubscribeEvent
     public static void onToolTip(ItemTooltipEvent tooltipEvent){
         ItemStack item = tooltipEvent.getItemStack();
-
-        if(!item.is(ModTags.ITEMS.MELEE_WEAPON)) return;
-
         List<Component> tooltip = tooltipEvent.getToolTip();
-        SoulBinding binding = findBinding(item);
 
-        if(binding == null && item.is(ModTags.ITEMS.SARONITE_WEAPONS)){
-            tooltip.add(INERT.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
-        }
-        if(binding != null){
-            tooltip.add(Component.translatable("tooltip.agentsoficecrown.souls", binding.souls(), SoulBinding.bonusDamage(binding.souls())).withStyle(ChatFormatting.AQUA));
+        if(item.is(ModTags.ITEMS.MELEE_WEAPON)){
+            SoulBinding binding = findBinding(item);
 
-            Player holdingPlayer = tooltipEvent.getEntity();
-            if(holdingPlayer != null && !holdingPlayer.getUUID().equals(binding.owner())){
-                tooltip.add(SOULBINDING_OWNER_MISMATCH.withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.ITALIC));
+            if(binding == null && item.is(ModTags.ITEMS.SARONITE_WEAPONS)){
+                tooltip.add(INERT.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
             }
-            if(isSpent(item)){
-                tooltip.add(SOULBINDING_DURABILITY_SPENT.withStyle(ChatFormatting.RED));
+            if(binding != null){
+                tooltip.add(Component.translatable("tooltip.agentsoficecrown.souls", binding.souls(), SoulBinding.bonusDamage(binding.souls())).withStyle(ChatFormatting.AQUA));
+
+                Player holdingPlayer = tooltipEvent.getEntity();
+                if(holdingPlayer != null && !holdingPlayer.getUUID().equals(binding.owner())){
+                    tooltip.add(SOULBINDING_OWNER_MISMATCH.withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.ITALIC));
+                }
+                if(isSpent(item)){
+                    tooltip.add(SOULBINDING_DURABILITY_SPENT.withStyle(ChatFormatting.RED));
+                }
+            }
+        } else if (item.is(ModTags.ITEMS.SARONITE_ARMOR)) {
+            Player player = tooltipEvent.getEntity();
+            if(player == null) return;
+            int wornSaronitePieces = 0;
+            for(EquipmentSlot slot : ARMOR_SLOTS){
+                if(player.getItemBySlot(slot).is(ModTags.ITEMS.SARONITE_ARMOR)) wornSaronitePieces = wornSaronitePieces+1;
+            }
+            if(wornSaronitePieces == 4){
+                tooltip.add(Component.translatable("tooltip.agentsoficecrown.saronite_set", wornSaronitePieces).withStyle(ChatFormatting.GREEN));
+                tooltip.add(SARONITE_SET_TOOLTIP_INFO.withStyle(ChatFormatting.GREEN));
+            }
+            else{
+                tooltip.add(Component.translatable("tooltip.agentsoficecrown.saronite_set", wornSaronitePieces).withStyle(ChatFormatting.GRAY));
+                tooltip.add(SARONITE_SET_TOOLTIP_INFO.withStyle(ChatFormatting.GRAY));
             }
         }
     }

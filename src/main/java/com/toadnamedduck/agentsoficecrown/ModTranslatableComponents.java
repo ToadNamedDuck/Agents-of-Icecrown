@@ -35,9 +35,11 @@ public class ModTranslatableComponents {
     public static final MutableComponent COALESCED_SOULS_SOUL_VALUE = Component.translatable("config.agentsoficecrown.coalesced_souls_value");
     public static final MutableComponent CONFIG_SOULBINDING = Component.translatable("agentsoficecrown.configuration.soulbinding");
     public static final MutableComponent CONFIG_SOULS = Component.translatable("agentsoficecrown.configuration.souls");
+    public static final MutableComponent SARONITE_SET_TOOLTIP = Component.translatable("tooltip.agentsoficecrown.saronite_set");
+    public static final MutableComponent SARONITE_SET_TOOLTIP_INFO = Component.translatable("tooltip.agentsoficecrown.saronite_set_info");
 
     public static final Set<MutableComponent> MOD_TRANSLATABLE = Set.of(INERT, SOULS, SOULBINDING_OWNER_MISMATCH, SOULBINDING_DURABILITY_SPENT, MOD_CREATIVE_TAB, RITUAL_IN_PROGRESS,
             RITUAL_ALTAR_EMPTY, RITUAL_WRONG_ITEM, RITUAL_ALREADY_BOUND, RITUAL_HEALTH_TOO_LOW, RITUAL_NOT_PREPARED, RITUAL_CANCELLED, RITUAL_SUCCESS, SOUL_CONDENSER_TITLE, COALESCED_SOULS_TOOLTIP, COALESCED_SOULS_NO_BINDING,
             RUNEFORGE_TITLE, RUNEFORGE_AWAKEN_BUTTON, RUNEFORGE_AWAKEN_TOOLTIP, RUNEFORGE_REPAIR_TOOLTIP, ENCHANT_RAZORICE, ENCHANT_FALLEN_CRUSADER, ENCHANTMENT_STONESKIN_GARGOYLE, SOULBINDING_MAX_BONUS,
-            SOULBINDING_EFFECTIVE_SOUL_CAP, SOULBINDING_DEBUFF_HEALTH_PENALTY, COALESCED_SOULS_SOUL_VALUE, CONFIG_SOULBINDING, CONFIG_SOULS);
+            SOULBINDING_EFFECTIVE_SOUL_CAP, SOULBINDING_DEBUFF_HEALTH_PENALTY, COALESCED_SOULS_SOUL_VALUE, CONFIG_SOULBINDING, CONFIG_SOULS, SARONITE_SET_TOOLTIP, SARONITE_SET_TOOLTIP_INFO);
 }
