@@ -6,9 +6,14 @@ import com.toadnamedduck.agentsoficecrown.attachment.SoulBoundDebuffHelpers;
 import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers;
 import com.toadnamedduck.agentsoficecrown.datacomponent.SoulBinding;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -21,6 +26,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
@@ -35,6 +41,7 @@ import static com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentH
 public class ModEvents {
 
     private static ResourceLocation SOUL_DAMAGE_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(Constants.MODID, "soul_damage");
+    private static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
 
     @SubscribeEvent
     public static void onToolTip(ItemTooltipEvent tooltipEvent){
@@ -116,5 +123,40 @@ public class ModEvents {
         if(event.getEntity() instanceof ServerPlayer player && player.tickCount % 20 == 0){
             SoulBoundDebuffHelpers.addOrRemoveDebuff(player);
         }
+    }
+
+    private static boolean hasFullSet(Player player){
+        Iterable<ItemStack> armor = player.getArmorSlots();
+        for(ItemStack item : armor){
+            if(!item.is(ModTags.ITEMS.SARONITE_ARMOR)) return false;
+        }
+        return true;
+    }
+
+    @SubscribeEvent
+    public static void onPlayerHurt(LivingDamageEvent.Pre event){
+        if(!(event.getEntity() instanceof ServerPlayer player) || player instanceof FakePlayer) return;
+        if(event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return;
+        if(player.getHealth() - event.getNewDamage() > 0) return;//Only saving on a lethal hit
+        if(!hasFullSet(player)) return;
+        Iterable<ItemStack> armor = player.getArmorSlots();
+
+        for(ItemStack item : armor){
+            if(player.getCooldowns().isOnCooldown(item.getItem())) return;
+        }
+
+        event.setNewDamage(0);
+        player.heal(10);
+
+        for (EquipmentSlot slot : ARMOR_SLOTS){
+            ItemStack item = player.getItemBySlot(slot);
+            player.getCooldowns().addCooldown(item.getItem(), 1800);
+            item.hurtAndBreak((int) (item.getMaxDamage() * 0.15f), player, slot);
+        }
+
+        //Particle shower, sound, etc.
+        ServerLevel level = player.serverLevel();
+        level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, player.getX(), player.getY() + 1, player.getZ(), 40, 0.4, 0.25, 0.4, 0.15);
+        level.playSound(null, player.getX(), player.getY() + 1, player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1, -0.84f);
     }
 }

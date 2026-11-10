@@ -86,6 +86,12 @@ public class ModItemsTagsProvider extends ItemTagsProvider {
         tag(ItemTags.FOOT_ARMOR)
                 .add(ModItems.SARONITE_BOOTS.get());
 
+        tag(ModTags.ITEMS.SARONITE_ARMOR)
+                .add(ModItems.SARONITE_HELMET.get())
+                .add(ModItems.SARONITE_CHESTPLATE.get())
+                .add(ModItems.SARONITE_LEGGINGS.get())
+                .add(ModItems.SARONITE_BOOTS.get());
+
         tag(ModTags.ITEMS.SARONITE_WEAPONS)
                 .add(ModItems.SARONITE_SWORD.get())
                 .add(ModItems.SARONITE_AXE.get());

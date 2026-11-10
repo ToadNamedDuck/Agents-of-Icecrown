@@ -55,7 +55,7 @@ public class ModTags {
         public static final TagKey<Item> SARONITE_NUGGET = c("nuggets/saronite");
         public static final TagKey<Item> SARONITE_BLOCK = c("storage_blocks/saronite");
         public static final TagKey<Item> SARONITE_BUCKET = c("buckets/liquid_saronite");
-
+        public static final TagKey<Item> SARONITE_ARMOR = aoi("saronite_armor");
         public static final TagKey<Item> TOOLS = c("tools");
         public static final TagKey<Item> MELEE_WEAPON = c("tools/melee_weapon");
         public static final TagKey<Item> MINING_TOOL = c("tools/mining_tool");
