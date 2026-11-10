@@ -23,8 +23,8 @@ public class ModArmorMaterials {
 
     //Set up armor values of each piece per type
     static Map<ArmorItem.Type, Integer>  saroniteDefenseMap = new EnumMap<>(Map.of(
-            ArmorItem.Type.HELMET, 2,//2 6 5 2
-            ArmorItem.Type.CHESTPLATE, 6,
+            ArmorItem.Type.HELMET, 2,//2 7 5 2
+            ArmorItem.Type.CHESTPLATE, 7,
             ArmorItem.Type.LEGGINGS, 5,
             ArmorItem.Type.BOOTS, 2
             )
