@@ -102,6 +102,40 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_axe"));
 
         //Armor
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.COMBAT, ModItems.SARONITE_HELMET.get())
+                .define('X', ModTags.ITEMS.SARONITE_INGOT)
+                .pattern("XXX")
+                .pattern("X X")
+                .unlockedBy("has_saronite_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_helmet"));
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.COMBAT, ModItems.SARONITE_CHESTPLATE.get())
+                .define('X', ModTags.ITEMS.SARONITE_INGOT)
+                .define('Y', ModItems.SARONITE_WING)
+                .pattern("Y Y")
+                .pattern("XXX")
+                .pattern("XXX")
+                .unlockedBy("has_saronite_wing", has(ModItems.SARONITE_WING.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_chestplate"));
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.COMBAT, ModItems.SARONITE_LEGGINGS.get())
+                .define('X', ModTags.ITEMS.SARONITE_INGOT)
+                .pattern("XXX")
+                .pattern("X X")
+                .pattern("X X")
+                .unlockedBy("has_saronite_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_leggings"));
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.COMBAT, ModItems.SARONITE_BOOTS.get())
+                .define('X', ModTags.ITEMS.SARONITE_INGOT)
+                .pattern("X X")
+                .pattern("X X")
+                .unlockedBy("has_saronite_ingot", has(ModTags.ITEMS.SARONITE_INGOT))
+                .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MODID, "saronite_boots"));
 
         //Misc Items
         ShapedRecipeBuilder
