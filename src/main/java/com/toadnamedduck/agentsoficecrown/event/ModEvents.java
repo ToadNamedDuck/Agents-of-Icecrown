@@ -2,6 +2,7 @@ package com.toadnamedduck.agentsoficecrown.event;
 
 import com.toadnamedduck.agentsoficecrown.Constants;
 import com.toadnamedduck.agentsoficecrown.ModTags;
+import com.toadnamedduck.agentsoficecrown.attachment.ModAttachments;
 import com.toadnamedduck.agentsoficecrown.attachment.SoulBoundDebuffHelpers;
 import com.toadnamedduck.agentsoficecrown.datacomponent.ModDataComponentHelpers;
 import com.toadnamedduck.agentsoficecrown.datacomponent.SoulBinding;
@@ -30,6 +31,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.List;
@@ -42,6 +44,7 @@ public class ModEvents {
 
     private static ResourceLocation SOUL_DAMAGE_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(Constants.MODID, "soul_damage");
     private static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
+    private static final int SARONITE_ARMOR_COOLDOWN_TICKS = 2400;
 
     @SubscribeEvent
     public static void onToolTip(ItemTooltipEvent tooltipEvent){
@@ -150,13 +153,44 @@ public class ModEvents {
 
         for (EquipmentSlot slot : ARMOR_SLOTS){
             ItemStack item = player.getItemBySlot(slot);
-            player.getCooldowns().addCooldown(item.getItem(), 1800);
             item.hurtAndBreak((int) (item.getMaxDamage() * 0.15f), player, slot);
         }
+
+        startCooldown(player, SARONITE_ARMOR_COOLDOWN_TICKS);
 
         //Particle shower, sound, etc.
         ServerLevel level = player.serverLevel();
         level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, player.getX(), player.getY() + 1, player.getZ(), 40, 0.4, 0.25, 0.4, 0.15);
         level.playSound(null, player.getX(), player.getY() + 1, player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1, -0.84f);
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event){
+        restoreVisualCooldowns(event.getEntity());
+    }
+
+    @SubscribeEvent
+    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
+        restoreVisualCooldowns(event.getEntity());
+    }
+
+    private static void startCooldown(ServerPlayer player, int ticks){
+        player.setData(ModAttachments.SARONITE_ARMOR_COOLDOWN.get(), player.serverLevel().getGameTime() + ticks);
+        showSaroniteCooldown(player, ticks);
+    }
+
+    private static void showSaroniteCooldown(ServerPlayer player, int ticks){
+        for(EquipmentSlot slot : ARMOR_SLOTS){
+            ItemStack item = player.getItemBySlot(slot);
+            if(item.is(ModTags.ITEMS.SARONITE_ARMOR)){
+                player.getCooldowns().addCooldown(item.getItem(), ticks);
+            }
+        }
+    }
+
+    private static void restoreVisualCooldowns(Player player){
+        if(!(player instanceof ServerPlayer sPlayer)) return;
+        long remainder = sPlayer.getData(ModAttachments.SARONITE_ARMOR_COOLDOWN) - sPlayer.serverLevel().getGameTime();
+        if(remainder > 0) showSaroniteCooldown( sPlayer, (int) remainder);
     }
 }

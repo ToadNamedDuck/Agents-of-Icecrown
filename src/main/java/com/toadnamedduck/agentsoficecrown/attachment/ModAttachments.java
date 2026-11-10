@@ -18,6 +18,12 @@ public class ModAttachments {
                     .copyOnDeath()
                     .build());
 
+    public static final Supplier<AttachmentType<Long>> SARONITE_ARMOR_COOLDOWN = MOD_DATA_ATTACHMENTS.register("saronite_armor_cooldown", () ->
+            AttachmentType.<Long>builder(() -> 0L)
+                    .serialize(Codec.LONG)
+                    .copyOnDeath()
+                    .build());
+
     public static void register(IEventBus modEventBus){
         MOD_DATA_ATTACHMENTS.register(modEventBus);
     }
