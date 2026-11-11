@@ -18,7 +18,7 @@ Features:
 
 Installation:
 =========
-- Currently, the mod is only supported on NeoForge 21.1.x for Minecraft 1.21.1
+- Currently, the mod is only supported on NeoForge 21.1.x for Minecraft 1.21.1. Built and tested with NeoForge 21.1.167.
 - Drop the jar into the mods folder. This mod needs to be installed both on the server and the client if you are hosting.
 - Start mining Saronite!
 
