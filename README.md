@@ -1,25 +1,42 @@
 
-Installation information
+Agents of Icecrown
 =======
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+Agents of Icecrown is a NeoForge mod that is designed to bring elements of the Death Knight
+fantasy from World of Warcraft to life in Minecraft. Though not exactly faithful to the lore or source material, everything in the mod has been lovingly inspired or translated from the source material to make an interesting new experience in Minecraft.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+Features:
+========
+- Saronite metal (the blood of the Old God Yogg Saron), found as ore throughout the world
+- A ritual to place a part of your soul into a Saronite Weapon, awakening it and allowing you to store souls in it
+- Awakened weapons gain bonus damage based on the souls stored within them (Configurable)
+- A Saronite Armor set with a 4-piece set bonus that can save you from a lethal blow (on a cooldown)
+- The Unholy Altar, which serves both as the nucleus of the ritual and a decorative item-display option
+- The Soul Condenser, which allows you to extract and coalesce souls into a Coalesced Souls item
+- The Runeforge, which allows you to awaken other melee weapons without the ritual, as well as repair awakened weapons and apply special Runeforge Enchants
+- Runeforge Enchantments, including: Rune of the Fallen Crusader, Rune of Razorice, and Rune of the Stoneskin Gargoyle
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+Installation:
+=========
+- Currently, the mod is only supported on NeoForge 21.1.x for Minecraft 1.21.1
+- Drop the jar into the mods folder. This mod needs to be installed both on the server and the client if you are hosting.
+- Start mining Saronite!
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+Credits:
+========
+- Created by Jason Harris (ToadNamedDuck), with special thanks to my friends for watching the development and contributing ideas and critiques.
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+Disclaimer:
+========
+Agents of Icecrown is an unofficial, free fan project inspired by World of Warcraft. It is not affiliated with,
+endorsed by, or approved by Blizzard Entertainment, Mojang Studios, or Microsoft. World of Warcraft and related
+names are trademarks of Blizzard Entertainment. Minecraft is a trademark of Mojang Studios. All textures,
+models, and code in this repository are original work unless noted.
+
+License:
+=======
+- **Code:** MIT License, Copyright (c) 2026 Jason Harris. See [LICENSE](LICENSE.txt).
+- **Textures and models:** CC BY-NC 4.0 (credit required, no commercial use).
+
+You're welcome to read the code to learn how things work. If you reuse any of it, keep the license notice.
+Inclusion in modpacks, including on platforms that share revenue with pack authors, is explicitly permitted. Please credit the mod and let me know about it.
